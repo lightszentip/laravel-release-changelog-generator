@@ -1,8 +1,6 @@
 name: Release Drafter
 
 on:
-  release:
-    types: [ released ]
   push:
     # branches to consider in the event; optional, defaults to all
     branches:

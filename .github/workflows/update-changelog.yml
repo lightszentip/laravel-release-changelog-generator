@@ -19,9 +19,18 @@ jobs:
           latest-version: ${{ github.event.release.name }}
           release-notes: ${{ github.event.release.body }}
 
+      - name: Generate a changelog
+        uses: orhun/git-cliff-action@v1
+        id: git-cliff
+        with:
+          config: cliff.toml
+          args: --verbose
+        env:
+          OUTPUT: GIT_CHANGELOG.md
+
       - name: Commit updated CHANGELOG
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           branch: main
           commit_message: Update CHANGELOG
-          file_pattern: CHANGELOG.md
+          file_pattern: CHANGELOG.md GIT_CHANGELOG.md
