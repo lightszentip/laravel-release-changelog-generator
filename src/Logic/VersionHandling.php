@@ -18,35 +18,59 @@ class VersionHandling
         $this->yamlContents = Yaml::parse(file_get_contents($this->yamlPath));
     }
 
+    /**
+     * increment minor and save
+     * @return void
+     */
     public function incrementMinor(): void
     {
         $this->yamlContents = VersionCalculator::incrementMinor($this->yamlContents);
         $this->saveYamlContent();
     }
 
+    /**
+     * increment major and save
+     * @return void
+     */
     public function incrementMajor(): void
     {
         $this->yamlContents = VersionCalculator::incrementMajor($this->yamlContents);
         $this->saveYamlContent();
     }
 
+    /**
+     * increment patch and save
+     * @return void
+     */
     public function incrementPatch(): void
     {
         $this->yamlContents = VersionCalculator::incrementPatch($this->yamlContents);
         $this->saveYamlContent();
     }
 
+    /**
+     * increment pre release and save
+     * @return void
+     */
     public function incrementPreRelease(): void
     {
         $this->yamlContents = VersionCalculator::incrementPreRelease($this->yamlContents);
         $this->saveYamlContent();
     }
 
+    /**
+     * Get content of version file
+     * @return mixed
+     */
     public function getContent()
     {
         return $this->yamlContents;
     }
 
+    /**
+     * save current content in file
+     * @return void
+     */
     private function saveYamlContent(): void
     {
         file_put_contents($this->yamlPath, Yaml::dump($this->yamlContents));

@@ -2,8 +2,18 @@
 
 namespace Lightszentip\LaravelReleaseChangelogGenerator\Logic;
 
+/**
+ * Version Calculator
+ * @since 0.0.0
+ */
 class VersionCalculator
 {
+
+    /**
+     * increment minor version
+     * @param array $yamlVersionConfig
+     * @return array
+     */
     public static function incrementMinor(array $yamlVersionConfig): array
     {
         $yamlVersionConfig['minor']++;
@@ -13,6 +23,11 @@ class VersionCalculator
         return $yamlVersionConfig;
     }
 
+    /**
+     * increment patch version
+     * @param array $yamlVersionConfig
+     * @return array
+     */
     public static function incrementPatch(array $yamlVersionConfig)
     {
         $yamlVersionConfig['patch']++;
@@ -21,6 +36,11 @@ class VersionCalculator
         return $yamlVersionConfig;
     }
 
+    /**
+     * increment pre release version
+     * @param array $yamlVersionConfig
+     * @return array
+     */
     public static function incrementPreRelease(array $yamlVersionConfig)
     {
         if (is_null($yamlVersionConfig['prereleasenumber'])) {
@@ -32,6 +52,11 @@ class VersionCalculator
         return $yamlVersionConfig;
     }
 
+    /**
+     * increment major version
+     * @param array $yamlVersionConfig
+     * @return array
+     */
     public static function incrementMajor(array $yamlVersionConfig)
     {
         $yamlVersionConfig['major']++;

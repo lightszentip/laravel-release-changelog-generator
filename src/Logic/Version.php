@@ -5,10 +5,19 @@ namespace Lightszentip\LaravelReleaseChangelogGenerator\Logic;
 use Illuminate\Support\Facades\Config;
 use Lightszentip\LaravelReleaseChangelogGenerator\Util\Constants;
 
+/**
+ *
+ */
 class Version
 {
+
     public const REPLACE_VALUE = array('{major}', '{minor}', '{patch}', '{prerelease}', '{prereleasenumber}', '{buildmetadata}', '{date}','{timestamp}');
 
+    /**
+     * show Version by format type
+     * @param string $type
+     * @return string The current version
+     */
     public function showVersion(string $type): string
     {
         $existsFormats = Config::get('releasechangelog.version_formats');

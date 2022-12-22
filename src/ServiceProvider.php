@@ -16,9 +16,9 @@ class ServiceProvider extends IlluminateServiceProvider
 {
     public function register()
     {
-        $this->publishes([
-            __DIR__.'/../config/config.php' => config_path('releasechangelog.php'),
-        ], 'config');
+
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'releasechangelog');
+
 
         $this->app->singleton(Constants::APP_VERISON_HANDLING, function () {
             return new VersionHandling();
@@ -36,18 +36,19 @@ class ServiceProvider extends IlluminateServiceProvider
                 ReleaseChangelog::class,
                 AddChangelog::class,
             ]);
+            $this->publishes([
+                __DIR__.'/../config/config.php' => config_path('releasechangelog.php'),
+            ], 'config');
+
+            $this->publishes([
+
+                // Views
+                __DIR__.'/../resources/.version/version.yml' => resource_path('.version/version.yml'),
+                __DIR__.'/../resources/.changes/changelog.json' => resource_path('.changes/changelog.json'),
+
+            ], 'resources');
 
         }
-
-        // AboutCommand::add('My Package', fn () => ['Version' => '1.0.0']);
-
-        $this->publishes([
-
-            // Views
-            __DIR__.'/../resources/.version/version.yml' => resource_path('.version/version.yml'),
-            __DIR__.'/../resources/.changes/changelog.json' => resource_path('.changes/changelog.json'),
-
-        ], 'resources');
 
         Blade::directive(
             Config::get('releasechangelog.blade-directive', 'releasechangelog'),

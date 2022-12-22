@@ -18,8 +18,6 @@ class ReleaseChangelogTest extends TestCase
     /** @test */
     public function handle_command()
     {
-
-
         $this->withoutMockingConsoleOutput()
             ->artisan("changelog:release", ["--releasename" => "FooBar 1"]);
         // capture the text output from the command
@@ -28,18 +26,9 @@ class ReleaseChangelogTest extends TestCase
         $this->assertEquals("", $result);
 
         $this->assertEquals(
+            file_get_contents(__DIR__.'/test_default_version.yml'),
             file_get_contents(FileHandler::pathVersion())
-            ,'label: v
-major: 1
-minor: 0
-patch: 1
-prerelease: rc
-prereleasenumber: 0
-buildmetadata: null
-timestamp:
-    date: null
-    timestamp: null
-');
+            );
 
 
     }
