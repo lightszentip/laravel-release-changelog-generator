@@ -24,10 +24,16 @@
         "orchestra/testbench": "^v7.16.0",
         "pestphp/pest": "^1.21",
         "pestphp/pest-plugin-laravel": "^v1.3.0",
+        "phpcheckstyle/phpcheckstyle": "^0.14.8",
+        "phploc/phploc": "^7.0",
         "phpstan/extension-installer": "^1.2.0",
         "phpstan/phpstan-deprecation-rules": "^1.1.1",
         "phpstan/phpstan-phpunit": "^1.3.2",
-        "phpunit/phpunit": "^9.5.27"
+        "phpunit/phpunit": "^9.5.27",
+        "psalm/plugin-laravel": "^2.0",
+        "psalm/plugin-phpunit": "^0.18.4",
+        "sebastian/phpcpd": "^6.0",
+        "vimeo/psalm": "^5.4"
     },
     "autoload": {
         "psr-4": {
