@@ -8,6 +8,7 @@ use Lightszentip\LaravelReleaseChangelogGenerator\Util\FileHandler;
 
 class AddChangelogTest extends TestCase
 {
+
     /** @test */
     public function handle_command()
     {
