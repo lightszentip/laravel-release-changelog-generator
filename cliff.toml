@@ -35,6 +35,7 @@ commit_parsers = [
     { message = "^test", group = "Testing"},
     { message = "^chore\\(release\\): prepare for", skip = true},
     { message = "^chore", group = "Miscellaneous Tasks"},
-    { body = ".*security", group = "Security"},
+    { body = ".*security", group = "Security"}
+    ]
 
 tag_pattern = "[0-9]*"
