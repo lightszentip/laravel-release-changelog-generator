@@ -4,18 +4,15 @@
 header = "# Changelog\n"
 body = """
 {% if version %}\
-    ## [{{ version | replace(from="v", to="") }}] - {{ timestamp | date(format="%Y-%m-%d") }}
+     ## [{{ version | trim_start_matches(pat="") }}] - {{ timestamp | date(format="%Y-%m-%d") }}
 {% else %}\
     ## [unreleased]
 {% endif %}\
 {% for group, commits in commits | group_by(attribute="group") %}
     ### {{ group | upper_first }}
-    {% for group, commits in commits | group_by(attribute="scope") %}\
-        #### {{ group }}\
-        {% for commit in commits %}
-            - {{ commit.message | upper_first }}\
-        {% endfor %}
-    {% endfor %}\
+    {% for commit in commits %}
+        - {% if commit.breaking %}[**breaking**] {% endif %}{{ commit.message | upper_first }}\
+    {% endfor %}
 {% endfor %}\n
 """
 trim=true
