@@ -14,10 +14,11 @@ jobs:
           fetch-depth: 20
 
       - name: "Build Changelog"
-        id: build_changelog
+        id: github_release
         uses: mikepenz/release-changelog-builder-action@v3.5.0
         with:
           configuration: "configuration.json"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Release
         uses: mikepenz/action-gh-release@v0.2.0-a03 #softprops/action-gh-release
@@ -35,7 +36,7 @@ jobs:
         uses: stefanzweifel/changelog-updater-action@v1
         with:
           latest-version: ${{ github.event.release.name }}
-          release-notes: ${{ steps.build_changelog.outputs.changelog }}
+          release-notes: ${{ github.event.release.body }}
 
       - name: Commit updated CHANGELOG
         uses: stefanzweifel/git-auto-commit-action@v4
