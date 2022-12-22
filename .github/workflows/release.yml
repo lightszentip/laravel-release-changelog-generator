@@ -24,7 +24,7 @@ jobs:
             ${{ runner.os }}-composer-
       - name: Install dependencies
         run: |
-          composer install -o -q
+          composer install --no-dev --optimize-autoloader --prefer-dist
       - name: Zip Folder
         run: zip -r ${{ github.event.repository.name }}.zip . -x ".git/*" ".github/*" "phpcs.xml" ".gitignore" "phpstan-baseline.neon" "phpstan.neon.dist" ".php-cs-fixeer.cache" "renovate.json" "psalm.xml" "phpunit.xml" "..php-cs-fixer.dist.php"
 
