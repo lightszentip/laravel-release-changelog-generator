@@ -16,23 +16,10 @@ You can install the package via composer:
 composer require lightszentip/laravel-release-changelog-generator
 ```
 
-You can publish and run the migrations with:
+Please publish the necessary files with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-release-changelog-generator-migrations"
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="laravel-release-changelog-generator-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
+php artisan vendor:publish --provider="Lightszentip\LaravelReleaseChangelogGenerator\ServiceProvider""
 ```
 
 ## Usage
