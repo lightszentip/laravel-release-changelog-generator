@@ -23,11 +23,13 @@ jobs:
         uses: mikepenz/action-gh-release@v0.2.0-a03 #softprops/action-gh-release
         with:
           body: ${{steps.build_changelog.outputs.changelog}}
-
+  update-file:
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
-          ref: main
+          ref: ${{ github.event.release.target_commitish }}
 
       - name: Update Changelog
         uses: stefanzweifel/changelog-updater-action@v1
