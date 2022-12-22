@@ -6,5 +6,5 @@ prerelease: rc
 prereleasenumber: 0
 buildmetadata: null
 timestamp:
-  date: null
-  timestamp: null
+    date: null
+    timestamp: null

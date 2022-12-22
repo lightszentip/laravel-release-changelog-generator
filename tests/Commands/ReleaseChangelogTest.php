@@ -26,7 +26,7 @@ class ReleaseChangelogTest extends TestCase
         $this->assertEquals("", $result);
 
         $this->assertEquals(
-            file_get_contents('test_default_version.yml'),
+            file_get_contents(__DIR__.'/test_default_version.yml'),
             file_get_contents(FileHandler::pathVersion())
             );
 
