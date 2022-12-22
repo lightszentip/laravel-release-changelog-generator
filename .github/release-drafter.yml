@@ -10,14 +10,14 @@ categories:
       - 'fix'
       - 'bugfix'
       - 'bug'
-  - "title": "🧪 Tests",
-     "labels":
+  - title: '🧪 Tests'
+    labels:
        - 'test'
-  - "title": " 💬 Other",
-    "labels":
+  - title: " 💬 Other"
+    labels:
       - "other"
-  - "title": " 📦 Dependencies",
-    "labels":
+  - title: " 📦 Dependencies"
+    labels:
       -  "dependencies"
   - title: '🧰 Maintenance'
     label: 'chore'
