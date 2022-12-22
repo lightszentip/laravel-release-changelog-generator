@@ -2,8 +2,9 @@
 on: [push, pull_request]
 name: PHP-CS-Fixer
 jobs:
-  slcan:
+  sl-scan:
     name: slcan
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       # Instructions
