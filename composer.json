@@ -1,0 +1,69 @@
+{
+    "name": "lightszentip/laravel-release-changelog-generator",
+    "description": "Package to create releases and changelogs in laravel",
+    "keywords": [
+        "lightszentip",
+        "laravel",
+        "laravel-release-changelog-generator"
+    ],
+    "homepage": "https://github.com/lightszentip/laravel-release-changelog-generator",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lightszentip",
+            "email": "lightszentip@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.0|^8.1",
+        "symfony/yaml": "^6.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.13",
+        "orchestra/testbench": "^v7.16.0",
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-laravel": "^v1.3.0",
+        "phpstan/extension-installer": "^1.2.0",
+        "phpstan/phpstan-deprecation-rules": "^1.1.1",
+        "phpstan/phpstan-phpunit": "^1.3.2",
+        "phpunit/phpunit": "^9.5.27"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lightszentip\\LaravelReleaseChangelogGenerator\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Lightszentip\\LaravelReleaseChangelogGenerator\\": "src",
+            "Lightszentip\\LaravelReleaseChangelogGenerator\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lightszentip\\LaravelReleaseChangelogGenerator\\ServiceProvider"
+            ],
+            "aliases": {
+                "LaravelReleaseChangelogGenerator": "Lightszentip\\LaravelReleaseChangelogGenerator\\Facades\\LaravelReleaseChangelogGenerator"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
