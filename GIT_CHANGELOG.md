@@ -1,6 +1,10 @@
 # Changelog
 ## [unreleased]
 
+### Bug Fixes
+
+- Change the constant for default format to 'full'
+
 ### Ignore
 
 - Update workflow
