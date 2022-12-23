@@ -18,7 +18,7 @@ class ShowVersionTest extends TestCase
         // capture the text output from the command
         $result = Artisan::output();
         // use standard text assertions
-        $this->assertEquals("version 1.0.0 [] \r\n", $result);
+        $this->assertEquals("version 1.0.0 [] \n", $result);
 
     }
 
