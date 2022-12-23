@@ -9,6 +9,7 @@
 
 - Show version in command line
 - Version update for artisan and update timestamp always
+- Set Release by version from input
 
 ### Miscellaneous Tasks
 
