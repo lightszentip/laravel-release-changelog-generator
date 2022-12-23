@@ -1,5 +1,5 @@
 # Changelog
-## [unreleased]
+## [0.2.0] - 2022-12-23
 
 ### Documentation
 
