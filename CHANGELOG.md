@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-release-changelog-generator` will be documented in this file
 
+## 0.2.0 🎄 Beerenberg - 2022-12-23
+
+### 🚀 Features
+
+- Set Release by version from input over artisan @lightszentip (#10)
+- feat: Version update for artisan and update timestamp always @lightszentip (#9)
+- Feature - new artisan command to show version @lightszentip (#8)
+
+### 📦 Dependencies
+
+- chore(deps): update actions/checkout action to v3 @renovate (#6)
+
 ## 0.1.1 🌈 Austre Leirungstinden - 2022-12-23
 
 ### Changes
