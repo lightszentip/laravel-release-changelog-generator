@@ -1,4 +1,10 @@
 # Changelog
+## [unreleased]
+
+### Miscellaneous Tasks
+
+- Update actions/checkout action to v3
+
 ## [0.1.1] - 2022-12-23
 
 ### Bug Fixes
