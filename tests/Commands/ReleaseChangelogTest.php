@@ -4,6 +4,7 @@ namespace Lightszentip\LaravelReleaseChangelogGenerator\Tests\Commands;
 
 use Illuminate\Support\Facades\Artisan;
 use Lightszentip\LaravelReleaseChangelogGenerator\Tests\TestCase;
+use Lightszentip\LaravelReleaseChangelogGenerator\Util\Constants;
 use Lightszentip\LaravelReleaseChangelogGenerator\Util\FileHandler;
 
 class ReleaseChangelogTest extends TestCase
@@ -25,9 +26,11 @@ class ReleaseChangelogTest extends TestCase
         // use standard text assertions
         $this->assertEquals("", $result);
 
+
+
         $this->assertEquals(
-            file_get_contents(__DIR__.'/test_default_version.yml'),
-            file_get_contents(FileHandler::pathVersion())
+            '1.0.1[.rc0]',
+            app('releasechangelog.version')->showVersion('min')
             );
 
 
@@ -105,8 +108,7 @@ class ReleaseChangelogTest extends TestCase
             ->assertFailed();
 
         $this->assertEquals(
-            file_get_contents(FileHandler::pathVersion())
-            ,'label: v
+           'label: v
 major: 1
 minor: 0
 patch: 0
@@ -116,6 +118,6 @@ buildmetadata:
 timestamp:
   date:
   timestamp:
-');
+', file_get_contents(FileHandler::pathVersion()));
     }
 }

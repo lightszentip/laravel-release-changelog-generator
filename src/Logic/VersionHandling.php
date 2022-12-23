@@ -59,6 +59,15 @@ class VersionHandling
     }
 
     /**
+     * update timestamp only
+     * @return void
+     */
+    public function updateTimestamp(): void
+    {
+        $this->saveYamlContent();
+    }
+
+    /**
      * Get content of version file
      * @return mixed
      */
@@ -73,6 +82,8 @@ class VersionHandling
      */
     private function saveYamlContent(): void
     {
+        $this->yamlContents['timestamp']['timestamp'] = time();
+        $this->yamlContents['timestamp']['date'] = date("Y-m-d H:i");
         file_put_contents($this->yamlPath, Yaml::dump($this->yamlContents));
     }
 }
