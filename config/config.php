@@ -20,9 +20,9 @@ return [
     'version_format_default' => 'version {major}.{minor}.{patch}.{prerelease}{prereleasenumber} [{buildmetadata}] (timestamp {timestamp})',
 
     'version_formats' => [
-        'full' => 'version {major}.{minor}.{patch} [{buildmetadata}] (timestamp {timestamp})',
+        'full' => 'version {major}.{minor}.{patch} [{buildmetadata}] {timestamp}',
         'changelogversion' => '{major}.{minor}.{patch}.{prerelease}{prereleasenumber}',
-        'min' => '{$major}.{$minor}.{$patch}[.?={$prerelease}{$prereleasenumber}]',
+        'min' => '{$major}.{$minor}.{$patch}[.{$prerelease}{$prereleasenumber}]',
         'version' => '{major}.{minor}.{patch}',
         'minor' => '{minor}',
         'major' => '{major}',
