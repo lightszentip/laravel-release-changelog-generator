@@ -1,9 +1,14 @@
 # Changelog
 ## [unreleased]
 
+### Documentation
+
+- Update roadmap
+
 ### Features
 
 - Show version in command line
+- Version update for artisan and update timestamp always
 
 ### Miscellaneous Tasks
 
@@ -12,6 +17,7 @@
 ### Test
 
 - Fix windows sign in result output
+- Update version with new format
 
 ## [0.1.1] - 2022-12-23
 
