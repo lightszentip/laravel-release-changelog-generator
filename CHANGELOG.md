@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-release-changelog-generator` will be documented in this file
 
+## 0.1.1 🌈 Austre Leirungstinden - 2022-12-23
+
+### Changes
+
+### 🐛 Bug Fixes
+
+- fix: change the constant for default format to 'full' @lightszentip (#5)
+
 ## 0.1.0 🌈 Austre Hestbreapiggen - 2022-12-22
 
 ### Changes
