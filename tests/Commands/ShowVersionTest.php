@@ -18,7 +18,7 @@ class ShowVersionTest extends TestCase
         // capture the text output from the command
         $result = Artisan::output();
         // use standard text assertions
-        $this->assertEquals("version 1.0.0 [] \n", $result);
+        $this->assertEquals("1.0.0 [] \n", $result);
 
     }
 
@@ -26,7 +26,7 @@ class ShowVersionTest extends TestCase
     public function handle_command_successfull()
     {
 
-        $this->artisan('changelog:show-version')->expectsOutput("version 1.0.0 [] ")
+        $this->artisan('changelog:show-version')->expectsOutput("1.0.0 [] ")
             ->assertOk();
     }
 
