@@ -66,4 +66,21 @@ class VersionCalculator
 
         return $yamlVersionConfig;
     }
+
+    /**
+     * @param array $yamlVersionConfig
+     * @param int $major
+     * @param int $minor
+     * @param int $patch
+     * @return array
+     */
+    public static function updateVersion(array $yamlVersionConfig, int $major, int $minor, int $patch)
+    {
+        $yamlVersionConfig['major']=$major;
+        $yamlVersionConfig['minor']=$minor;
+        $yamlVersionConfig['patch']=$patch;
+        $yamlVersionConfig['prereleasenumber'] =0;
+
+        return $yamlVersionConfig;
+    }
 }

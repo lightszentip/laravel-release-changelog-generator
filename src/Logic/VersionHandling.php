@@ -59,6 +59,19 @@ class VersionHandling
     }
 
     /**
+     * Update version by parameter
+     * @param int $major
+     * @param int $minor
+     * @param int $patch
+     * @return void
+     */
+    public function updateVersion(int $major, int $minor, int $patch): void
+    {
+        $this->yamlContents = VersionCalculator::updateVersion($this->yamlContents, $major, $minor, $patch);
+        $this->saveYamlContent();
+    }
+
+    /**
      * update timestamp only
      * @return void
      */

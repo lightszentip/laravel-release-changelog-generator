@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 use Lightszentip\LaravelReleaseChangelogGenerator\Commands\AddChangelog;
 use Lightszentip\LaravelReleaseChangelogGenerator\Commands\ReleaseChangelog;
+use Lightszentip\LaravelReleaseChangelogGenerator\Commands\SetReleaseChangelog;
 use Lightszentip\LaravelReleaseChangelogGenerator\Commands\UpdateVersion;
 use Lightszentip\LaravelReleaseChangelogGenerator\Commands\ShowVersion;
 use Lightszentip\LaravelReleaseChangelogGenerator\Logic\Version;
@@ -38,7 +39,8 @@ class ServiceProvider extends IlluminateServiceProvider
                 ReleaseChangelog::class,
                 AddChangelog::class,
                 UpdateVersion::class,
-                ShowVersion::class
+                ShowVersion::class,
+                SetReleaseChangelog::class
             ]);
             $this->publishes([
                 __DIR__.'/../config/config.php' => config_path('releasechangelog.php'),

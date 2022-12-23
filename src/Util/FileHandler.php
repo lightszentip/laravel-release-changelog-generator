@@ -13,11 +13,18 @@ class FileHandler
 {
     /**
      * Get path to changelog file
+     * @param bool $checkFileExistsAndCreate default false
      * @return string
      */
-    public static function pathChangelog(): string
+    public static function pathChangelog(bool $checkFileExistsAndCreate = false): string
     {
-        return Config::get('releasechangelog.path').DIRECTORY_SEPARATOR.'.changes'.DIRECTORY_SEPARATOR.'changelog.json';
+        $path = Config::get('releasechangelog.path').DIRECTORY_SEPARATOR.'.changes'.DIRECTORY_SEPARATOR.'changelog.json';
+        if ($checkFileExistsAndCreate) {
+            if (!file_exists($path)) {
+                File::put($path, '');
+            }
+        }
+        return $path;
     }
 
     /**

@@ -26,4 +26,23 @@ class VersionUtil
         }
 
     }
+
+
+    /**
+     * @param mixed $decoded_json
+     * @param string $name
+     * @param string $formatType
+     * @return mixed
+     */
+    public static function generateChangelogWithNewVersion(mixed $decoded_json, string $name, string $formatType = 'changelogversion'): mixed
+    {
+        $currentVersion = app(Constants::APP_VERISON)->showVersion($formatType);
+        $dateNow = new \DateTimeImmutable();
+        $decoded_json->$currentVersion = $decoded_json->unreleased;
+        $decoded_json->$currentVersion->name = $name;
+        $decoded_json->$currentVersion->release = true;
+        $decoded_json->$currentVersion->date = $dateNow->format('Y-m-d H:i:s');
+        $decoded_json->unreleased = ['name' => 'tbd', 'date' => '', 'release' => false];
+        return $decoded_json;
+    }
 }
