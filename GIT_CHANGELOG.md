@@ -1,9 +1,17 @@
 # Changelog
 ## [unreleased]
 
+### Features
+
+- Show version in command line
+
 ### Miscellaneous Tasks
 
 - Update actions/checkout action to v3
+
+### Test
+
+- Fix windows sign in result output
 
 ## [0.1.1] - 2022-12-23
 
