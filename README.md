@@ -22,7 +22,7 @@ composer require lightszentip/laravel-release-changelog-generator
 Please publish the necessary files with:
 
 ```bash
-php artisan vendor:publish --provider="Lightszentip\LaravelReleaseChangelogGenerator\ServiceProvider""
+php artisan vendor:publish --provider="Lightszentip\LaravelReleaseChangelogGenerator\ServiceProvider"
 ```
 
 ## Usage
