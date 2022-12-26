@@ -1,4 +1,14 @@
 # Changelog
+## [unreleased]
+
+### Bug Fixes
+
+- Wrong blade directive
+
+### Miscellaneous Tasks
+
+- Update orhun/git-cliff-action action to v2
+
 ## [0.2.0] - 2022-12-23
 
 ### Documentation
