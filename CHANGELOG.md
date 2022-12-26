@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-release-changelog-generator` will be documented in this file
 
+## 0.2.1 🎄 Brenibba - 2022-12-26
+
+### Changes
+
+### 🐛 Bug Fixes
+
+- fix : Version not work as blade directive - please use @releasechangelog
+
+### 📦 Dependencies
+
+- chore(deps): update orhun/git-cliff-action action to v2 @renovate (#11)
+
 ## 0.2.0 🎄 Beerenberg - 2022-12-23
 
 ### 🚀 Features
