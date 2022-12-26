@@ -49,12 +49,12 @@ This update the version.yml to the next patch vesion and add in the changelog.js
 #### Blade
 
 ```php
-@version
+@releasechangelog
 ```
 To get a special format for the version, you find in the 'releasechangelog.php' in the config dir the item 'version_formats'. You can add new formats and/or change the existing. To use it:
 
 ```php
-@version('full')
+@releasechangelog('full')
 ```
 #### Code
 
