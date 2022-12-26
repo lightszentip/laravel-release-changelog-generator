@@ -37,6 +37,6 @@ return [
      */
     'prerelease' => true,
 
-    'blade-directive ' => 'version',
+    'blade-directive ' => 'releasechangelog',
 
 ];
