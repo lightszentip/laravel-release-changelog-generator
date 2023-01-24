@@ -1,6 +1,20 @@
 # Changelog
 ## [unreleased]
 
+### Miscellaneous Tasks
+
+- Update dependabot/fetch-metadata action to v1.3.6
+
+### Build
+
+- Bump friendsofphp/php-cs-fixer from 3.13.1 to 3.13.2
+- Bump pestphp/pest-plugin-laravel from 1.3.0 to 1.4.0
+- Bump phpunit/phpunit from 9.5.27 to 9.5.28
+- Bump psalm/plugin-laravel from 2.0.2 to 2.3.1
+- Bump vimeo/psalm from 5.4.0 to 5.5.0
+
+## [0.2.1] - 2022-12-26
+
 ### Bug Fixes
 
 - Wrong blade directive
