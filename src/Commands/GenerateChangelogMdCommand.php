@@ -16,9 +16,12 @@ class GenerateChangelogMdCommand extends Command
     public function handle()
     {
         $changelogData = json_decode(
-            File::get(FileHandler::pathChangelog(true))
+            File::get(FileHandler::pathChangelog(true)),
+            true
         );
 
+        krsort($changelogData);
+        
         File::put(FileHandler::pathChangelogMd(), view('changelog-md', [
             'changelog' => $changelogData
         ]));
