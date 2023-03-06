@@ -25,6 +25,15 @@
 - Bump orchestra/testbench from 7.21.0 to 7.22.0
 - Bump psalm/plugin-laravel from 2.7.0 to 2.7.1
 - Bump vimeo/psalm from 5.6.0 to 5.7.1
+- Bump orchestra/testbench from 8.0.1 to 8.0.4
+- Bump phpstan/phpstan-phpunit from 1.3.4 to 1.3.8
+- Bump phpstan/phpstan-deprecation-rules
+- Bump phpstan/phpstan-phpunit from 1.3.8 to 1.3.10
+- Bump psalm/plugin-laravel from 2.7.1 to 2.8.0
+- Bump phpunit/phpunit from 9.6.3 to 9.6.4
+- Bump symfony/yaml from 6.2.5 to 6.2.7
+- Bump orchestra/testbench from 8.0.4 to 8.0.5
+- Bump pestphp/pest from 1.22.4 to 1.22.5
 
 ## [0.2.1] - 2022-12-26
 
