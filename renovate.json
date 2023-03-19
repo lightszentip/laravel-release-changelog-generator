@@ -7,8 +7,14 @@
       "depTypeList": [ "devDependencies", "require-dev" ],
       "updateTypes": [ "patch", "minor", "digest"],
       "groupName": "devDependencies (non-major)"
+    },
+         {
+      "depTypeList": [ "devDependencies", "require-dev" ],
+      "updateTypes": [ "major"],
+      "groupName": "devDependencies (major)"
     }
   ],
+    "lockFileMaintenance": { "enabled": true },
   "extends": [
     "config:base",
     ":preserveSemverRanges",
