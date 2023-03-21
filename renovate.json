@@ -7,15 +7,20 @@
       "depTypeList": [ "devDependencies", "require-dev" ],
       "updateTypes": [ "patch", "minor", "digest"],
       "groupName": "devDependencies (non-major)"
-    }
+    },
+        {
+            "depTypeList": [ "dependencies", "require" ],
+            "updateTypes": [ "patch", "minor", "digest","major"],
+            "groupName": "dependencies"
+        }
   ],
   "extends": [
     "config:base",
     ":preserveSemverRanges",
+      "group:allNonMajor",
     ":dependencyDashboard",
     ":rebaseStalePrs",
     ":enableVulnerabilityAlertsWithLabel('security')",
-    "group:recommended"
   ]
 
 }
