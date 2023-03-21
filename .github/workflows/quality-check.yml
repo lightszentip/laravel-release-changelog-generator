@@ -68,12 +68,11 @@ jobs:
         os: [ ubuntu-latest ]
         php: [ 8.2, 8.1]
         laravel: [ 9.*, 10.* ]
-        stability: [ prefer-lowest, prefer-stable ]
+        stability: [ prefer-stable ]
         include:
           - laravel: 9.*
             testbench: 7.*
             pest: 1.*
-            stability: prefer-stable
           - laravel: 10.*
             testbench: 8.*
             pest: 2.*
