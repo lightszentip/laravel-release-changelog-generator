@@ -1,6 +1,52 @@
 # Changelog
 ## [unreleased]
 
+### Miscellaneous Tasks
+
+- Update dependabot/fetch-metadata action to v1.3.6
+- Update dependency orchestra/testbench to v8
+
+### Build
+
+- Bump friendsofphp/php-cs-fixer from 3.13.1 to 3.13.2
+- Bump pestphp/pest-plugin-laravel from 1.3.0 to 1.4.0
+- Bump phpunit/phpunit from 9.5.27 to 9.5.28
+- Bump psalm/plugin-laravel from 2.0.2 to 2.3.1
+- Bump vimeo/psalm from 5.4.0 to 5.5.0
+- Bump friendsofphp/php-cs-fixer from 3.13.2 to 3.14.3
+- Bump psalm/plugin-laravel from 2.3.1 to 2.5.0
+- Bump symfony/yaml from 6.2.2 to 6.2.5
+- Bump symfony/http-kernel from 6.2.5 to 6.2.6
+- Bump psalm/plugin-laravel from 2.5.0 to 2.7.0
+- Bump phpunit/phpunit from 9.5.28 to 9.6.3
+- Bump pestphp/pest from 1.22.3 to 1.22.4
+- Bump phpstan/phpstan-phpunit from 1.3.3 to 1.3.4
+- Bump friendsofphp/php-cs-fixer from 3.14.3 to 3.14.4
+- Bump orchestra/testbench from 7.21.0 to 7.22.0
+- Bump psalm/plugin-laravel from 2.7.0 to 2.7.1
+- Bump vimeo/psalm from 5.6.0 to 5.7.1
+- Bump orchestra/testbench from 8.0.1 to 8.0.4
+- Bump phpstan/phpstan-phpunit from 1.3.4 to 1.3.8
+- Bump phpstan/phpstan-deprecation-rules
+- Bump phpstan/phpstan-phpunit from 1.3.8 to 1.3.10
+- Bump psalm/plugin-laravel from 2.7.1 to 2.8.0
+- Bump phpunit/phpunit from 9.6.3 to 9.6.4
+- Bump symfony/yaml from 6.2.5 to 6.2.7
+- Bump orchestra/testbench from 8.0.4 to 8.0.5
+- Bump pestphp/pest from 1.22.4 to 1.22.5
+
+## [0.2.1] - 2022-12-26
+
+### Bug Fixes
+
+- Wrong blade directive
+
+### Miscellaneous Tasks
+
+- Update orhun/git-cliff-action action to v2
+
+## [0.2.0] - 2022-12-23
+
 ### Documentation
 
 - Update roadmap
