@@ -73,6 +73,7 @@ jobs:
           - laravel: 9.*
             testbench: 7.*
             pest: 1.*
+            stability: prefer-stable
           - laravel: 10.*
             testbench: 8.*
             pest: 2.*
