@@ -14,6 +14,7 @@
             "groupName": "dependencies"
         }
   ],
+    "lockFileMaintenance": { "enabled": true },
   "extends": [
     "config:base",
     ":preserveSemverRanges",
@@ -21,6 +22,7 @@
     ":dependencyDashboard",
     ":rebaseStalePrs",
     ":enableVulnerabilityAlertsWithLabel('security')",
+    "group:recommended"
   ]
 
 }

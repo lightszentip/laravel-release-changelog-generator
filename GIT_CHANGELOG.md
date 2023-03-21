@@ -34,6 +34,10 @@
 - Bump symfony/yaml from 6.2.5 to 6.2.7
 - Bump orchestra/testbench from 8.0.4 to 8.0.5
 - Bump pestphp/pest from 1.22.4 to 1.22.5
+- Bump orchestra/testbench from 8.0.5 to 8.0.8
+- Bump vimeo/psalm from 5.7.7 to 5.8.0
+- Bump friendsofphp/php-cs-fixer from 3.14.4 to 3.15.0
+- Bump phpunit/phpunit from 9.6.4 to 9.6.5
 
 ## [0.2.1] - 2022-12-26
 
