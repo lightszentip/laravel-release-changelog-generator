@@ -57,6 +57,7 @@ https://github.com/nelmio/alice
 ## Analyse
 
 ### PHPloc
+*HINT* Deprecated
 
 composer require --dev phploc/phploc
 
@@ -68,6 +69,7 @@ php .\vendor\phploc\phploc\phploc src
 
 
 ### PHPcd
+*HINT* Deprecated
 
 ````shell
 composer require --dev sebastian/phpcpd
