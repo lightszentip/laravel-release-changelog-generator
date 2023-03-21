@@ -9,6 +9,11 @@
       "groupName": "devDependencies (non-major)"
     },
         {
+            "depTypeList": [ "devDependencies", "require-dev" ],
+            "updateTypes": [ "major"],
+            "groupName": "devDependencies (major)"
+        },
+        {
             "depTypeList": [ "dependencies", "require" ],
             "updateTypes": [ "patch", "minor", "digest","major"],
             "groupName": "dependencies"
