@@ -1,6 +1,10 @@
 # Changelog
 ## [unreleased]
 
+### Bug Fixes
+
+- Renovate pullrequests
+
 ### Miscellaneous Tasks
 
 - Update dependabot/fetch-metadata action to v1.3.6
