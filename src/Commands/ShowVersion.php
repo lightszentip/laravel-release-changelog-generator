@@ -1,17 +1,9 @@
 <?php
 
 namespace Lightszentip\LaravelReleaseChangelogGenerator\Commands;
-
-use Exception;
-use http\Exception\InvalidArgumentException;
-use http\Exception\RuntimeException;
+;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\File;
-use Lightszentip\LaravelReleaseChangelogGenerator\Dto\ChangelogItem;
 use Lightszentip\LaravelReleaseChangelogGenerator\Util\Constants;
-use Lightszentip\LaravelReleaseChangelogGenerator\Util\FileHandler;
-use Symfony\Component\Console\Command\Command as CommandAlias;
 
 class ShowVersion extends Command
 {

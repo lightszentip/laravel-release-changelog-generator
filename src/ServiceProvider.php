@@ -32,6 +32,7 @@ class ServiceProvider extends IlluminateServiceProvider
 
     public function boot()
     {
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'releasechangelog');
         // Register the command if we are using the application via the CLI
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -50,7 +51,7 @@ class ServiceProvider extends IlluminateServiceProvider
                 // Views
                 __DIR__.'/../resources/.version/version.yml' => resource_path('.version/version.yml'),
                 __DIR__.'/../resources/.changes/changelog.json' => resource_path('.changes/changelog.json'),
-                __DIR__.'/../resources/views/changelog-md.blade.php' => resource_path('views/changelog-md.blade.php'),
+                __DIR__ . '/../resources/views/changelog-md.blade.php' => resource_path('views/changelog-md.blade.php'),
             ], 'resources');
 
         }

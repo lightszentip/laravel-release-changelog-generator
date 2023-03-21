@@ -5,7 +5,6 @@ namespace Lightszentip\LaravelReleaseChangelogGenerator\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
-use Lightszentip\LaravelReleaseChangelogGenerator\Util\Constants;
 use Lightszentip\LaravelReleaseChangelogGenerator\Util\FileHandler;
 use Lightszentip\LaravelReleaseChangelogGenerator\Util\VersionUtil;
 use Symfony\Component\Console\Command\Command as CommandAlias;

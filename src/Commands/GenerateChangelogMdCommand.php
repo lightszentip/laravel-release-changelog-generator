@@ -3,7 +3,6 @@
 namespace Lightszentip\LaravelReleaseChangelogGenerator\Commands;
 
 use Illuminate\Console\Command;
-use Lightszentip\LaravelReleaseChangelogGenerator\Util\Constants;
 use Lightszentip\LaravelReleaseChangelogGenerator\Util\FileHandler;
 use Illuminate\Support\Facades\File;
 
@@ -20,9 +19,11 @@ class GenerateChangelogMdCommand extends Command
             true
         );
 
-        krsort($changelogData);
-        
-        File::put(FileHandler::pathChangelogMd(), view('changelog-md', [
+        if ($changelogData != null) {
+            krsort($changelogData);
+        }
+
+        File::put(FileHandler::pathChangelogMd(), view( "changelog-md", [
             'changelog' => $changelogData
         ]));
     }

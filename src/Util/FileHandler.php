@@ -38,6 +38,6 @@ class FileHandler
 
     public static function pathChangelogMd()
     {
-        return base_path('CHANGELOG.md');
+        return Config::get('releasechangelog.markdown-path').DIRECTORY_SEPARATOR."CHANGELOG.md";
     }
 }
