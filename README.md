@@ -11,6 +11,16 @@ The changelog is a json file that can easy integrate into a controller to presen
 
 See [ROADMAP](ROADMAP.md) for new functions.
 
+## Version Compatibility
+
+ Release Changelog Generator  | PHP   | Laravel             | 
+:---------|:------|:--------------------
+ 0.1.x     | >=8.0 | 9                   
+ 0.2.0     | >=8.0 | 9                   
+ 0.2.1      | >=8.0 | 9 / 10 (not tested) 
+ 0.3.x      | >=8.1 |  9 / 10       
+
+
 ## Installation
 
 You can install the package via composer:
