@@ -35,4 +35,9 @@ class FileHandler
     {
         return resource_path().DIRECTORY_SEPARATOR.'.version'.DIRECTORY_SEPARATOR.'version.yml';
     }
+
+    public static function pathChangelogMd()
+    {
+        return Config::get('releasechangelog.markdown-path').DIRECTORY_SEPARATOR."CHANGELOG.md";
+    }
 }

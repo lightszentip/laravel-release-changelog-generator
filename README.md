@@ -54,6 +54,14 @@ php artisan changelog:release --releasename="My First Release" --type=patch
 
 This update the version.yml to the next patch vesion and add in the changelog.json a new release with all current changelog items.
 
+### Update CHANGELOG.md file:
+
+This will update the CHANGELOG.md file in the root with your changes.
+
+```shell
+php artisan changelog:generate-md
+```
+
 ### Get version in the application 
 
 #### Blade

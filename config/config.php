@@ -37,6 +37,8 @@ return [
      */
     'prerelease' => true,
 
-    'blade-directive ' => 'releasechangelog',
+    'blade-directive' => 'releasechangelog',
+
+    'markdown-path' => base_path(),
 
 ];
