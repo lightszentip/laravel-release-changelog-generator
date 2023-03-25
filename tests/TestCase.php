@@ -22,6 +22,7 @@ class TestCase extends Orchestra
         }
         if (file_exists(resource_path('views'))) {
             array_map('unlink', glob(resource_path('views') . DIRECTORY_SEPARATOR . '*.*'));
+            array_map('unlink', glob(resource_path('views') . DIRECTORY_SEPARATOR . "errors" . DIRECTORY_SEPARATOR .'*.*'));
             rmdir(resource_path('views'));
         }
         mkdir(resource_path('.changes'));
