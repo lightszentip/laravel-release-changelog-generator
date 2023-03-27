@@ -1,6 +1,18 @@
 # Changelog
 ## [unreleased]
 
+### Miscellaneous Tasks
+
+- Lock file maintenance
+
+### Build
+
+- Bump phpstan/phpstan-phpunit from 1.3.10 to 1.3.11
+- Bump pestphp/pest from 2.1.0 to 2.2.3
+- Bump orchestra/testbench from 8.0.10 to 8.0.11
+
+## [0.3.0] - 2023-03-25
+
 ### Bug Fixes
 
 - Renovate pullrequests
