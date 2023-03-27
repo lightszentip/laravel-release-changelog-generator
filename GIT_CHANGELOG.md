@@ -1,6 +1,14 @@
 # Changelog
 ## [unreleased]
 
+### Bug Fixes
+
+- Missing import
+
+### Features
+
+- Add custom path for markdown view
+
 ### Miscellaneous Tasks
 
 - Lock file maintenance
