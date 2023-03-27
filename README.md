@@ -11,6 +11,8 @@ The changelog is a json file that can easy integrate into a controller to presen
 
 See [ROADMAP](ROADMAP.md) for new functions.
 
+*HINT*: Please run 'php artisan vendor:publish --tag=resources'
+
 ## Version Compatibility
 
  Release Changelog Generator  | PHP   | Laravel             | 
@@ -33,6 +35,7 @@ Please publish the necessary files with:
 
 ```bash
 php artisan vendor:publish --provider="Lightszentip\LaravelReleaseChangelogGenerator\ServiceProvider"
+php artisan vendor:publish --tag=resources
 ```
 
 ## Usage
