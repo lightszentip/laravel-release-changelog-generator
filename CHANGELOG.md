@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-release-changelog-generator` will be documented in this file
 
+## 0.3.1 🌈 Elbrus - 2023-03-27
+
+### Changes
+
+### 🚀 Features
+
+- feat: add custom path for markdown view @lightszentip (#67)
+
 ## 0.3.0 🌞 Jostedalsbreen - 2023-03-25
 
 ### Changes
