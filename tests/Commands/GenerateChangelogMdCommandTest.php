@@ -49,6 +49,12 @@ class GenerateChangelogMdCommandTest extends TestCase
         $this->compare_template($result);
     }
 
+    public function handle_command_with_custom_view_path()
+    {
+        Config::set('releasechangelog.markdown-view-path', 'abc');
+        $this->artisan('changelog:generate-md')->assertFailed();
+    }
+    
 
     /** @test */
     public function handle_command_with_generate_correct_file()

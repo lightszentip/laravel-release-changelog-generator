@@ -23,7 +23,7 @@ class GenerateChangelogMdCommand extends Command
             krsort($changelogData);
         }
 
-        File::put(FileHandler::pathChangelogMd(), view( "changelog-md", [
+        File::put(FileHandler::pathChangelogMd(), view(  Config::get('releasechangelog.markdown-view-path')."changelog-md", [
             'changelog' => $changelogData
         ]));
     }

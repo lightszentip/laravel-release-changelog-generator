@@ -41,4 +41,6 @@ return [
 
     'markdown-path' => base_path(),
 
+    'markdown-view-path' => '',
+
 ];
