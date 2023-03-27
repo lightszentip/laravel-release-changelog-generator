@@ -3,6 +3,7 @@
 namespace Lightszentip\LaravelReleaseChangelogGenerator\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Config;
 use Lightszentip\LaravelReleaseChangelogGenerator\Util\FileHandler;
 use Illuminate\Support\Facades\File;
 
