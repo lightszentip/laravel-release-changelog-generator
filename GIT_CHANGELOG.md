@@ -1,6 +1,19 @@
 # Changelog
 ## [unreleased]
 
+### Miscellaneous Tasks
+
+- Lock file maintenance
+
+### Build
+
+- Bump pestphp/pest from 2.2.3 to 2.4.0
+- Bump friendsofphp/php-cs-fixer from 3.15.1 to 3.16.0
+- Bump orchestra/testbench from 8.1.0 to 8.2.1
+- Bump vimeo/psalm from 5.8.0 to 5.9.0
+
+## [0.3.1] - 2023-03-27
+
 ### Bug Fixes
 
 - Missing import
