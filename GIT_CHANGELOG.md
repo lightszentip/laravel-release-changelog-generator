@@ -4,6 +4,8 @@
 ### Miscellaneous Tasks
 
 - Lock file maintenance
+- Update dependabot/fetch-metadata action to v1.4.0
+- Lock file maintenance
 
 ### Build
 
@@ -11,6 +13,19 @@
 - Bump friendsofphp/php-cs-fixer from 3.15.1 to 3.16.0
 - Bump orchestra/testbench from 8.1.0 to 8.2.1
 - Bump vimeo/psalm from 5.8.0 to 5.9.0
+- Bump orchestra/testbench from 8.2.1 to 8.3.0
+- Bump orchestra/testbench from 8.3.0 to 8.3.1
+- Bump pestphp/pest from 2.4.0 to 2.5.0
+- Bump guzzlehttp/psr7 from 2.4.4 to 2.5.0
+- Bump phpstan/extension-installer from 1.2.0 to 1.3.0
+- Bump orchestra/testbench from 8.3.1 to 8.5.0
+- Bump pestphp/pest from 2.5.0 to 2.5.3
+- Bump orchestra/testbench from 8.5.0 to 8.5.1
+- Bump symfony/yaml from 6.2.7 to 6.2.10
+- Bump pestphp/pest from 2.5.3 to 2.6.0
+- Bump vimeo/psalm from 5.9.0 to 5.11.0
+- Bump orchestra/testbench from 8.5.1 to 8.5.2
+- Bump pestphp/pest from 2.6.0 to 2.6.1
 
 ## [0.3.1] - 2023-03-27
 
