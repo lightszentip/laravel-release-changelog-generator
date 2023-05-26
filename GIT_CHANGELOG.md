@@ -6,6 +6,8 @@
 - Lock file maintenance
 - Update dependabot/fetch-metadata action to v1.4.0
 - Lock file maintenance
+- Lock file maintenance
+- Update dependabot/fetch-metadata action to v1.5.1
 
 ### Build
 
@@ -26,6 +28,7 @@
 - Bump vimeo/psalm from 5.9.0 to 5.11.0
 - Bump orchestra/testbench from 8.5.1 to 8.5.2
 - Bump pestphp/pest from 2.6.0 to 2.6.1
+- Bump orchestra/testbench from 8.5.2 to 8.5.3
 
 ## [0.3.1] - 2023-03-27
 
