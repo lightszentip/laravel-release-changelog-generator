@@ -8,6 +8,7 @@
 - Lock file maintenance
 - Lock file maintenance
 - Update dependabot/fetch-metadata action to v1.5.1
+- Lock file maintenance
 
 ### Build
 
@@ -29,6 +30,14 @@
 - Bump orchestra/testbench from 8.5.1 to 8.5.2
 - Bump pestphp/pest from 2.6.0 to 2.6.1
 - Bump orchestra/testbench from 8.5.2 to 8.5.3
+- Bump friendsofphp/php-cs-fixer from 3.16.0 to 3.17.0
+- Bump vimeo/psalm from 5.11.0 to 5.12.0
+- Bump orchestra/testbench from 8.5.3 to 8.5.4
+- Bump phpstan/extension-installer from 1.3.0 to 1.3.1
+- Bump phpstan/phpstan-phpunit from 1.3.11 to 1.3.13
+- Bump symfony/yaml from 6.2.10 to 6.3.0
+- Bump pestphp/pest from 2.6.1 to 2.6.2
+- Bump orchestra/testbench from 8.5.4 to 8.5.5
 
 ## [0.3.1] - 2023-03-27
 
