@@ -9,6 +9,7 @@
 - Lock file maintenance
 - Update dependabot/fetch-metadata action to v1.5.1
 - Lock file maintenance
+- Lock file maintenance
 
 ### Build
 
@@ -38,6 +39,8 @@
 - Bump symfony/yaml from 6.2.10 to 6.3.0
 - Bump pestphp/pest from 2.6.1 to 2.6.2
 - Bump orchestra/testbench from 8.5.4 to 8.5.5
+- Bump orchestra/testbench from 8.5.5 to 8.5.6
+- Bump pestphp/pest from 2.6.2 to 2.6.3
 
 ## [0.3.1] - 2023-03-27
 
