@@ -21,8 +21,7 @@ class GenerateChangelogMdCommand extends Command
         );
 
         if ($changelogData != null) {
-            uksort($changelogData, "version_compare");
-            $changelogData = array_reverse($changelogData, true);
+            krsort($changelogData);
         }
 
         File::put(FileHandler::pathChangelogMd(), view(  Config::get('releasechangelog.markdown-view-path')."changelog-md", [
