@@ -14,6 +14,7 @@
 - Lock file maintenance
 - Lock file maintenance
 - Lock file maintenance
+- Lock file maintenance
 
 ### Build
 
@@ -55,6 +56,9 @@
 - Bump friendsofphp/php-cs-fixer from 3.19.2 to 3.20.0
 - Bump pestphp/pest from 2.8.1 to 2.8.2
 - Bump friendsofphp/php-cs-fixer from 3.20.0 to 3.21.1
+- Bump vimeo/psalm from 5.13.1 to 5.14.0
+- Bump pestphp/pest from 2.9.4 to 2.10.0
+- Bump orchestra/testbench from 8.5.10 to 8.5.11
 
 ## [0.3.1] - 2023-03-27
 
