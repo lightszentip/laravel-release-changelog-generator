@@ -1,5 +1,4 @@
 # Changelog
-
 ## [unreleased]
 
 ### Miscellaneous Tasks
@@ -17,6 +16,10 @@
 - Lock file maintenance
 - Lock file maintenance
 - Lock file maintenance
+
+### Styling
+
+- Small optimize
 
 ### Build
 
