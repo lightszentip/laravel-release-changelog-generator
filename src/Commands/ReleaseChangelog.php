@@ -41,7 +41,7 @@ class ReleaseChangelog extends Command
      */
     public function handle(): int
     {
-        if (! file_exists($this->path())) {
+        if (!file_exists($this->path())) {
             File::put($this->path(), '');
         }
         try {
@@ -55,7 +55,7 @@ class ReleaseChangelog extends Command
 
             $jsonString = file_get_contents($this->path());
             $decoded_json = json_decode($jsonString);
-            if ($decoded_json == null || ! property_exists($decoded_json, 'unreleased')) {
+            if ($decoded_json == null || !property_exists($decoded_json, 'unreleased')) {
                 $this->error('No release changelog exists to update');
 
                 return CommandAlias::FAILURE;
@@ -76,7 +76,7 @@ class ReleaseChangelog extends Command
 
     private function path(): string
     {
-        return Config::get('releasechangelog.path').DIRECTORY_SEPARATOR.'.changes'.DIRECTORY_SEPARATOR.'changelog.json';
+        return Config::get('releasechangelog.path') . DIRECTORY_SEPARATOR . '.changes' . DIRECTORY_SEPARATOR . 'changelog.json';
     }
 
     private function getArgument(string $key): string
@@ -84,7 +84,7 @@ class ReleaseChangelog extends Command
         $result = $this->option($key);
 
         if (is_null($result)) {
-            $result = $this->ask('What is '.$key.' ?');
+            $result = $this->ask('What is ' . $key . ' ?');
         }
 
         if ($result == null) {

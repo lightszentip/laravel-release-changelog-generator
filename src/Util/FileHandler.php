@@ -18,7 +18,7 @@ class FileHandler
      */
     public static function pathChangelog(bool $checkFileExistsAndCreate = false): string
     {
-        $path = Config::get('releasechangelog.path').DIRECTORY_SEPARATOR.'.changes'.DIRECTORY_SEPARATOR.'changelog.json';
+        $path = Config::get('releasechangelog.path') . DIRECTORY_SEPARATOR . '.changes' . DIRECTORY_SEPARATOR . 'changelog.json';
         if ($checkFileExistsAndCreate) {
             if (!file_exists($path)) {
                 File::put($path, '');
@@ -33,11 +33,11 @@ class FileHandler
      */
     public static function pathVersion(): string
     {
-        return resource_path().DIRECTORY_SEPARATOR.'.version'.DIRECTORY_SEPARATOR.'version.yml';
+        return resource_path() . DIRECTORY_SEPARATOR . '.version' . DIRECTORY_SEPARATOR . 'version.yml';
     }
 
     public static function pathChangelogMd()
     {
-        return Config::get('releasechangelog.markdown-path').DIRECTORY_SEPARATOR."CHANGELOG.md";
+        return Config::get('releasechangelog.markdown-path') . DIRECTORY_SEPARATOR . "CHANGELOG.md";
     }
 }

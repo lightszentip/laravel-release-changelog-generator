@@ -1,5 +1,4 @@
-
-on: [push, pull_request]
+on: [ push, pull_request ]
 name: PHP-Tests
 jobs:
   sl-scan:
@@ -66,7 +65,7 @@ jobs:
       fail-fast: true
       matrix:
         os: [ ubuntu-latest ]
-        php: [ 8.2, 8.1]
+        php: [ 8.2, 8.1 ]
         laravel: [ 9.*, 10.* ]
         stability: [ prefer-stable ]
         include:

@@ -3,6 +3,7 @@
 ## Quality
 
 ### PHP Coding Standards Fixer
+
 ``composer require --dev  friendsofphp/php-cs-fixer``
 
 ````shell
@@ -20,6 +21,7 @@ vendor/bin/phpstan analyse src tests
 ## Doc
 
 ### laravel-model-doc
+
 ````
 composer require romanzipp/laravel-model-doc --dev
 php artisan vendor:publish --provider="romanzipp\ModelDoc\Providers\ModelDocServiceProvider"
@@ -28,7 +30,6 @@ php artisan vendor:publish --provider="romanzipp\ModelDoc\Providers\ModelDocServ
 ````shell
 php artisan model-doc:generate
 ````
-
 
 ### Eloquent phpDoc
 
@@ -57,6 +58,7 @@ https://github.com/nelmio/alice
 ## Analyse
 
 ### PHPloc
+
 *HINT* Deprecated
 
 composer require --dev phploc/phploc
@@ -67,8 +69,8 @@ Usage:
 php .\vendor\phploc\phploc\phploc src
 ````
 
-
 ### PHPcd
+
 *HINT* Deprecated
 
 ````shell

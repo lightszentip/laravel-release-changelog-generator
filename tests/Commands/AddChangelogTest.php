@@ -14,7 +14,7 @@ class AddChangelogTest extends TestCase
     {
 
         $this->withoutMockingConsoleOutput()
-            ->artisan("changelog:add", ["--type" => "feat","--message" => "first impl"]);
+            ->artisan("changelog:add", ["--type" => "feat", "--message" => "first impl"]);
         // capture the text output from the command
         $result = Artisan::output();
         // use standard text assertions
@@ -22,7 +22,7 @@ class AddChangelogTest extends TestCase
 
         $this->assertEquals(
             file_get_contents(FileHandler::pathChangelog())
-            ,'{"unreleased":{"name":"tbd","date":"","release":false,"feat":[{"message":"first impl"}]}}');
+            , '{"unreleased":{"name":"tbd","date":"","release":false,"feat":[{"message":"first impl"}]}}');
 
 
     }
@@ -39,13 +39,13 @@ class AddChangelogTest extends TestCase
     public function handle_command_with_question_check()
     {
         $this->artisan('changelog:add')
-            ->expectsQuestion('What is type ?','feat')
-            ->expectsQuestion('What is message ?','My fist impl')
+            ->expectsQuestion('What is type ?', 'feat')
+            ->expectsQuestion('What is message ?', 'My fist impl')
             ->assertOk();
 
         $this->assertEquals(
             file_get_contents(FileHandler::pathChangelog())
-            ,'{"unreleased":{"name":"tbd","date":"","release":false,"feat":[{"message":"My fist impl"}]}}');
+            , '{"unreleased":{"name":"tbd","date":"","release":false,"feat":[{"message":"My fist impl"}]}}');
     }
 
     /** @test */
@@ -56,6 +56,6 @@ class AddChangelogTest extends TestCase
 
         $this->assertEquals(
             file_get_contents(FileHandler::pathChangelog())
-            ,'');
+            , '');
     }
 }

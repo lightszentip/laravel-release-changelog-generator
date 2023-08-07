@@ -1,33 +1,56 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "schedule": "before 5am every weekday",
-    "labels": ["dependencies"],
+    "labels": [
+        "dependencies"
+    ],
     "packageRules": [
-    {
-      "depTypeList": [ "devDependencies", "require-dev" ],
-      "updateTypes": [ "patch", "minor", "digest"],
-      "groupName": "devDependencies (non-major)"
-    },
         {
-            "depTypeList": [ "devDependencies", "require-dev" ],
-            "updateTypes": [ "major"],
+            "depTypeList": [
+                "devDependencies",
+                "require-dev"
+            ],
+            "updateTypes": [
+                "patch",
+                "minor",
+                "digest"
+            ],
+            "groupName": "devDependencies (non-major)"
+        },
+        {
+            "depTypeList": [
+                "devDependencies",
+                "require-dev"
+            ],
+            "updateTypes": [
+                "major"
+            ],
             "groupName": "devDependencies (major)"
         },
         {
-            "depTypeList": [ "dependencies", "require" ],
-            "updateTypes": [ "patch", "minor", "digest","major"],
+            "depTypeList": [
+                "dependencies",
+                "require"
+            ],
+            "updateTypes": [
+                "patch",
+                "minor",
+                "digest",
+                "major"
+            ],
             "groupName": "dependencies"
         }
-  ],
-    "lockFileMaintenance": { "enabled": true },
-  "extends": [
-    "config:base",
-    ":preserveSemverRanges",
-      "group:allNonMajor",
-    ":dependencyDashboard",
-    ":rebaseStalePrs",
-    ":enableVulnerabilityAlertsWithLabel('security')",
-    "group:recommended"
-  ]
-
+    ],
+    "lockFileMaintenance": {
+        "enabled": true
+    },
+    "extends": [
+        "config:base",
+        ":preserveSemverRanges",
+        "group:allNonMajor",
+        ":dependencyDashboard",
+        ":rebaseStalePrs",
+        ":enableVulnerabilityAlertsWithLabel('security')",
+        "group:recommended"
+    ]
 }

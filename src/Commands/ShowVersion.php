@@ -1,7 +1,7 @@
 <?php
 
 namespace Lightszentip\LaravelReleaseChangelogGenerator\Commands;
-;
+
 use Illuminate\Console\Command;
 use Lightszentip\LaravelReleaseChangelogGenerator\Util\Constants;
 
@@ -39,7 +39,7 @@ class ShowVersion extends Command
             if (is_null($format) || trim($format) == "") {
                 $format = Constants::DEFAULT_FORMAT;
             }
-            $result=  app('releasechangelog.version')->showVersion($format);
+            $result = app('releasechangelog.version')->showVersion($format);
             $this->info($result);
             return self::SUCCESS;
         } catch (\Exception $e2) {

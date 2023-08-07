@@ -43,7 +43,7 @@ class UpdateVersion extends Command
 
             VersionUtil::updateVersionByType($type);
 
-            $this->info("Current Version: ".app('releasechangelog.version')->showVersion(Constants::DEFAULT_FORMAT));
+            $this->info("Current Version: " . app('releasechangelog.version')->showVersion(Constants::DEFAULT_FORMAT));
 
             return self::SUCCESS;
         } catch (\InvalidArgumentException $e) {
@@ -60,12 +60,12 @@ class UpdateVersion extends Command
         $result = $this->option($key);
 
         if (!$optional && is_null($result)) {
-            $result = $this->ask('What is '.$key.' ?');
+            $result = $this->ask('What is ' . $key . ' ?');
         }
 
         if ($result == null && $optional) {
             return '';
-        } elseif ($result == null && ! $optional) {
+        } elseif ($result == null && !$optional) {
             $this->error("No input for key:  $key ");
             throw new \InvalidArgumentException($this->option($key));
         }

@@ -4,7 +4,6 @@ namespace Lightszentip\LaravelReleaseChangelogGenerator\Tests\Commands;
 
 use Illuminate\Support\Facades\Artisan;
 use Lightszentip\LaravelReleaseChangelogGenerator\Tests\TestCase;
-use Lightszentip\LaravelReleaseChangelogGenerator\Util\Constants;
 use Lightszentip\LaravelReleaseChangelogGenerator\Util\FileHandler;
 
 class ReleaseChangelogTest extends TestCase
@@ -12,7 +11,7 @@ class ReleaseChangelogTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        file_put_contents(FileHandler::pathChangelog(),'{"unreleased":{"name":"tbd","date":"","release":false,"feat":[{"message":"first impl"}]}}');
+        file_put_contents(FileHandler::pathChangelog(), '{"unreleased":{"name":"tbd","date":"","release":false,"feat":[{"message":"first impl"}]}}');
 
     }
 
@@ -27,11 +26,10 @@ class ReleaseChangelogTest extends TestCase
         $this->assertEquals("", $result);
 
 
-
         $this->assertEquals(
             '1.0.1[.rc0]',
             app('releasechangelog.version')->showVersion('min')
-            );
+        );
 
 
     }
@@ -48,12 +46,12 @@ class ReleaseChangelogTest extends TestCase
     public function handle_command_with_question_check()
     {
         $this->artisan('changelog:release')
-            ->expectsQuestion('What is releasename ?','fooBar 1')
+            ->expectsQuestion('What is releasename ?', 'fooBar 1')
             ->assertOk();
 
         $this->assertEquals(
-            preg_replace('/\"date\"\:\".*?\"\,/s', '"date":"",',file_get_contents(FileHandler::pathChangelog()))
-            ,'{"unreleased":{"name":"tbd","date":"","release":false},"1.0.1.rc0":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
+            preg_replace('/\"date\"\:\".*?\"\,/s', '"date":"",', file_get_contents(FileHandler::pathChangelog()))
+            , '{"unreleased":{"name":"tbd","date":"","release":false},"1.0.1.rc0":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
     }
 
     /** @test */
@@ -63,8 +61,8 @@ class ReleaseChangelogTest extends TestCase
             ->assertOk();
 
         $this->assertEquals(
-            preg_replace('/\"date\"\:\".*?\"\,/s', '"date":"",',file_get_contents(FileHandler::pathChangelog()))
-            ,'{"unreleased":{"name":"tbd","date":"","release":false},"2.0.0.rc0":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
+            preg_replace('/\"date\"\:\".*?\"\,/s', '"date":"",', file_get_contents(FileHandler::pathChangelog()))
+            , '{"unreleased":{"name":"tbd","date":"","release":false},"2.0.0.rc0":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
     }
 
     /** @test */
@@ -74,8 +72,8 @@ class ReleaseChangelogTest extends TestCase
             ->assertOk();
 
         $this->assertEquals(
-            preg_replace('/\"date\"\:\".*?\"\,/s', '"date":"",',file_get_contents(FileHandler::pathChangelog()))
-            ,'{"unreleased":{"name":"tbd","date":"","release":false},"1.1.0.rc0":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
+            preg_replace('/\"date\"\:\".*?\"\,/s', '"date":"",', file_get_contents(FileHandler::pathChangelog()))
+            , '{"unreleased":{"name":"tbd","date":"","release":false},"1.1.0.rc0":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
     }
 
     /** @test */
@@ -85,8 +83,8 @@ class ReleaseChangelogTest extends TestCase
             ->assertOk();
 
         $this->assertEquals(
-            preg_replace('/\"date\"\:\".*?\"\,/s', '"date":"",',file_get_contents(FileHandler::pathChangelog()))
-            ,'{"unreleased":{"name":"tbd","date":"","release":false},"1.0.1.rc0":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
+            preg_replace('/\"date\"\:\".*?\"\,/s', '"date":"",', file_get_contents(FileHandler::pathChangelog()))
+            , '{"unreleased":{"name":"tbd","date":"","release":false},"1.0.1.rc0":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
     }
 
 
@@ -97,8 +95,8 @@ class ReleaseChangelogTest extends TestCase
             ->assertOk();
 
         $this->assertEquals(
-            preg_replace('/\"date\"\:\".*?\"\,/s', '"date":"",',file_get_contents(FileHandler::pathChangelog()))
-            ,'{"unreleased":{"name":"tbd","date":"","release":false},"1.0.0.rc1":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
+            preg_replace('/\"date\"\:\".*?\"\,/s', '"date":"",', file_get_contents(FileHandler::pathChangelog()))
+            , '{"unreleased":{"name":"tbd","date":"","release":false},"1.0.0.rc1":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
     }
 
     /** @test */
@@ -108,7 +106,7 @@ class ReleaseChangelogTest extends TestCase
             ->assertFailed();
 
         $this->assertEquals(
-           'label: v
+            'label: v
 major: 1
 minor: 0
 patch: 0

@@ -4,7 +4,6 @@ namespace Lightszentip\LaravelReleaseChangelogGenerator\Tests\Commands;
 
 use Illuminate\Support\Facades\Artisan;
 use Lightszentip\LaravelReleaseChangelogGenerator\Tests\TestCase;
-use Lightszentip\LaravelReleaseChangelogGenerator\Util\FileHandler;
 
 class ShowVersionTest extends TestCase
 {
@@ -18,6 +17,7 @@ class ShowVersionTest extends TestCase
         // capture the text output from the command
         $result = Artisan::output();
         // use standard text assertions
+        $result = str_replace("\r", '', $result);
         $this->assertEquals("1.0.0 [] \n", $result);
 
     }

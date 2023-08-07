@@ -11,10 +11,9 @@ class VersionHandling
 
     protected string $yamlPath;
 
-    public function __construct(
-
-    ) {
-        $this->yamlPath = Config::get('releasechangelog.version_path').DIRECTORY_SEPARATOR.'.version'.DIRECTORY_SEPARATOR.'version.yml';
+    public function __construct()
+    {
+        $this->yamlPath = Config::get('releasechangelog.version_path') . DIRECTORY_SEPARATOR . '.version' . DIRECTORY_SEPARATOR . 'version.yml';
         $this->yamlContents = Yaml::parse(file_get_contents($this->yamlPath));
     }
 

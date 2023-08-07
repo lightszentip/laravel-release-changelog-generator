@@ -19,9 +19,9 @@ class UpdateVersionTest extends TestCase
         $result = Artisan::output();
         // use standard text assertions
         if (windows_os()) {
-            $this->assertEquals("Current Version: 1.0.1 [] ".time()."\r\n", $result);
+            $this->assertEquals("Current Version: 1.0.1 [] " . time() . "\r\n", $result);
         } else {
-            $this->assertEquals("Current Version: 1.0.1 [] ".time()."\n", $result);
+            $this->assertEquals("Current Version: 1.0.1 [] " . time() . "\n", $result);
         }
 
     }
@@ -50,8 +50,8 @@ prerelease: rc
 prereleasenumber: 1
 buildmetadata: null
 timestamp:
-    date: \''.date("Y-m-d H:i").'\'
-    timestamp: '.time().'
+    date: \'' . date("Y-m-d H:i") . '\'
+    timestamp: ' . time() . '
 ', file_get_contents(FileHandler::pathVersion()));
     }
 

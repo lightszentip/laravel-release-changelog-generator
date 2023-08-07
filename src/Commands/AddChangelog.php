@@ -50,7 +50,7 @@ class AddChangelog extends Command
 
             $jsonString = File::get(FileHandler::pathChangelog());
             $decoded_json = json_decode($jsonString);
-            if ($decoded_json == null || ! property_exists($decoded_json, 'unreleased')) {
+            if ($decoded_json == null || !property_exists($decoded_json, 'unreleased')) {
                 $content = ['name' => 'tbd', 'date' => '', 'release' => false, $type => [$changelogItem->build()]];
                 if ($decoded_json == null) {
                     $decoded_json['unreleased'] = $content;
@@ -78,12 +78,12 @@ class AddChangelog extends Command
         $result = $this->option($key);
 
         if (!$optional && is_null($result)) {
-            $result = $this->ask('What is '.$key.' ?');
+            $result = $this->ask('What is ' . $key . ' ?');
         }
 
         if ($result == null && $optional) {
             return '';
-        } elseif ($result == null && ! $optional) {
+        } elseif ($result == null && !$optional) {
             $this->error("No input for key:  $key ");
             throw new \InvalidArgumentException($this->option($key));
         }

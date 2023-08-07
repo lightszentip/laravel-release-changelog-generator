@@ -12,7 +12,7 @@ class SetReleaseChangelogTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        file_put_contents(FileHandler::pathChangelog(),'{"unreleased":{"name":"tbd","date":"","release":false,"feat":[{"message":"first impl"}]}}');
+        file_put_contents(FileHandler::pathChangelog(), '{"unreleased":{"name":"tbd","date":"","release":false,"feat":[{"message":"first impl"}]}}');
 
     }
 
@@ -20,7 +20,7 @@ class SetReleaseChangelogTest extends TestCase
     public function handle_command()
     {
         $this->withoutMockingConsoleOutput()
-            ->artisan("changelog:set-release", ["--releasename" => "FooBar 1","--versionnumber" => '1.3.2']);
+            ->artisan("changelog:set-release", ["--releasename" => "FooBar 1", "--versionnumber" => '1.3.2']);
         // capture the text output from the command
         $result = Artisan::output();
         // use standard text assertions
@@ -46,13 +46,13 @@ class SetReleaseChangelogTest extends TestCase
     public function handle_command_with_question_check()
     {
         $this->artisan('changelog:set-release')
-            ->expectsQuestion('What is releasename ?','fooBar 1')
-            ->expectsQuestion('What is versionnumber ?','2.4.1')
+            ->expectsQuestion('What is releasename ?', 'fooBar 1')
+            ->expectsQuestion('What is versionnumber ?', '2.4.1')
             ->assertOk();
 
         $this->assertEquals(
-            preg_replace('/\"date\"\:\".*?\"\,/s', '"date":"",',file_get_contents(FileHandler::pathChangelog()))
-            ,'{"unreleased":{"name":"tbd","date":"","release":false},"2.4.1.rc0":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
+            preg_replace('/\"date\"\:\".*?\"\,/s', '"date":"",', file_get_contents(FileHandler::pathChangelog()))
+            , '{"unreleased":{"name":"tbd","date":"","release":false},"2.4.1.rc0":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
     }
 
     /** @test */

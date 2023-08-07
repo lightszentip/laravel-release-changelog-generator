@@ -18,7 +18,7 @@ class VersionCalculator
     {
         $yamlVersionConfig['minor']++;
         $yamlVersionConfig['patch'] = 0;
-        $yamlVersionConfig['prereleasenumber'] =0;
+        $yamlVersionConfig['prereleasenumber'] = 0;
 
         return $yamlVersionConfig;
     }
@@ -31,7 +31,7 @@ class VersionCalculator
     public static function incrementPatch(array $yamlVersionConfig)
     {
         $yamlVersionConfig['patch']++;
-        $yamlVersionConfig['prereleasenumber'] =0;
+        $yamlVersionConfig['prereleasenumber'] = 0;
 
         return $yamlVersionConfig;
     }
@@ -62,7 +62,7 @@ class VersionCalculator
         $yamlVersionConfig['major']++;
         $yamlVersionConfig['minor'] = 0;
         $yamlVersionConfig['patch'] = 0;
-        $yamlVersionConfig['prereleasenumber'] =0;
+        $yamlVersionConfig['prereleasenumber'] = 0;
 
         return $yamlVersionConfig;
     }
@@ -76,10 +76,10 @@ class VersionCalculator
      */
     public static function updateVersion(array $yamlVersionConfig, int $major, int $minor, int $patch)
     {
-        $yamlVersionConfig['major']=$major;
-        $yamlVersionConfig['minor']=$minor;
-        $yamlVersionConfig['patch']=$patch;
-        $yamlVersionConfig['prereleasenumber'] =0;
+        $yamlVersionConfig['major'] = $major;
+        $yamlVersionConfig['minor'] = $minor;
+        $yamlVersionConfig['patch'] = $patch;
+        $yamlVersionConfig['prereleasenumber'] = 0;
 
         return $yamlVersionConfig;
     }

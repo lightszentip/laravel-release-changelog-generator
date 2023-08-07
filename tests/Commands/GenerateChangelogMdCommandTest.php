@@ -4,9 +4,9 @@ namespace Lightszentip\LaravelReleaseChangelogGenerator\Tests\Commands;
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
-use Lightszentip\LaravelReleaseChangelogGenerator\Util\FileHandler;
-use Lightszentip\LaravelReleaseChangelogGenerator\Tests\TestCase;
 use Illuminate\Support\Facades\File;
+use Lightszentip\LaravelReleaseChangelogGenerator\Tests\TestCase;
+use Lightszentip\LaravelReleaseChangelogGenerator\Util\FileHandler;
 
 class GenerateChangelogMdCommandTest extends TestCase
 {
@@ -14,6 +14,14 @@ class GenerateChangelogMdCommandTest extends TestCase
     {
         parent::setUp();
         file_put_contents(FileHandler::pathChangelog(), '{"unreleased":{"name":"tbd","date":"","release":false,"feat":[{"message":"first impl"}]}}');
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+        if (file_exists('changelog-md.blade.php')) {
+            File::delete('changelog-md.blade.php');
+        }
     }
 
     /** @test */
@@ -109,7 +117,8 @@ class GenerateChangelogMdCommandTest extends TestCase
      */
     private function compare_template(string $result)
     {
-        $this->assertEquals($result, '# Changelog
+        $result = str_replace("\r", '', $result);
+        $this->assertEquals('# Changelog
 
 All notable changes to this project will be documented in this file.
 
@@ -122,7 +131,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 
 
-');
+', $result);
     }
 
     /**
@@ -131,7 +140,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
      */
     private function compare_template_ordered(string $result)
     {
-        $this->assertEquals($result, '# Changelog
+        $result = str_replace("\r", '', $result);
+        $this->assertEquals('# Changelog
 
 All notable changes to this project will be documented in this file.
 
@@ -156,6 +166,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 
 
-');
+', $result);
     }
 }

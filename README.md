@@ -5,7 +5,9 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/lightszentip/laravel-release-changelog-generator/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/lightszentip/laravel-release-changelog-generator/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/lightszentip/laravel-release-changelog-generator.svg?style=flat-square)](https://packagist.org/packages/lightszentip/laravel-release-changelog-generator) [![PHP-CS-Fixer](https://github.com/lightszentip/laravel-release-changelog-generator/actions/workflows/quality-check.yml/badge.svg?branch=main)](https://github.com/lightszentip/laravel-release-changelog-generator/actions/workflows/quality-check.yml) [![Update Changelog GIT](https://github.com/lightszentip/laravel-release-changelog-generator/actions/workflows/update-changelog-main.yml/badge.svg)](https://github.com/lightszentip/laravel-release-changelog-generator/actions/workflows/update-changelog-main.yml)
 
-This package add a changelog management over command line and a version release management. So you can add new changelog items and if you release, the changelog ist update with new version and the version file also. So it is easy to manage a customer changelog.
+This package add a changelog management over command line and a version release management. So you can add new changelog
+items and if you release, the changelog ist update with new version and the version file also. So it is easy to manage a
+customer changelog.
 
 The changelog is a json file that can easy integrate into a controller to present to end customer.
 
@@ -15,13 +17,12 @@ See [ROADMAP](ROADMAP.md) for new functions.
 
 ## Version Compatibility
 
- Release Changelog Generator  | PHP   | Laravel             | 
-:---------|:------|:--------------------
- 0.1.x     | >=8.0 | 9                   
- 0.2.0     | >=8.0 | 9                   
- 0.2.1      | >=8.0 | 9 / 10 (not tested) 
- 0.3.x      | >=8.1 |  9 / 10       
-
+ Release Changelog Generator | PHP   | Laravel             | 
+:----------------------------|:------|:--------------------
+ 0.1.x                       | >=8.0 | 9                   
+ 0.2.0                       | >=8.0 | 9                   
+ 0.2.1                       | >=8.0 | 9 / 10 (not tested) 
+ 0.3.x                       | >=8.1 | 9 / 10              
 
 ## Installation
 
@@ -43,6 +44,7 @@ php artisan vendor:publish --tag=resources
 If the command use without arguments, the command line create a ask for all necessary arguments.
 
 ### Create a new changelog item:
+
 ```shell
 php artisan changelog:add --type="feat" --message="Implement the whole function for magic"
 ```
@@ -55,7 +57,8 @@ You can find the result in resources/.changes/changelog.json
 php artisan changelog:release --releasename="My First Release" --type=patch
 ```
 
-This update the version.yml to the next patch vesion and add in the changelog.json a new release with all current changelog items.
+This update the version.yml to the next patch vesion and add in the changelog.json a new release with all current
+changelog items.
 
 ### Update CHANGELOG.md file:
 
@@ -65,18 +68,21 @@ This will update the CHANGELOG.md file in the root with your changes.
 php artisan changelog:generate-md
 ```
 
-### Get version in the application 
+### Get version in the application
 
 #### Blade
 
 ```php
 @releasechangelog
 ```
-To get a special format for the version, you find in the 'releasechangelog.php' in the config dir the item 'version_formats'. You can add new formats and/or change the existing. To use it:
+
+To get a special format for the version, you find in the 'releasechangelog.php' in the config dir the item '
+version_formats'. You can add new formats and/or change the existing. To use it:
 
 ```php
 @releasechangelog('full')
 ```
+
 #### Code
 
 ```php
@@ -112,7 +118,6 @@ timestamp:
 {"unreleased":{"name":"tbd","date":"","release":false},
 "1.0.1.rc0":{"name":"My First Release","date":"2022-12-22 23:56:34","release":true,"feat":[{"message":"My first feature"},{"message":"Implement the whole function for magic"}]}}
 ```
-
 
 ## Testing
 

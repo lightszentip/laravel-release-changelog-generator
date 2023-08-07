@@ -41,6 +41,6 @@ return [
 
     'markdown-path' => base_path(),
 
-    'markdown-view-path' => '',
+    'markdown-view-path' => '.' . DIRECTORY_SEPARATOR,
 
 ];

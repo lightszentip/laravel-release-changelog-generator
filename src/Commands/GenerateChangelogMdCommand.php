@@ -4,8 +4,8 @@ namespace Lightszentip\LaravelReleaseChangelogGenerator\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
-use Lightszentip\LaravelReleaseChangelogGenerator\Util\FileHandler;
 use Illuminate\Support\Facades\File;
+use Lightszentip\LaravelReleaseChangelogGenerator\Util\FileHandler;
 
 class GenerateChangelogMdCommand extends Command
 {
@@ -25,7 +25,13 @@ class GenerateChangelogMdCommand extends Command
             $changelogData = array_reverse($changelogData, true);
         }
 
-        File::put(FileHandler::pathChangelogMd(), view(  Config::get('releasechangelog.markdown-view-path')."changelog-md", [
+        if (!file_exists(FileHandler::pathChangelogMd())) {
+            File::put(FileHandler::pathChangelogMd(), '');
+        }
+        if (!file_exists(Config::get('releasechangelog.markdown-view-path') . DIRECTORY_SEPARATOR . "changelog-md.blade.php")) {
+            $this->error("Markdown view file not found: " . Config::get('releasechangelog.markdown-view-path') . DIRECTORY_SEPARATOR . "changelog-md.blade.php");
+        }
+        File::put(FileHandler::pathChangelogMd(), view(Config::get('releasechangelog.markdown-view-path') . DIRECTORY_SEPARATOR . "changelog-md", [
             'changelog' => $changelogData
         ]));
     }
