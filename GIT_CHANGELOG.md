@@ -16,6 +16,7 @@
 - Lock file maintenance
 - Lock file maintenance
 - Lock file maintenance
+- Lock file maintenance
 
 ### Styling
 
@@ -68,6 +69,8 @@
 - Bump vimeo/psalm from 5.14.0 to 5.14.1
 - Bump orchestra/testbench from 8.5.11 to 8.5.12
 - Bump phpstan/phpstan-deprecation-rules
+- Bump pestphp/pest from 2.12.2 to 2.13.0
+- Bump orchestra/testbench from 8.5.12 to 8.7.0
 
 ## [0.3.1] - 2023-03-27
 
