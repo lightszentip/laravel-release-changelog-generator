@@ -5,7 +5,7 @@ jobs:
     name: slcan
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       # Instructions
       # 1. Setup JDK, Node.js, Python etc depending on your project type
       # 2. Compile or build the project before invoking scan
@@ -33,7 +33,7 @@ jobs:
     name: phpstan-psalm
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -54,7 +54,7 @@ jobs:
     name: PHP-CS-Fixer
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: PHP-CS-Fixer
         uses: docker://oskarstark/php-cs-fixer-ga
@@ -80,7 +80,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
