@@ -17,6 +17,8 @@
 - Lock file maintenance
 - Lock file maintenance
 - Lock file maintenance
+- Update actions/checkout action to v4
+- Lock file maintenance
 
 ### Styling
 
@@ -71,6 +73,20 @@
 - Bump phpstan/phpstan-deprecation-rules
 - Bump pestphp/pest from 2.12.2 to 2.13.0
 - Bump orchestra/testbench from 8.5.12 to 8.7.0
+- Bump vimeo/psalm from 5.14.1 to 5.15.0
+- Bump orchestra/testbench from 8.7.0 to 8.9.0
+- Bump pestphp/pest from 2.14.0 to 2.15.0
+- Bump friendsofphp/php-cs-fixer from 3.22.0 to 3.23.0
+- Bump phpstan/phpstan-phpunit from 1.3.13 to 1.3.14
+- Bump pestphp/pest from 2.15.0 to 2.16.0
+- Bump orchestra/testbench from 8.9.0 to 8.9.1
+- Bump friendsofphp/php-cs-fixer from 3.23.0 to 3.25.1
+- Bump orchestra/testbench from 8.9.1 to 8.10.0
+- Bump pestphp/pest from 2.16.0 to 2.16.1
+- Bump pestphp/pest from 2.16.1 to 2.17.0
+- Bump pestphp/pest from 2.17.0 to 2.18.0
+- Bump orchestra/testbench from 8.10.0 to 8.10.1
+- Bump friendsofphp/php-cs-fixer from 3.25.1 to 3.26.1
 
 ## [0.3.1] - 2023-03-27
 
