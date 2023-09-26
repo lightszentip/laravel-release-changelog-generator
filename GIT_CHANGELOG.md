@@ -19,6 +19,7 @@
 - Lock file maintenance
 - Update actions/checkout action to v4
 - Lock file maintenance
+- Lock file maintenance
 
 ### Styling
 
@@ -87,6 +88,12 @@
 - Bump pestphp/pest from 2.17.0 to 2.18.0
 - Bump orchestra/testbench from 8.10.0 to 8.10.1
 - Bump friendsofphp/php-cs-fixer from 3.25.1 to 3.26.1
+- Bump orchestra/testbench from 8.10.1 to 8.10.2
+- Bump friendsofphp/php-cs-fixer from 3.26.1 to 3.27.0
+- Bump pestphp/pest from 2.18.1 to 2.18.2
+- Bump pestphp/pest from 2.18.2 to 2.19.2
+- Bump friendsofphp/php-cs-fixer from 3.27.0 to 3.28.0
+- Bump orchestra/testbench from 8.10.2 to 8.11.1
 
 ## [0.3.1] - 2023-03-27
 
