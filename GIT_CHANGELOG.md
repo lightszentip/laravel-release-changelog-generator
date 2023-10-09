@@ -21,6 +21,7 @@
 - Lock file maintenance
 - Lock file maintenance
 - Lock file maintenance
+- Update stefanzweifel/git-auto-commit-action action to v5
 
 ### Styling
 
