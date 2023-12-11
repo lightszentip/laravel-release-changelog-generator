@@ -23,6 +23,7 @@
 - Lock file maintenance
 - Update stefanzweifel/git-auto-commit-action action to v5
 - Lock file maintenance
+- Lock file maintenance
 
 ### Styling
 
@@ -97,6 +98,26 @@
 - Bump pestphp/pest from 2.18.2 to 2.19.2
 - Bump friendsofphp/php-cs-fixer from 3.27.0 to 3.28.0
 - Bump orchestra/testbench from 8.10.2 to 8.11.1
+- Bump phpstan/phpstan-phpunit from 1.3.14 to 1.3.15
+- Bump orchestra/testbench from 8.12.3 to 8.13.0
+- Bump pestphp/pest from 2.21.0 to 2.23.2
+- Bump friendsofphp/php-cs-fixer from 3.34.1 to 3.35.1
+- Bump pestphp/pest from 2.23.2 to 2.24.0
+- Bump symfony/yaml from 6.3.3 to 6.3.7
+- Bump pestphp/pest from 2.24.0 to 2.24.1
+- Bump orchestra/testbench from 8.13.0 to 8.14.0
+- Bump friendsofphp/php-cs-fixer from 3.35.1 to 3.37.1
+- Bump pestphp/pest from 2.24.1 to 2.24.2
+- Bump symfony/yaml from 6.3.7 to 6.3.8
+- Bump orchestra/testbench from 8.14.0 to 8.15.0
+- Bump pestphp/pest from 2.24.2 to 2.24.3
+- Bump friendsofphp/php-cs-fixer from 3.37.1 to 3.38.0
+- Bump friendsofphp/php-cs-fixer from 3.38.0 to 3.40.0
+- Bump vimeo/psalm from 5.15.0 to 5.16.0
+- Bump pestphp/pest from 2.24.3 to 2.25.0
+- Bump pestphp/pest from 2.25.0 to 2.26.0
+- Bump friendsofphp/php-cs-fixer from 3.40.0 to 3.40.2
+- Bump symfony/yaml from 6.3.8 to 6.4.0
 
 ## [0.3.1] - 2023-03-27
 
