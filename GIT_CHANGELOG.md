@@ -24,6 +24,8 @@
 - Update stefanzweifel/git-auto-commit-action action to v5
 - Lock file maintenance
 - Lock file maintenance
+- Update github/codeql-action action to v3
+- Lock file maintenance
 
 ### Styling
 
@@ -118,6 +120,11 @@
 - Bump pestphp/pest from 2.25.0 to 2.26.0
 - Bump friendsofphp/php-cs-fixer from 3.40.0 to 3.40.2
 - Bump symfony/yaml from 6.3.8 to 6.4.0
+- Bump friendsofphp/php-cs-fixer from 3.40.2 to 3.41.1
+- Bump orchestra/testbench from 8.16.0 to 8.17.0
+- Bump vimeo/psalm from 5.16.0 to 5.17.0
+- Bump pestphp/pest from 2.26.0 to 2.28.1
+- Bump vimeo/psalm from 5.17.0 to 5.18.0
 
 ## [0.3.1] - 2023-03-27
 
