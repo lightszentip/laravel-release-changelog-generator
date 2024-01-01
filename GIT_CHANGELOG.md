@@ -26,6 +26,7 @@
 - Lock file maintenance
 - Update github/codeql-action action to v3
 - Lock file maintenance
+- Lock file maintenance
 
 ### Styling
 
@@ -125,6 +126,10 @@
 - Bump vimeo/psalm from 5.16.0 to 5.17.0
 - Bump pestphp/pest from 2.26.0 to 2.28.1
 - Bump vimeo/psalm from 5.17.0 to 5.18.0
+- Bump friendsofphp/php-cs-fixer from 3.41.1 to 3.42.0
+- Bump orchestra/testbench from 8.18.0 to 8.19.0
+- Bump friendsofphp/php-cs-fixer from 3.42.0 to 3.45.0
+- Bump pestphp/pest from 2.28.1 to 2.30.0
 
 ## [0.3.1] - 2023-03-27
 
