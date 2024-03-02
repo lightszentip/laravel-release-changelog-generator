@@ -17,17 +17,20 @@
 - Lock file maintenance
 - Lock file maintenance
 - Lock file maintenance
+- Lock file maintenance
 - Update actions/checkout action to v4
 - Lock file maintenance
 - Lock file maintenance
-- Lock file maintenance
 - Update stefanzweifel/git-auto-commit-action action to v5
+- Lock file maintenance
 - Lock file maintenance
 - Lock file maintenance
 - Update github/codeql-action action to v3
 - Lock file maintenance
 - Lock file maintenance
 - Lock file maintenance
+- Update release-drafter/release-drafter action to v6
+- Update orhun/git-cliff-action action to v3
 
 ### Styling
 
@@ -58,8 +61,8 @@
 - Bump orchestra/testbench from 8.5.3 to 8.5.4
 - Bump phpstan/extension-installer from 1.3.0 to 1.3.1
 - Bump phpstan/phpstan-phpunit from 1.3.11 to 1.3.13
-- Bump symfony/yaml from 6.2.10 to 6.3.0
 - Bump pestphp/pest from 2.6.1 to 2.6.2
+- Bump symfony/yaml from 6.2.10 to 6.3.0
 - Bump orchestra/testbench from 8.5.4 to 8.5.5
 - Bump orchestra/testbench from 8.5.5 to 8.5.6
 - Bump pestphp/pest from 2.6.2 to 2.6.3
@@ -131,6 +134,24 @@
 - Bump orchestra/testbench from 8.18.0 to 8.19.0
 - Bump friendsofphp/php-cs-fixer from 3.42.0 to 3.45.0
 - Bump pestphp/pest from 2.28.1 to 2.30.0
+- Bump pestphp/pest from 2.30.0 to 2.31.0
+- Bump vimeo/psalm from 5.18.0 to 5.19.0
+- Bump orchestra/testbench from 8.19.0 to 8.20.0
+- Bump vimeo/psalm from 5.19.0 to 5.20.0
+- Bump pestphp/pest from 2.31.0 to 2.32.0
+- Bump orchestra/testbench from 8.20.0 to 8.21.1
+- Bump friendsofphp/php-cs-fixer from 3.46.0 to 3.48.0
+- Bump pestphp/pest from 2.32.0 to 2.33.0
+- Bump friendsofphp/php-cs-fixer from 3.48.0 to 3.49.0
+- Bump symfony/yaml from 6.4.0 to 6.4.3
+- Bump pestphp/pest from 2.33.0 to 2.33.4
+- Bump vimeo/psalm from 5.20.0 to 5.21.1
+- Bump pestphp/pest from 2.33.4 to 2.34.0
+- Bump pestphp/pest-plugin-laravel from 2.2.0 to 2.3.0
+- Bump vimeo/psalm from 5.21.1 to 5.22.1
+- Bump friendsofphp/php-cs-fixer from 3.49.0 to 3.50.0
+- Bump vimeo/psalm from 5.22.1 to 5.22.2
+- Bump phpstan/phpstan-phpunit from 1.3.15 to 1.3.16
 
 ## [0.3.1] - 2023-03-27
 
@@ -194,9 +215,9 @@
 - Bump phpstan/phpstan-phpunit from 1.3.8 to 1.3.10
 - Bump psalm/plugin-laravel from 2.7.1 to 2.8.0
 - Bump phpunit/phpunit from 9.6.3 to 9.6.4
-- Bump symfony/yaml from 6.2.5 to 6.2.7
 - Bump orchestra/testbench from 8.0.4 to 8.0.5
 - Bump pestphp/pest from 1.22.4 to 1.22.5
+- Bump symfony/yaml from 6.2.5 to 6.2.7
 - Bump orchestra/testbench from 8.0.5 to 8.0.8
 - Bump vimeo/psalm from 5.7.7 to 5.8.0
 - Bump friendsofphp/php-cs-fixer from 3.14.4 to 3.15.0
@@ -223,7 +244,6 @@
 
 ### Features
 
-- Show version in command line
 - Version update for artisan and update timestamp always
 - Set Release by version from input
 
@@ -241,6 +261,10 @@
 ### Bug Fixes
 
 - Change the constant for default format to 'full'
+
+### Features
+
+- Show version in command line
 
 ### Ignore
 
