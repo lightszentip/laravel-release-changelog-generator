@@ -18,7 +18,7 @@ jobs:
         run: zip -r ${{ github.event.repository.name }}.zip . -x ".git/*" ".github/*" "phpcs.xml" ".gitignore" "phpstan-baseline.neon" "phpstan.neon.dist" ".php-cs-fixeer.cache" "renovate.json" "psalm.xml" "phpunit.xml" "..php-cs-fixer.dist.php"
 
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: ${{ github.event.repository.name }}.zip
