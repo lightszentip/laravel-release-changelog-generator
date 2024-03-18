@@ -31,6 +31,7 @@
 - Lock file maintenance
 - Update release-drafter/release-drafter action to v6
 - Update orhun/git-cliff-action action to v3
+- Update softprops/action-gh-release action to v2
 
 ### Styling
 
@@ -152,6 +153,13 @@
 - Bump friendsofphp/php-cs-fixer from 3.49.0 to 3.50.0
 - Bump vimeo/psalm from 5.22.1 to 5.22.2
 - Bump phpstan/phpstan-phpunit from 1.3.15 to 1.3.16
+- Bump friendsofphp/php-cs-fixer from 3.50.0 to 3.51.0
+- Bump pestphp/pest from 2.34.0 to 2.34.1
+- Bump vimeo/psalm from 5.22.2 to 5.23.0
+- Bump psalm/plugin-laravel from 2.8.0 to 2.10.1
+- Bump vimeo/psalm from 5.23.0 to 5.23.1
+- Bump orchestra/testbench from 8.21.1 to 8.22.0
+- Bump pestphp/pest from 2.34.1 to 2.34.4
 
 ## [0.3.1] - 2023-03-27
 
