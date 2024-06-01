@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": ">=8.1|^8.2|^8.3",
-        "symfony/yaml": "^v6.4.7"
+        "symfony/yaml": "^v7.0.0"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
