@@ -2,6 +2,23 @@
 
 All notable changes to `laravel-release-changelog-generator` will be documented in this file
 
+## 0.3.5 🌈 Finsteraarhorn - 2024-06-01
+
+### Changes
+
+- If prerelease is zero - remove the block from version @lightszentip (#247)
+- Generated Changelog now sorts by version @lightszentip (#116)
+
+### 📦 Dependencies
+
+- chore(deps): update dependabot/fetch-metadata action to v2 @renovate (#226)
+- build(deps-dev): bump orchestra/testbench from 8.22.3 to 8.23.0 @dependabot (#246)
+- build(deps-dev): bump phpstan/phpstan-deprecation-rules from 1.1.4 to 1.2.0 @dependabot (#243)
+- build(deps-dev): bump phpstan/phpstan-phpunit from 1.3.16 to 1.4.0 @dependabot (#241)
+- build(deps-dev): bump vimeo/psalm from 5.23.1 to 5.24.0 @dependabot (#240)
+- build(deps): bump symfony/yaml from 6.4.3 to 6.4.7 @dependabot (#239)
+- build(deps-dev): bump pestphp/pest-plugin-laravel from 2.3.0 to 2.4.0 @dependabot (#237)
+
 ## 0.3.1 🌈 Elbrus - 2023-03-27
 
 ### Changes
