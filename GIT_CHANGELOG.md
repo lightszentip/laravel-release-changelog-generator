@@ -1,6 +1,12 @@
 # Changelog
 ## [unreleased]
 
+### Update
+
+- New yaml version (#248)
+
+## [0.3.5] - 2024-06-01
+
 ### Miscellaneous Tasks
 
 - Lock file maintenance
