@@ -2,6 +2,17 @@
 
 All notable changes to `laravel-release-changelog-generator` will be documented in this file
 
+## 0.4.0 🌈  Gran Paradiso - 2024-06-01
+
+### Changes
+
+- update: new yaml version @lightszentip (#248)
+
+### IMPORTANT!!!
+
+* Run only with PHP 8.2
+* Works only with Laravel 11
+
 ## 0.3.5 🌈 Finsteraarhorn - 2024-06-01
 
 ### Changes
