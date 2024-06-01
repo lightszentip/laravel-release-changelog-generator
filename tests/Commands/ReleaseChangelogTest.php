@@ -27,7 +27,7 @@ class ReleaseChangelogTest extends TestCase
 
 
         $this->assertEquals(
-            '1.0.1[.rc0]',
+            '1.0.1',
             app('releasechangelog.version')->showVersion('min')
         );
 
@@ -51,7 +51,7 @@ class ReleaseChangelogTest extends TestCase
 
         $this->assertEquals(
             preg_replace('/\"date\"\:\".*?\"\,/s', '"date":"",', file_get_contents(FileHandler::pathChangelog()))
-            , '{"unreleased":{"name":"tbd","date":"","release":false},"1.0.1.rc0":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
+            , '{"unreleased":{"name":"tbd","date":"","release":false},"1.0.1":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
     }
 
     /** @test */
@@ -62,7 +62,7 @@ class ReleaseChangelogTest extends TestCase
 
         $this->assertEquals(
             preg_replace('/\"date\"\:\".*?\"\,/s', '"date":"",', file_get_contents(FileHandler::pathChangelog()))
-            , '{"unreleased":{"name":"tbd","date":"","release":false},"2.0.0.rc0":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
+            , '{"unreleased":{"name":"tbd","date":"","release":false},"2.0.0":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
     }
 
     /** @test */
@@ -73,7 +73,7 @@ class ReleaseChangelogTest extends TestCase
 
         $this->assertEquals(
             preg_replace('/\"date\"\:\".*?\"\,/s', '"date":"",', file_get_contents(FileHandler::pathChangelog()))
-            , '{"unreleased":{"name":"tbd","date":"","release":false},"1.1.0.rc0":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
+            , '{"unreleased":{"name":"tbd","date":"","release":false},"1.1.0":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
     }
 
     /** @test */
@@ -84,7 +84,7 @@ class ReleaseChangelogTest extends TestCase
 
         $this->assertEquals(
             preg_replace('/\"date\"\:\".*?\"\,/s', '"date":"",', file_get_contents(FileHandler::pathChangelog()))
-            , '{"unreleased":{"name":"tbd","date":"","release":false},"1.0.1.rc0":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
+            , '{"unreleased":{"name":"tbd","date":"","release":false},"1.0.1":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
     }
 
 

@@ -27,7 +27,7 @@ class SetReleaseChangelogTest extends TestCase
         $this->assertEquals("", $result);
 
         $this->assertEquals(
-            '1.3.2[.rc0]',
+            '1.3.2',
             app('releasechangelog.version')->showVersion('min')
         );
 
@@ -52,7 +52,7 @@ class SetReleaseChangelogTest extends TestCase
 
         $this->assertEquals(
             preg_replace('/\"date\"\:\".*?\"\,/s', '"date":"",', file_get_contents(FileHandler::pathChangelog()))
-            , '{"unreleased":{"name":"tbd","date":"","release":false},"2.4.1.rc0":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
+            , '{"unreleased":{"name":"tbd","date":"","release":false},"2.4.1":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
     }
 
     /** @test */

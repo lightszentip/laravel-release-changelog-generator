@@ -10,7 +10,7 @@ class Constants
 {
     public const DEFAULT_FORMAT = 'full';
 
-    public const APP_VERISON_HANDLING = 'releasechangelog.versionhandling';
+    public const APP_VERSION_HANDLING = 'releasechangelog.versionhandling';
 
-    public const APP_VERISON = 'releasechangelog.version';
+    public const APP_VERSION = 'releasechangelog.version';
 }

@@ -39,7 +39,7 @@ class UpdateVersion extends Command
     public function handle(): int
     {
         try {
-            $type = trim($this->getArgument(UpdateVersion::$ar_type));
+            $type = trim($this->getArgument(self::$ar_type));
 
             VersionUtil::updateVersionByType($type);
 

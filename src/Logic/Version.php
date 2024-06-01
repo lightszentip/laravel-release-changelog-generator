@@ -24,8 +24,15 @@ class Version
         $result = 'not defined';
 
         if (array_key_exists($type, $existsFormats)) {
-            $version = app(Constants::APP_VERISON_HANDLING)->getContent();
+            $version = app(Constants::APP_VERSION_HANDLING)->getContent();
+            if ($version['prereleasenumber'] === 0) {
+                //REPLACE the prerelease part from the version string
+                $existsFormats[$type] = str_replace('[{prerelease}{prereleasenumber}]', '', $existsFormats[$type]);
+                $existsFormats[$type] = str_replace('.{prerelease}{prereleasenumber}', '', $existsFormats[$type]);
+                $existsFormats[$type] = str_replace('-{prerelease}{prereleasenumber}', '', $existsFormats[$type]);
+            }
             $result = str_replace(Version::REPLACE_VALUE, [$version['major'], $version['minor'], $version['patch'], $version['prerelease'], $version['prereleasenumber'], $version['buildmetadata'], $version['timestamp']['date'], $version['timestamp']['timestamp']], $existsFormats[$type]);
+
         }
         if (Config::get('releasechangelog.prerelease', false)) {
             $result = str_replace('.{prerelease}{prereleasenumber}', '', $result);

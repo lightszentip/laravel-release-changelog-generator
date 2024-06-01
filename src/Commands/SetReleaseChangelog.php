@@ -41,20 +41,20 @@ class SetReleaseChangelog extends Command
     public function handle(): int
     {
         try {
-            $name = trim($this->getArgument(SetReleaseChangelog::$ar_name));
-            $version = trim($this->getArgument(SetReleaseChangelog::$ar_version));
+            $name = trim($this->getArgument(self::$ar_name));
+            $version = trim($this->getArgument(self::$ar_version));
 
             $versionSplit = explode('.', $version);
             $major = 0;
             $minor = 0;
             $patch = 0;
-            for ($i = 0; $i < count($versionSplit); $i++) {
+            foreach ($versionSplit as $i => $iValue) {
                 switch ($i) {
                     case 0:
-                        $major = $versionSplit[$i];
+                        $major = $iValue;
                         break;
                     case 1:
-                        $minor = $versionSplit[$i];
+                        $minor = $iValue;
                         break;
                     case 2:
                         $patch = preg_replace('~\D~', '', $versionSplit[$i]);
@@ -64,22 +64,20 @@ class SetReleaseChangelog extends Command
 
             $jsonString = file_get_contents(FileHandler::pathChangelog(true));
             $decoded_json = json_decode($jsonString);
-            if ($decoded_json == null || !property_exists($decoded_json, 'unreleased')) {
+            if ($decoded_json === null || !property_exists($decoded_json, 'unreleased')) {
                 $this->error('No release changelog exists to update');
-
                 return CommandAlias::FAILURE;
-            } else {
-                app(Constants::APP_VERISON_HANDLING)->updateVersion($major, $minor, $patch);
-                $decoded_json = VersionUtil::generateChangelogWithNewVersion($decoded_json, $name);
-                file_put_contents(FileHandler::pathChangelog(), json_encode($decoded_json));
-                return self::SUCCESS;
             }
+
+            app(Constants::APP_VERSION_HANDLING)->updateVersion($major, $minor, $patch);
+            $decoded_json = VersionUtil::generateChangelogWithNewVersion($decoded_json, $name);
+            file_put_contents(FileHandler::pathChangelog(), json_encode($decoded_json));
+            return self::SUCCESS;
 
         } catch (\InvalidArgumentException $e) {
             return self::FAILURE;
         } catch (\Exception $e2) {
             $this->error("Error:  $e2 ");
-
             return self::INVALID;
         }
     }
@@ -92,7 +90,7 @@ class SetReleaseChangelog extends Command
             $result = $this->ask('What is ' . $key . ' ?');
         }
 
-        if ($result == null) {
+        if ($result === null) {
             $this->error("No input for key:  $key ");
             throw new \InvalidArgumentException();
         }
