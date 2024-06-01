@@ -160,6 +160,27 @@
 - Bump vimeo/psalm from 5.23.0 to 5.23.1
 - Bump orchestra/testbench from 8.21.1 to 8.22.0
 - Bump pestphp/pest from 2.34.1 to 2.34.4
+- Bump orchestra/testbench from 8.22.0 to 8.22.1
+- Bump friendsofphp/php-cs-fixer from 3.51.0 to 3.52.1
+- Bump pestphp/pest from 2.34.4 to 2.34.5
+- Bump orchestra/testbench from 8.22.1 to 8.22.2
+- Bump pestphp/pest from 2.34.5 to 2.34.6
+- Bump psalm/plugin-laravel from 2.10.1 to 2.11.0
+- Bump psalm/plugin-phpunit from 0.18.4 to 0.19.0
+- Bump pestphp/pest from 2.34.6 to 2.34.7
+- Bump friendsofphp/php-cs-fixer from 3.52.1 to 3.53.0
+- Bump orchestra/testbench from 8.22.2 to 8.22.3
+- Bump friendsofphp/php-cs-fixer from 3.53.0 to 3.54.0
+- Bump pestphp/pest-plugin-laravel from 2.3.0 to 2.4.0
+- Bump friendsofphp/php-cs-fixer from 3.54.0 to 3.55.0
+- Bump symfony/yaml from 6.4.3 to 6.4.7
+- Bump vimeo/psalm from 5.23.1 to 5.24.0
+- Bump phpstan/phpstan-phpunit from 1.3.16 to 1.4.0
+- Bump friendsofphp/php-cs-fixer from 3.55.0 to 3.56.1
+- Bump phpstan/phpstan-deprecation-rules
+- Bump friendsofphp/php-cs-fixer from 3.56.1 to 3.57.1
+- Bump friendsofphp/php-cs-fixer from 3.57.1 to 3.57.2
+- Bump orchestra/testbench from 8.22.3 to 8.23.0
 
 ## [0.3.1] - 2023-03-27
 
