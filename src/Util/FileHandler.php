@@ -19,10 +19,8 @@ class FileHandler
     public static function pathChangelog(bool $checkFileExistsAndCreate = false): string
     {
         $path = Config::get('releasechangelog.path') . DIRECTORY_SEPARATOR . '.changes' . DIRECTORY_SEPARATOR . 'changelog.json';
-        if ($checkFileExistsAndCreate) {
-            if (!file_exists($path)) {
-                File::put($path, '');
-            }
+        if ($checkFileExistsAndCreate && !file_exists($path)) {
+            File::put($path, '');
         }
         return $path;
     }

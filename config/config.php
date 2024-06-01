@@ -22,7 +22,7 @@ return [
     'version_formats' => [
         'full' => '{major}.{minor}.{patch} [{buildmetadata}] {timestamp}',
         'changelogversion' => '{major}.{minor}.{patch}.{prerelease}{prereleasenumber}',
-        'min' => '{major}.{minor}.{patch}[.{prerelease}{prereleasenumber}]',
+        'min' => '{major}.{minor}.{patch}[{prerelease}{prereleasenumber}]',
         'version' => '{major}.{minor}.{patch}',
         'minor' => '{minor}',
         'major' => '{major}',

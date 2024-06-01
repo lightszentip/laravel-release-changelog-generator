@@ -38,7 +38,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: '8.2'
           coverage: none
 
       - name: Install composer dependencies
@@ -65,16 +65,14 @@ jobs:
       fail-fast: true
       matrix:
         os: [ ubuntu-latest ]
-        php: [ 8.2, 8.1 ]
-        laravel: [ 9.*, 10.* ]
+        php: [ 8.3,8.2 ]
+        laravel: [ 10.* ]
         stability: [ prefer-stable ]
         include:
-          - laravel: 9.*
-            testbench: 7.*
-            pest: 1.*
           - laravel: 10.*
             testbench: 8.*
             pest: 2.*
+
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 

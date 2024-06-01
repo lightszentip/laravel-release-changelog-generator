@@ -9,22 +9,23 @@ class VersionUtil
     {
         switch ($type) {
             case 'patch':
-                app(Constants::APP_VERISON_HANDLING)->incrementPatch();
+                app(Constants::APP_VERSION_HANDLING)->incrementPatch();
                 break;
             case 'minor':
-                app(Constants::APP_VERISON_HANDLING)->incrementMinor();
+                app(Constants::APP_VERSION_HANDLING)->incrementMinor();
                 break;
             case 'major':
-                app(Constants::APP_VERISON_HANDLING)->incrementMajor();
+                app(Constants::APP_VERSION_HANDLING)->incrementMajor();
                 break;
             case 'rc':
-                app(Constants::APP_VERISON_HANDLING)->incrementPreRelease();
+                app(Constants::APP_VERSION_HANDLING)->incrementPreRelease();
                 break;
             case 'timestamp':
-                app(Constants::APP_VERISON_HANDLING)->updateTimestamp();
+                app(Constants::APP_VERSION_HANDLING)->updateTimestamp();
+                break;
+            default:
                 break;
         }
-
     }
 
 
@@ -36,7 +37,7 @@ class VersionUtil
      */
     public static function generateChangelogWithNewVersion(mixed $decoded_json, string $name, string $formatType = 'changelogversion'): mixed
     {
-        $currentVersion = app(Constants::APP_VERISON)->showVersion($formatType);
+        $currentVersion = app(Constants::APP_VERSION)->showVersion($formatType);
         $dateNow = new \DateTimeImmutable();
         $decoded_json->$currentVersion = $decoded_json->unreleased;
         $decoded_json->$currentVersion->name = $name;

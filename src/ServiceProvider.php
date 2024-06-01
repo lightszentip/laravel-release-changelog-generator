@@ -21,7 +21,7 @@ class ServiceProvider extends IlluminateServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'releasechangelog');
 
-        $this->app->singleton(Constants::APP_VERISON_HANDLING, function () {
+        $this->app->singleton(Constants::APP_VERSION_HANDLING, function () {
             return new VersionHandling();
         });
         $this->app->singleton('releasechangelog.version', function () {
