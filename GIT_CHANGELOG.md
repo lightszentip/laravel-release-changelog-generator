@@ -32,6 +32,8 @@
 - Update release-drafter/release-drafter action to v6
 - Update orhun/git-cliff-action action to v3
 - Update softprops/action-gh-release action to v2
+- Update dependabot/fetch-metadata action to v1.7.0
+- Update dependabot/fetch-metadata action to v2
 
 ### Styling
 
