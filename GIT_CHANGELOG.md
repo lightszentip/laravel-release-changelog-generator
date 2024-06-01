@@ -1,6 +1,12 @@
 # Changelog
 ## [unreleased]
 
+### Bug Fixes
+
+- Tests (#249)
+
+## [0.4.0] - 2024-06-01
+
 ### Update
 
 - New yaml version (#248)
