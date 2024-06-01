@@ -70,7 +70,7 @@ jobs:
         stability: [ prefer-stable ]
         include:
           - laravel: 10.*
-            testbench: 9.*
+            testbench: 8.*
             pest: 2.*
           - laravel: 11.*
             testbench: 9.*
