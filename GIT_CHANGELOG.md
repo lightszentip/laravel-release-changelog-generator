@@ -5,6 +5,10 @@
 
 - Tests (#249)
 
+### Miscellaneous Tasks
+
+- Update dependabot/fetch-metadata action to v2.2.0 (#250)
+
 ## [0.4.0] - 2024-06-01
 
 ### Update
