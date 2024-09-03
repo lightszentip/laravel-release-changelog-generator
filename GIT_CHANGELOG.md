@@ -8,6 +8,7 @@
 ### Miscellaneous Tasks
 
 - Update dependabot/fetch-metadata action to v2.2.0 (#250)
+- Update orhun/git-cliff-action action to v4 (#251)
 
 ## [0.4.0] - 2024-06-01
 
