@@ -1,15 +1,13 @@
-# Package to create releases and changelogs in laravel
+# Package to create releases and changelogs in Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/lightszentip/laravel-release-changelog-generator.svg?style=flat-square)](https://packagist.org/packages/lightszentip/laravel-release-changelog-generator)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/lightszentip/laravel-release-changelog-generator/run-tests?label=tests)](https://github.com/lightszentip/laravel-release-changelog-generator/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/lightszentip/laravel-release-changelog-generator/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/lightszentip/laravel-release-changelog-generator/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/lightszentip/laravel-release-changelog-generator.svg?style=flat-square)](https://packagist.org/packages/lightszentip/laravel-release-changelog-generator) [![PHP-CS-Fixer](https://github.com/lightszentip/laravel-release-changelog-generator/actions/workflows/quality-check.yml/badge.svg?branch=main)](https://github.com/lightszentip/laravel-release-changelog-generator/actions/workflows/quality-check.yml) [![Update Changelog GIT](https://github.com/lightszentip/laravel-release-changelog-generator/actions/workflows/update-changelog-main.yml/badge.svg)](https://github.com/lightszentip/laravel-release-changelog-generator/actions/workflows/update-changelog-main.yml)
 
-This package add a changelog management over command line and a version release management. So you can add new changelog
-items and if you release, the changelog ist update with new version and the version file also. So it is easy to manage a
-customer changelog.
+This package adds changelog management over the command line and version release management. You can add new changelog items, and if you release, the changelog is updated with the new version and the version file. Thus, it is easy to manage a customer changelog.
 
-The changelog is a json file that can easy integrate into a controller to present to end customer.
+The changelog is a JSON file that can easily be integrated into a controller to present to the end customer.
 
 See [ROADMAP](ROADMAP.md) for new functions.
 
@@ -26,7 +24,7 @@ See [ROADMAP](ROADMAP.md) for new functions.
  0.4.x                       | >=8.2 | 11              
 ## Installation
 
-You can install the package via composer:
+You can install the package via Composer:
 
 ```bash
 composer require lightszentip/laravel-release-changelog-generator
@@ -41,7 +39,7 @@ php artisan vendor:publish --tag=resources
 
 ## Usage
 
-If the command use without arguments, the command line create a ask for all necessary arguments.
+If the command is used without arguments, the command line creates an ask for all necessary arguments.
 
 ### Create a new changelog item:
 
@@ -57,7 +55,7 @@ You can find the result in resources/.changes/changelog.json
 php artisan changelog:release --releasename="My First Release" --type=patch
 ```
 
-This update the version.yml to the next patch vesion and add in the changelog.json a new release with all current
+This updates the version.yml to the next patch version and add in the changelog.json a new release with all current
 changelog items.
 
 ### Update CHANGELOG.md file:
@@ -68,7 +66,7 @@ This will update the CHANGELOG.md file in the root with your changes.
 php artisan changelog:generate-md
 ```
 
-### Get version in the application
+### Get the version in the application
 
 #### Blade
 
@@ -77,7 +75,7 @@ php artisan changelog:generate-md
 ```
 
 To get a special format for the version, you find in the 'releasechangelog.php' in the config dir the item '
-version_formats'. You can add new formats and/or change the existing. To use it:
+version_formats'. You can add new formats and/or change the existing ones. To use it:
 
 ```php
 @releasechangelog('full')
@@ -93,7 +91,7 @@ app('releasechangelog.version')->showVersion($format)
 
 ````prerelease```` set to false to remove the "rc" part from version
 
-To use antother pre release name as 'rc', change it on version.yml direct.
+To use another pre-release name as 'rc', change it on version.yml direct.
 
 ### Example Result
 
