@@ -25,7 +25,7 @@ jobs:
           OUTPUT: GIT_CHANGELOG.md
 
       - name: Commit updated CHANGELOG
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v6
         with:
           branch: main
           commit_message: Update CHANGELOG
