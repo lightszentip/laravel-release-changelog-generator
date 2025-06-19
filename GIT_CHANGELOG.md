@@ -11,6 +11,7 @@
 - Update orhun/git-cliff-action action to v4 (#251)
 - Update dependabot/fetch-metadata action to v2.4.0 (#254)
 - Update stefanzweifel/git-auto-commit-action action to v6 (#255)
+- Migrate config renovate.json (#257)
 
 ## [0.4.0] - 2024-06-01
 
