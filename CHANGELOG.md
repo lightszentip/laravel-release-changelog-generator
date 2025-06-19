@@ -2,6 +2,21 @@
 
 All notable changes to `laravel-release-changelog-generator` will be documented in this file
 
+## 0.4.1 🌈 - 2025-06-19
+
+### Changes
+
+- Update README.md to comprehensively explain what the package do @iabduul7 (#253)
+- fix: tests @lightszentip (#249)
+
+### 📦 Dependencies
+
+- chore(config): migrate renovate config @[renovate[bot]](https://github.com/apps/renovate) (#257)
+- chore(deps): update stefanzweifel/git-auto-commit-action action to v6 @[renovate[bot]](https://github.com/apps/renovate) (#255)
+- chore(deps): update dependabot/fetch-metadata action to v2.4.0 @[renovate[bot]](https://github.com/apps/renovate) (#254)
+- chore(deps): update orhun/git-cliff-action action to v4 @[renovate[bot]](https://github.com/apps/renovate) (#251)
+- chore(deps): update dependabot/fetch-metadata action to v2.2.0 @[renovate[bot]](https://github.com/apps/renovate) (#250)
+
 ## 0.4.0 🌈  Gran Paradiso - 2024-06-01
 
 ### Changes
