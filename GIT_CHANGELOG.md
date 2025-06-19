@@ -4,6 +4,7 @@
 ### Bug Fixes
 
 - Tests (#249)
+- For migration to new version of psalm
 
 ### Miscellaneous Tasks
 
