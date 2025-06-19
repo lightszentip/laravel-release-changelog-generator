@@ -6,11 +6,11 @@
     ],
     "packageRules": [
         {
-            "depTypeList": [
+            "matchDepTypes": [
                 "devDependencies",
                 "require-dev"
             ],
-            "updateTypes": [
+            "matchUpdateTypes": [
                 "patch",
                 "minor",
                 "digest"
@@ -18,21 +18,21 @@
             "groupName": "devDependencies (non-major)"
         },
         {
-            "depTypeList": [
+            "matchDepTypes": [
                 "devDependencies",
                 "require-dev"
             ],
-            "updateTypes": [
+            "matchUpdateTypes": [
                 "major"
             ],
             "groupName": "devDependencies (major)"
         },
         {
-            "depTypeList": [
+            "matchDepTypes": [
                 "dependencies",
                 "require"
             ],
-            "updateTypes": [
+            "matchUpdateTypes": [
                 "patch",
                 "minor",
                 "digest",
@@ -45,7 +45,7 @@
         "enabled": true
     },
     "extends": [
-        "config:base",
+        "config:recommended",
         ":preserveSemverRanges",
         "group:allNonMajor",
         ":dependencyDashboard",
