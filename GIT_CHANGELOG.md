@@ -4,6 +4,7 @@
 ### Miscellaneous Tasks
 
 - Update devdependencies (major) (#256)
+- Update actions/checkout action to v5 (#259)
 
 ## [0.4.1] - 2025-06-19
 
