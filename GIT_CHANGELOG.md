@@ -1,6 +1,10 @@
 # Changelog
 ## [unreleased]
 
+### Features
+
+- Modules (#262)
+
 ### Miscellaneous Tasks
 
 - Update devdependencies (major) (#256)
