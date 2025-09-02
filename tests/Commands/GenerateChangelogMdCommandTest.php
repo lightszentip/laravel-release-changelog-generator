@@ -101,6 +101,44 @@ class GenerateChangelogMdCommandTest extends TestCase
         $this->compare_template_ordered($result);
     }
 
+    public function test_handle_command_with_modules()
+    {
+        // Changelog mit globalen und Modul-Items
+        $changelog = [
+            'unreleased' => [
+                'name' => 'tbd',
+                'date' => '',
+                'release' => false,
+                'added' => [
+                    ['message' => 'Globale Änderung 1'],
+                    ['message' => 'Globale Änderung 2'],
+                ],
+                'modules' => [
+                    'User' => [
+                        'fixed' => [
+                            ['message' => 'Fehler im User-Modul behoben'],
+                            ['message' => 'Validierung verbessert'],
+                        ],
+                        'added' => [
+                            ['message' => 'Neues Feld im User-Modul'],
+                        ],
+                    ],
+                    'Payment' => [
+                        'changed' => [
+                            ['message' => 'Zahlungslogik angepasst'],
+                        ],
+                    ],
+                ],
+            ],
+        ];
+        file_put_contents(FileHandler::pathChangelog(), json_encode($changelog));
+        $this->artisan('changelog:generate-md')->assertOk();
+        $result = file_get_contents(FileHandler::pathChangelogMd());
+        $result = str_replace("\r", '', $result);
+        $expected = file_get_contents(__DIR__ . '/changelog-md.blade.modules.expected');
+        $this->assertEquals(trim($expected), trim($result));
+    }
+
     /**
      * @param string $result
      * @return null

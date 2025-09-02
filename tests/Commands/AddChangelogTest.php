@@ -35,6 +35,7 @@ class AddChangelogTest extends TestCase
             ->assertOk();
     }
 
+
     #[Test]
     public function test_handle_command_with_question_check()
     {
@@ -82,7 +83,6 @@ class AddChangelogTest extends TestCase
             $expected
         );
     }
-
     #[Test]
     public function test_handle_command_with_module_and_without_module()
     {
