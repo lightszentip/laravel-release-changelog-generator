@@ -2,6 +2,20 @@
 
 All notable changes to `laravel-release-changelog-generator` will be documented in this file
 
+## 1.0.0 Monacobreen - 2025-09-02
+
+<!-- Release notes generated using configuration in .github/release.yml at main -->
+### What's Changed
+
+Feature Modules support in json by @lightszentip in https://github.com/lightszentip/laravel-release-changelog-generator/pull/262
+
+#### Other Changes
+
+* chore(deps): update devdependencies (major) (major) by @renovate[bot] in https://github.com/lightszentip/laravel-release-changelog-generator/pull/256
+* chore(deps): update actions/checkout action to v5 by @renovate[bot] in https://github.com/lightszentip/laravel-release-changelog-generator/pull/259
+
+**Full Changelog**: https://github.com/lightszentip/laravel-release-changelog-generator/compare/0.4.1...1.0.0
+
 ## 0.4.1 🌈 - 2025-06-19
 
 ### Changes
