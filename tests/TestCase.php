@@ -13,10 +13,6 @@ class TestCase extends Orchestra
         parent::setUp();
     }
 
-    protected function tearDown(): void
-    {
-
-    }
 
     protected function getPackageProviders($app): array
     {

@@ -5,18 +5,23 @@ namespace Lightszentip\LaravelReleaseChangelogGenerator\Logic;
 use Illuminate\Support\Facades\Config;
 use Lightszentip\LaravelReleaseChangelogGenerator\Util\Constants;
 
-/**
- *
- */
 class Version
 {
 
-    public const REPLACE_VALUE = array('{major}', '{minor}', '{patch}', '{prerelease}', '{prereleasenumber}', '{buildmetadata}', '{date}', '{timestamp}');
+    public const array REPLACE_VALUE = array('{major}', '{minor}', '{patch}', '{prerelease}', '{prereleasenumber}', '{buildmetadata}', '{date}', '{timestamp}');
 
     /**
-     * show Version by format type
-     * @param string $type
-     * @return string The current version
+     * Generates a formatted version string based on the specified format type.
+     *
+     * This method retrieves version information and applies formatting rules to create
+     * a version string according to predefined format templates. It handles prerelease
+     * versions by conditionally removing prerelease components when the prerelease
+     * number is zero or when prerelease mode is disabled in configuration.
+     *
+     * @param string $type The format type key used to lookup the version format template
+     *                     from the 'releasechangelog.version_formats' configuration
+     * @return string The formatted version string based on the specified type, or
+     *                'not defined' if the format type doesn't exist in configuration
      */
     public function showVersion(string $type): string
     {

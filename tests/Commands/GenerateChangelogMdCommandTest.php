@@ -24,29 +24,21 @@ class GenerateChangelogMdCommandTest extends TestCase
         }
     }
 
-    /** @test */
-    public function handle_command()
+    public function test_handle_command()
     {
         $this->withoutMockingConsoleOutput()
             ->artisan("changelog:generate-md");
-        // capture the text output from the command
         $result = Artisan::output();
-        // use standard text assertions
+        $result = str_replace("\r", '', $result);
         $this->assertEquals("", $result);
-
-
     }
 
-    /** @test */
-    public function handle_command_successfull()
+    public function test_handle_command_successfull()
     {
-
         $this->artisan('changelog:generate-md')->assertOk();
     }
 
-
-    /** @test */
-    public function handle_command_with_custom_path()
+    public function test_handle_command_with_custom_path()
     {
         $old_path = Config::get('releasechangelog.markdown-path');
         $target_path = $old_path . DIRECTORY_SEPARATOR . "public";
@@ -54,6 +46,7 @@ class GenerateChangelogMdCommandTest extends TestCase
         $this->assertStringContainsString($target_path, FileHandler::pathChangelogMd());
         $this->artisan('changelog:generate-md')->assertOk();
         $result = File::get(FileHandler::pathChangelogMd());
+        $result = str_replace("\r", '', $result);
         $this->compare_template($result);
     }
 
@@ -63,18 +56,15 @@ class GenerateChangelogMdCommandTest extends TestCase
         $this->artisan('changelog:generate-md')->assertFailed();
     }
 
-
-    /** @test */
-    public function handle_command_with_generate_correct_file()
+    public function test_handle_command_with_generate_correct_file()
     {
         $this->artisan('changelog:generate-md')->assertOk();
-
         $result = File::get(FileHandler::pathChangelogMd());
+        $result = str_replace("\r", '', $result);
         $this->compare_template($result);
     }
 
-    /** @test */
-    public function handle_command_with_generate_correct_file_with_ordered_versions()
+    public function test_handle_command_with_generate_correct_file_with_ordered_versions()
     {
         file_put_contents(
             FileHandler::pathChangelog(),
@@ -106,9 +96,47 @@ class GenerateChangelogMdCommandTest extends TestCase
             ))
         );
         $this->artisan('changelog:generate-md')->assertOk();
-
         $result = File::get(FileHandler::pathChangelogMd());
+        $result = str_replace("\r", '', $result);
         $this->compare_template_ordered($result);
+    }
+
+    public function test_handle_command_with_modules()
+    {
+        // Changelog mit globalen und Modul-Items
+        $changelog = [
+            'unreleased' => [
+                'name' => 'tbd',
+                'date' => '',
+                'release' => false,
+                'added' => [
+                    ['message' => 'Globale Änderung 1'],
+                    ['message' => 'Globale Änderung 2'],
+                ],
+                'modules' => [
+                    'User' => [
+                        'fixed' => [
+                            ['message' => 'Fehler im User-Modul behoben'],
+                            ['message' => 'Validierung verbessert'],
+                        ],
+                        'added' => [
+                            ['message' => 'Neues Feld im User-Modul'],
+                        ],
+                    ],
+                    'Payment' => [
+                        'changed' => [
+                            ['message' => 'Zahlungslogik angepasst'],
+                        ],
+                    ],
+                ],
+            ],
+        ];
+        file_put_contents(FileHandler::pathChangelog(), json_encode($changelog));
+        $this->artisan('changelog:generate-md')->assertOk();
+        $result = file_get_contents(FileHandler::pathChangelogMd());
+        $result = str_replace("\r", '', $result);
+        $expected = file_get_contents(__DIR__ . '/changelog-md.blade.modules.expected');
+        $this->assertEquals(trim($expected), trim($result));
     }
 
     /**
@@ -118,20 +146,12 @@ class GenerateChangelogMdCommandTest extends TestCase
     private function compare_template(string $result)
     {
         $result = str_replace("\r", '', $result);
-        $this->assertEquals('# Changelog
-
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-## [Unreleased]
-
-### Feat
-
-    - first impl
-
-
-
-', $result);
+        $expected = file_get_contents(__DIR__ . '/changelog-md.blade.php.expected');
+        $expected = str_replace("\r", '', $expected);
+        // Remove all blank lines and trim
+        $result = preg_replace('/^\s*\n/m', '', $result);
+        $expected = preg_replace('/^\s*\n/m', '', $expected);
+        $this->assertEquals(trim($expected), trim($result));
     }
 
     /**
@@ -141,31 +161,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
     private function compare_template_ordered(string $result)
     {
         $result = str_replace("\r", '', $result);
-        $this->assertEquals('# Changelog
-
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-## [1.0.11]
-
-### Added
-
-    - Added something 11
-
-## [1.0.9]
-
-### Added
-
-    - Added something 9
-
-## [1.0.1]
-
-### Added
-
-    - Added something
-
-
-
-', $result);
+        $expected = file_get_contents(__DIR__ . '/changelog-md.blade.ordered.expected');
+        $expected = str_replace("\r", '', $expected);
+        $result = preg_replace('/^\s*\n/m', '', $result);
+        $expected = preg_replace('/^\s*\n/m', '', $expected);
+        $this->assertEquals(trim($expected), trim($result));
     }
 }

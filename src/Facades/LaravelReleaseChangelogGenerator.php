@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Facade as LaravelFacade;
  */
 class LaravelReleaseChangelogGenerator extends LaravelFacade
 {
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return 'releasechangelog';
     }

@@ -1,5 +1,15 @@
 <?php
 
+
+/*
+ * This file is part of Laravel Release Changelog Generator
+ *
+ * (c) lightszentip <lightszentip@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Lightszentip\LaravelReleaseChangelogGenerator;
 
 use Illuminate\Support\Facades\Blade;
@@ -17,21 +27,21 @@ use Lightszentip\LaravelReleaseChangelogGenerator\Util\Constants;
 
 class ServiceProvider extends IlluminateServiceProvider
 {
-    public function register()
+    public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'releasechangelog');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'releasechangelog');
 
-        $this->app->singleton(Constants::APP_VERSION_HANDLING, function () {
+        $this->app->singleton(Constants::APP_VERSION_HANDLING, static function () {
             return new VersionHandling();
         });
-        $this->app->singleton('releasechangelog.version', function () {
+        $this->app->singleton('releasechangelog.version', static function () {
             return new Version();
         });
     }
 
-    public function boot()
+    public function boot(): void
     {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'releasechangelog');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'releasechangelog');
         // Register the command if we are using the application via the CLI
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -43,22 +53,21 @@ class ServiceProvider extends IlluminateServiceProvider
                 GenerateChangelogMdCommand::class,
             ]);
             $this->publishes([
-                __DIR__ . '/../config/config.php' => config_path('releasechangelog.php'),
+                __DIR__.'/../config/config.php' => config_path('releasechangelog.php'),
             ], 'config');
 
             $this->publishes([
                 // Views
-                __DIR__ . '/../resources/.version/version.yml' => resource_path('.version/version.yml'),
-                __DIR__ . '/../resources/.changes/changelog.json' => resource_path('.changes/changelog.json'),
-                __DIR__ . '/../resources/views/changelog-md.blade.php' => resource_path('views/changelog-md.blade.php'),
+                __DIR__.'/../resources/.version/version.yml' => resource_path('.version/version.yml'),
+                __DIR__.'/../resources/.changes/changelog.json' => resource_path('.changes/changelog.json'),
+                __DIR__.'/../resources/views/changelog-md.blade.php' => resource_path('views/changelog-md.blade.php'),
             ], 'resources');
-
         }
 
         Blade::directive(
             Config::get('releasechangelog.blade-directive', 'releasechangelog'),
-            function ($format = Constants::DEFAULT_FORMAT) {
-                return "<?php echo app('releasechangelog.version')->showVersion($format); ?>";
+            static function ($format = Constants::DEFAULT_FORMAT) {
+                return "<?php echo app('releasechangelog.version')->showVersion({$format}); ?>";
             }
         );
     }

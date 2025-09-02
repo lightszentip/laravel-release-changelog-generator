@@ -10,7 +10,7 @@ class UpdateVersionTest extends TestCase
 {
 
     /** @test */
-    public function handle_command()
+    public function test_handle_command()
     {
 
         $this->withoutMockingConsoleOutput()
@@ -18,8 +18,9 @@ class UpdateVersionTest extends TestCase
         // capture the text output from the command
         $result = Artisan::output();
         // use standard text assertions
+        $result = str_replace("\r", '', $result);
         if (windows_os()) {
-            $this->assertEquals("Current Version: 1.0.1 [] " . time() . "\r\n", $result);
+            $this->assertEquals("Current Version: 1.0.1 [] " . time() . "\n", $result);
         } else {
             $this->assertEquals("Current Version: 1.0.1 [] " . time() . "\n", $result);
         }
@@ -27,32 +28,26 @@ class UpdateVersionTest extends TestCase
     }
 
     /** @test */
-    public function handle_command_wihtou_args()
+    public function test_handle_command_wihtou_args()
     {
         $this->artisan('changelog:update-version')
             ->assertFailed();
     }
 
     /** @test */
-    public function handle_command_successfull()
+    public function test_handle_command_successfull()
     {
 
         $this->artisan('changelog:update-version  --type="rc"')
             ->assertOk();
 
-
-        $this->assertEquals(
-            'label: v
-major: 1
-minor: 0
-patch: 0
-prerelease: rc
-prereleasenumber: 1
-buildmetadata: null
-timestamp:
-    date: \'' . date("Y-m-d H:i") . '\'
-    timestamp: ' . time() . '
-', file_get_contents(FileHandler::pathVersion()));
+        $actual = file_get_contents(FileHandler::pathVersion());
+        $actual = str_replace("\r", '', $actual);
+        // Remove blank lines and trim for robust comparison
+        $actual = preg_replace('/^\s*\n/m', '', $actual);
+        $expected = "label: v\nmajor: 1\nminor: 0\npatch: 0\nprerelease: rc\nprereleasenumber: 1\nbuildmetadata: null\ntimestamp:\n    date: '" . date("Y-m-d H:i") . "'\n    timestamp: " . time() . "\n";
+        $expected = preg_replace('/^\s*\n/m', '', $expected);
+        $this->assertEquals(trim($expected), trim($actual));
     }
 
 

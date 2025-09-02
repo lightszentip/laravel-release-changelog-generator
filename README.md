@@ -22,6 +22,7 @@ See [ROADMAP](ROADMAP.md) for new functions.
  0.2.1                       | >=8.0 | 9 / 10 (not tested) 
  0.3.x                       | >=8.1 | 9 / 10              
  0.4.x                       | >=8.2 | 11              
+ 1.0.x                       | >=8.3 | 11, 12              
 ## Installation
 
 You can install the package via Composer:
