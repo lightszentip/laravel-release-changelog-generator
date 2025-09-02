@@ -18,43 +18,6 @@ vendor/bin/php-cs-fixer fix src
 vendor/bin/phpstan analyse src tests
 ````
 
-## Doc
-
-### laravel-model-doc
-
-````
-composer require romanzipp/laravel-model-doc --dev
-php artisan vendor:publish --provider="romanzipp\ModelDoc\Providers\ModelDocServiceProvider"
-````
-
-````shell
-php artisan model-doc:generate
-````
-
-### Eloquent phpDoc
-
-````composer require sethphat/eloquent-docs --dev````
-
-https://github.com/sethsandaru/eloquent-docs
-
-https://dev.to/sethsandaru/laravel-generate-phpdoc-properties-for-your-eloquent-models-4k78
-
-Usage
-
-````shell
-php artisan eloquent:phpdoc App\Models\User # view only
-php artisan eloquent:phpdoc App\Models\User --write # view & write to file
-php artisan eloquent:phpdoc App\Models\User --short-class # new option - use short class instead of full namespace path
-````
-
-## Test data
-
-### Alice
-
-https://github.com/nelmio/alice
-
-````composer require --dev nelmio/alice````
-
 ## Analyse
 
 ### PHPloc
@@ -127,3 +90,9 @@ composer require --dev psalm/plugin-phpunit && vendor/bin/psalm-plugin enable ps
 https://github.com/phpro/grumphp
 
 https://github.com/squizlabs/PHP_CodeSniffer
+
+## Test run
+
+```shell
+./vendor/bin/pest --no-coverage
+```

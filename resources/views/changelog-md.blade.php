@@ -9,8 +9,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
     - {{ \Carbon\Carbon::parse($changelogItems['date'])->format('Y-m-d') }}
 @endif
 
+{{-- Globale Item-Typen außer "modules" --}}
 @foreach ($changelogItems as $changeType => $items)
-@if (is_array($items))
+@if ($changeType !== 'modules' && is_array($items))
 
 ### {{ ucfirst($changeType) }}
 
@@ -20,7 +21,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 @endif
 @endforeach
 
+{{-- Module mit eigenen Item-Typen --}}
+@if(isset($changelogItems['modules']) && is_array($changelogItems['modules']))
+@foreach ($changelogItems['modules'] as $moduleName => $moduleData)
+
+#### Modul: {{ $moduleName }}
+@foreach ($moduleData as $moduleChangeType => $moduleItems)
+@if (is_array($moduleItems))
+
+##### {{ ucfirst($moduleChangeType) }}
+
+@foreach ($moduleItems as $item)
+      - {{ $item['message'] }}
+@endforeach
+@endif
+@endforeach
+@endforeach
+@endif
+
 @endforeach
 @endisset
-
-

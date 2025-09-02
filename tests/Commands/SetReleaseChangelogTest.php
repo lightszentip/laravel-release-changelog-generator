@@ -16,8 +16,7 @@ class SetReleaseChangelogTest extends TestCase
 
     }
 
-    /** @test */
-    public function handle_command()
+    public function test_handle_command()
     {
         $this->withoutMockingConsoleOutput()
             ->artisan("changelog:set-release", ["--releasename" => "FooBar 1", "--versionnumber" => '1.3.2']);
@@ -34,16 +33,13 @@ class SetReleaseChangelogTest extends TestCase
 
     }
 
-    /** @test */
-    public function handle_command_successfull()
+    public function test_handle_command_successfull()
     {
 
-        $this->artisan('changelog:set-release --releasename="Second Edition Bar" --versionnumber="1.3.2"')
-            ->assertOk();
+        $this->artisan('changelog:set-release  --releasename="FooBar 1" --versionnumber="1.3.2"')->assertOk();
     }
 
-    /** @test */
-    public function handle_command_with_question_check()
+    public function test_handle_command_with_question_check()
     {
         $this->artisan('changelog:set-release')
             ->expectsQuestion('What is releasename ?', 'fooBar 1')

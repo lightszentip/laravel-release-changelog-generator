@@ -8,27 +8,32 @@ class ChangelogItem
 
     private string $message;
 
+
     /**
-     * @param string $message
-     * @param string|null $issue
+     * Creates a new changelog item with a message and optional issue reference.
+     *
+     * @param string      $message The changelog message or description
+     * @param string|null $issue   Optional issue number or reference identifier
      */
-    public function __construct(string $message, string $issue = null)
+    public function __construct(string $message, ?string $issue = null)
     {
         $this->issue = $issue;
         $this->message = $message;
     }
 
     /**
-     * build result
+     * build result.
      *
      * @return array|string[]
      */
     public function build(): array
     {
-        if ($this->issue == null) {
-            return ['message' => $this->message];
+        $result = ['message' => $this->message];
+
+        if (trim($this->issue) !== '') {
+            $result['issue'] = $this->issue;
         }
 
-        return ['message' => $this->message, 'issue' => $this->issue];
+        return $result;
     }
 }

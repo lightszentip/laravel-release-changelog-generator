@@ -16,8 +16,7 @@ class ShowVersionTest extends TestCase
 
     }
 
-    /** @test */
-    public function handle_command()
+    public function test_handle_command()
     {
 
         $this->withoutMockingConsoleOutput()
@@ -30,16 +29,14 @@ class ShowVersionTest extends TestCase
 
     }
 
-    /** @test */
-    public function handle_command_successfull()
+    public function test_handle_command_successfull()
     {
 
         $this->artisan('changelog:show-version')->expectsOutput("1.0.0 [] ")
             ->assertOk();
     }
 
-    /** @test */
-    public function handle_command_with_args_successfull()
+    public function test_handle_command_with_args_successfull()
     {
 
         $this->artisan('changelog:show-version --format="version"')->expectsOutput("1.0.0")
@@ -47,8 +44,7 @@ class ShowVersionTest extends TestCase
     }
 
 
-    /** @test */
-    public function handle_command_with_args_zero_prereleasenumber()
+    public function test_handle_command_with_args_zero_prereleasenumber()
     {
         $this->artisan('changelog:release --releasename="fooBar 2" --type="rc"')
             ->assertOk();

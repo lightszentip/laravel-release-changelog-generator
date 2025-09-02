@@ -12,11 +12,9 @@ class ReleaseChangelogTest extends TestCase
     {
         parent::setUp();
         file_put_contents(FileHandler::pathChangelog(), '{"unreleased":{"name":"tbd","date":"","release":false,"feat":[{"message":"first impl"}]}}');
-
     }
 
-    /** @test */
-    public function handle_command()
+    public function test_handle_command()
     {
         $this->withoutMockingConsoleOutput()
             ->artisan("changelog:release", ["--releasename" => "FooBar 1"]);
@@ -30,20 +28,15 @@ class ReleaseChangelogTest extends TestCase
             '1.0.1',
             app('releasechangelog.version')->showVersion('min')
         );
-
-
     }
 
-    /** @test */
-    public function handle_command_successfull()
+    public function test_handle_command_successfull()
     {
 
-        $this->artisan('changelog:release --releasename="Second Edition Bar"')
-            ->assertOk();
+        $this->artisan('changelog:release  --releasename="FooBar 1"')->assertOk();
     }
 
-    /** @test */
-    public function handle_command_with_question_check()
+    public function test_handle_command_with_question_check()
     {
         $this->artisan('changelog:release')
             ->expectsQuestion('What is releasename ?', 'fooBar 1')
@@ -54,8 +47,7 @@ class ReleaseChangelogTest extends TestCase
             , '{"unreleased":{"name":"tbd","date":"","release":false},"1.0.1":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
     }
 
-    /** @test */
-    public function handle_command_major()
+    public function test_handle_command_major()
     {
         $this->artisan('changelog:release --releasename="fooBar 1" --type="major"')
             ->assertOk();
@@ -65,8 +57,7 @@ class ReleaseChangelogTest extends TestCase
             , '{"unreleased":{"name":"tbd","date":"","release":false},"2.0.0":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
     }
 
-    /** @test */
-    public function handle_command_minor()
+    public function test_handle_command_minor()
     {
         $this->artisan('changelog:release --releasename="fooBar 1" --type="minor"')
             ->assertOk();
@@ -76,8 +67,7 @@ class ReleaseChangelogTest extends TestCase
             , '{"unreleased":{"name":"tbd","date":"","release":false},"1.1.0":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
     }
 
-    /** @test */
-    public function handle_command_patch()
+    public function test_handle_command_patch()
     {
         $this->artisan('changelog:release --releasename="fooBar 1" --type="patch"')
             ->assertOk();
@@ -88,8 +78,7 @@ class ReleaseChangelogTest extends TestCase
     }
 
 
-    /** @test */
-    public function handle_command_prerelease()
+    public function test_handle_command_prerelease()
     {
         $this->artisan('changelog:release --releasename="fooBar 1" --type="rc"')
             ->assertOk();
@@ -99,8 +88,7 @@ class ReleaseChangelogTest extends TestCase
             , '{"unreleased":{"name":"tbd","date":"","release":false},"1.0.0.rc1":{"name":"fooBar 1","date":"","release":true,"feat":[{"message":"first impl"}]}}');
     }
 
-    /** @test */
-    public function handle_command_wihtou_args()
+    public function test_handle_command_wihtou_args()
     {
         $this->artisan('changelog:release')
             ->assertFailed();

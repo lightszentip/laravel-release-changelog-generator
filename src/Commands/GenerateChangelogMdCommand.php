@@ -15,10 +15,7 @@ class GenerateChangelogMdCommand extends Command
 
     public function handle()
     {
-        $changelogData = json_decode(
-            File::get(FileHandler::pathChangelog(true)),
-            true
-        );
+        $changelogData = json_decode(File::get(FileHandler::pathChangelog(true)), true, 512, JSON_THROW_ON_ERROR);
 
         if ($changelogData != null) {
             uksort($changelogData, "version_compare");
