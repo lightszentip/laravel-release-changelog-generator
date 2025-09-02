@@ -13,7 +13,7 @@ class GenerateChangelogMdCommand extends Command
 
     protected $description = 'Update CHANGELOG.md file';
 
-    public function handle()
+    public function handle(): void
     {
         $changelogData = json_decode(File::get(FileHandler::pathChangelog(true)), true, 512, JSON_THROW_ON_ERROR);
 

@@ -8,7 +8,7 @@ use Lightszentip\LaravelReleaseChangelogGenerator\Util\Constants;
 class Version
 {
 
-    public const REPLACE_VALUE = array('{major}', '{minor}', '{patch}', '{prerelease}', '{prereleasenumber}', '{buildmetadata}', '{date}', '{timestamp}');
+    public const array REPLACE_VALUE = array('{major}', '{minor}', '{patch}', '{prerelease}', '{prereleasenumber}', '{buildmetadata}', '{date}', '{timestamp}');
 
     /**
      * Generates a formatted version string based on the specified format type.

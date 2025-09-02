@@ -146,17 +146,24 @@ class AddChangelog extends Command
 
     /**
      * Extract the modules array from the type data.
+     *
+     * This method normalizes different data structures to extract module information.
+     * It handles both array and object type data, converting objects to arrays for consistency.
+     * If the type data contains items without modules, it wraps them in modules with empty names.
+     *
+     * @param mixed $typeData The type data which can be an array or object containing modules or direct items
+     * @return array An array of module arrays, where each module has 'name' and 'items' keys
      */
-    private function extractModules($typeData): array
+    private function extractModules(mixed $typeData): array
     {
         // Always return an array of arrays (not objects)
         if (is_array($typeData) && isset($typeData['modules'])) {
-            return array_map(function($mod) {
+            return array_map(static function($mod) {
                 return is_object($mod) ? (array)$mod : $mod;
             }, $typeData['modules']);
         }
         if (is_object($typeData) && isset($typeData->modules)) {
-            return array_map(function($mod) {
+            return array_map(static function($mod) {
                 return is_object($mod) ? (array)$mod : $mod;
             }, (array)$typeData->modules);
         }
@@ -178,8 +185,17 @@ class AddChangelog extends Command
 
     /**
      * Store the modules array back into the changelog structure.
+     *
+     * This method updates the unreleased changelog section by storing the provided modules
+     * array under the specified type. It handles different data structures (arrays and objects)
+     * and ensures the modules are properly stored regardless of the current structure format.
+     *
+     * @param mixed $unreleased Reference to the unreleased section of the changelog that will be modified
+     * @param string $type The changelog type (e.g., 'added', 'changed', 'fixed') where modules should be stored
+     * @param array $modules Array of module data to be stored, where each module contains 'name' and 'items' keys
+     * @return void
      */
-    private function storeModules(&$unreleased, $type, $modules): void
+    private function storeModules(&$unreleased, string $type, array $modules): void
     {
         if (is_array($unreleased->{$type})) {
             $unreleased->{$type}['modules'] = $modules;

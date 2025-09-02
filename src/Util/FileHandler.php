@@ -43,7 +43,7 @@ class FileHandler
      *
      * @return string The complete file path to the CHANGELOG.md file
      */
-    public static function pathChangelogMd()
+    public static function pathChangelogMd(): string
     {
         return Config::get('releasechangelog.markdown-path').\DIRECTORY_SEPARATOR.'CHANGELOG.md';
     }

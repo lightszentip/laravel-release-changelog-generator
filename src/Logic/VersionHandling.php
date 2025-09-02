@@ -127,7 +127,7 @@ class VersionHandling
      *
      * @return mixed The parsed YAML contents from the version file
      */
-    public function getContent()
+    public function getContent(): mixed
     {
         return $this->yamlContents;
     }

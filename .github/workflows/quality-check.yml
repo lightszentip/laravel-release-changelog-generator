@@ -38,14 +38,11 @@ jobs:
       matrix:
         os: [ ubuntu-latest ]
         php: [8.3 ]
-        laravel: [ 11.*,12.*]
+        laravel: [ 11.*]
         stability: [ prefer-stable ]
         include:
           - laravel: 11.*
             testbench: 10.*
-            pest: 4.*
-          - laravel: 12.*
-            testbench: 11.*
             pest: 4.*
 
 

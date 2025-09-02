@@ -17,19 +17,19 @@ class Constants
      *
      * @var string The default output format when no specific format is specified
      */
-    public const DEFAULT_FORMAT = 'full';
+    public const string DEFAULT_FORMAT = 'full';
 
     /**
      * Configuration key for version handling settings
      *
      * @var string The configuration key used to retrieve version handling preferences
      */
-    public const APP_VERSION_HANDLING = 'releasechangelog.versionhandling';
+    public const string APP_VERSION_HANDLING = 'releasechangelog.versionhandling';
 
     /**
      * Configuration key for application version
      *
      * @var string The configuration key used to retrieve the current application version
      */
-    public const APP_VERSION = 'releasechangelog.version';
+    public const string APP_VERSION = 'releasechangelog.version';
 }

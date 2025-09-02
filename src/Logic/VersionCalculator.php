@@ -30,7 +30,7 @@ class VersionCalculator
      * @param array $yamlVersionConfig The version configuration array containing major, minor, patch, and prereleasenumber keys
      * @return array The updated version configuration array with incremented patch version and reset prerelease number
      */
-    public static function incrementPatch(array $yamlVersionConfig)
+    public static function incrementPatch(array $yamlVersionConfig): array
     {
         $yamlVersionConfig['patch']++;
         $yamlVersionConfig['prereleasenumber'] = 0;
@@ -44,7 +44,7 @@ class VersionCalculator
      * @param array $yamlVersionConfig The version configuration array containing major, minor, patch, and prereleasenumber keys
      * @return array The updated version configuration array with incremented or initialized prerelease number
      */
-    public static function incrementPreRelease(array $yamlVersionConfig)
+    public static function incrementPreRelease(array $yamlVersionConfig): array
     {
         if (is_null($yamlVersionConfig['prereleasenumber'])) {
             $yamlVersionConfig['prereleasenumber'] = 0;
@@ -61,7 +61,7 @@ class VersionCalculator
      * @param array $yamlVersionConfig The version configuration array containing major, minor, patch, and prereleasenumber keys
      * @return array The updated version configuration array with incremented major version and reset minor, patch, and prerelease numbers
      */
-    public static function incrementMajor(array $yamlVersionConfig)
+    public static function incrementMajor(array $yamlVersionConfig): array
     {
         $yamlVersionConfig['major']++;
         $yamlVersionConfig['minor'] = 0;
@@ -80,7 +80,7 @@ class VersionCalculator
      * @param int $patch The new patch version number to set
      * @return array The updated version configuration array with the specified version numbers and reset prerelease number
      */
-    public static function updateVersion(array $yamlVersionConfig, int $major, int $minor, int $patch)
+    public static function updateVersion(array $yamlVersionConfig, int $major, int $minor, int $patch): array
     {
         $yamlVersionConfig['major'] = $major;
         $yamlVersionConfig['minor'] = $minor;
