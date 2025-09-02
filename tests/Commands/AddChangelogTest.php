@@ -9,7 +9,7 @@ use Lightszentip\LaravelReleaseChangelogGenerator\Util\FileHandler;
 class AddChangelogTest extends TestCase
 {
 
-    /** @test */
+    #[Test]
     public function test_handle_command()
     {
 
@@ -27,7 +27,7 @@ class AddChangelogTest extends TestCase
 
     }
 
-    /** @test */
+    #[Test]
     public function test_handle_command_successfull()
     {
 
@@ -35,7 +35,7 @@ class AddChangelogTest extends TestCase
             ->assertOk();
     }
 
-    /** @test */
+    #[Test]
     public function test_handle_command_with_question_check()
     {
         $this->artisan('changelog:add')
@@ -48,7 +48,7 @@ class AddChangelogTest extends TestCase
             , '{"unreleased":{"name":"tbd","date":"","release":false,"feat":[{"message":"My fist impl"}]}}');
     }
 
-    /** @test */
+    #[Test]
     public function test_handle_command_wihtou_args()
     {
         $this->artisan('changelog:add')
@@ -59,47 +59,48 @@ class AddChangelogTest extends TestCase
             , '');
     }
 
-    /** @test */
+    #[Test]
     public function test_handle_command_with_module()
     {
         $this->artisan('changelog:add --type="feat" --message="module feature" --module="modA"')
             ->assertOk();
-        $expected = '{"unreleased":{"name":"tbd","date":"","release":false,"feat":{"modules":[{"name":"modA","items":[{"message":"module feature"}]}]}}}';
+        $expected = '{"unreleased":{"name":"tbd","date":"","release":false,"feat":[],"modules":[{"name":"modA","feat":[{"message":"module feature"}]}]}}';
         $this->assertEquals(
             file_get_contents(FileHandler::pathChangelog()),
             $expected
         );
     }
 
-    /** @test */
+    #[Test]
     public function test_handle_command_with_module_and_existing_type()
     {
         $this->artisan('changelog:add --type="feat" --message="feature 1" --module="modA"')->assertOk();
         $this->artisan('changelog:add --type="feat" --message="feature 2" --module="modB"')->assertOk();
-        $expected = '{"unreleased":{"name":"tbd","date":"","release":false,"feat":{"modules":[{"name":"modA","items":[{"message":"feature 1"}]},{"name":"modB","items":[{"message":"feature 2"}]}]}}}';
+        $expected = '{"unreleased":{"name":"tbd","date":"","release":false,"feat":[],"modules":[{"name":"modA","feat":[{"message":"feature 1"}]},{"name":"modB","feat":[{"message":"feature 2"}]}]}}';
         $this->assertEquals(
             file_get_contents(FileHandler::pathChangelog()),
             $expected
         );
     }
 
-    /** @test */
+    #[Test]
     public function test_handle_command_with_module_and_without_module()
     {
         $this->artisan('changelog:add --type="feat" --message="feature without module"')->assertOk();
         $this->artisan('changelog:add --type="feat" --message="feature with module" --module="modA"')->assertOk();
         $actual = file_get_contents(FileHandler::pathChangelog());
         $actual = str_replace("\r", '', $actual);
-        $expected = '{"unreleased":{"name":"tbd","date":"","release":false,"feat":{"modules":[{"name":"","items":[{"message":"feature without module"}]},{"name":"modA","items":[{"message":"feature with module"}]}]}}}';
+        $expected = '{"unreleased":{"name":"tbd","date":"","release":false,"feat":[{"message":"feature without module"}],"modules":[{"name":"modA","feat":[{"message":"feature with module"}]}]}}';
         $this->assertEquals($expected, $actual);
     }
 
-    /** @test */
+
+    #[Test]
     public function test_handle_command_with_same_module_multiple_items()
     {
         $this->artisan('changelog:add --type="feat" --message="first" --module="modA"')->assertOk();
         $this->artisan('changelog:add --type="feat" --message="second" --module="modA"')->assertOk();
-        $expected = '{"unreleased":{"name":"tbd","date":"","release":false,"feat":{"modules":[{"name":"modA","items":[{"message":"first"},{"message":"second"}]}]}}}';
+        $expected = '{"unreleased":{"name":"tbd","date":"","release":false,"feat":[],"modules":[{"name":"modA","feat":[{"message":"first"},{"message":"second"}]}]}}';
         $this->assertEquals(
             file_get_contents(FileHandler::pathChangelog()),
             $expected
