@@ -1,6 +1,12 @@
 # Changelog
 ## [unreleased]
 
+### Miscellaneous Tasks
+
+- Update stefanzweifel/git-auto-commit-action action to v7 (#265)
+
+## [1.0.0] - 2025-09-02
+
 ### Features
 
 - Modules (#262)
