@@ -49,6 +49,7 @@ class SuggestRelease extends BaseCommand
     /**
      * @param array<string, mixed> $unreleased
      * @return array{0: string, 1: string}
+     * @psalm-mutation-free
      */
     private function determineType(array $unreleased): array
     {
@@ -76,6 +77,7 @@ class SuggestRelease extends BaseCommand
     /**
      * @param array<string, mixed> $unreleased
      * @return list<string>
+     * @psalm-pure
      */
     private function collectTypes(array $unreleased): array
     {

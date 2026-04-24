@@ -44,7 +44,10 @@ class AddChangelog extends BaseCommand
         }
     }
 
-    /** @return array<string, mixed> */
+    /**
+     * @return array<string, mixed>
+     * @psalm-mutation-free
+     */
     private function createInitialChangelog(string $type, string $module, ChangelogItem $item): array
     {
         $entry = ['name' => 'tbd', 'date' => '', 'release' => false, $type => []];

@@ -26,7 +26,6 @@ class ShowChangelog extends BaseCommand
             }
 
             $version = $this->option('ver');
-            $showUnreleased = $this->option('unreleased');
 
             if ($version) {
                 return $this->showVersion($decoded_json, (string) $version);

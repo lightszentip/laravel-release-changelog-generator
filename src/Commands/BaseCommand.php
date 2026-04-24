@@ -6,9 +6,6 @@ use Illuminate\Console\Command;
 
 abstract class BaseCommand extends Command
 {
-    /** @var array<int, mixed> */
-    protected array $sharedOptions = [];
-
     public function __construct()
     {
         parent::__construct();

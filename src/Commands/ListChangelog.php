@@ -45,6 +45,7 @@ class ListChangelog extends BaseCommand
     /**
      * @param array<string, mixed> $changelog
      * @return array<int, array{version: string, name: string, date: string, count: int}>
+     * @psalm-mutation-free
      */
     private function buildReleaseList(array $changelog): array
     {
@@ -69,7 +70,10 @@ class ListChangelog extends BaseCommand
         return $result;
     }
 
-    /** @param array<string, mixed> $data */
+    /**
+     * @param array<string, mixed> $data
+     * @psalm-pure
+     */
     private function countEntries(array $data): int
     {
         $count = 0;
