@@ -5,6 +5,7 @@ namespace Lightszentip\LaravelReleaseChangelogGenerator\Logic;
 /**
  * Version Calculator
  * @since 0.0.0
+ * @psalm-immutable
  */
 class VersionCalculator
 {
@@ -15,6 +16,7 @@ class VersionCalculator
      * @param array $yamlVersionConfig The version configuration array containing major, minor, patch, and prereleasenumber keys
      * @return array The updated version configuration array with incremented minor version and reset patch and prerelease numbers
      */
+    /** @psalm-pure */
     public static function incrementMinor(array $yamlVersionConfig): array
     {
         $yamlVersionConfig['minor']++;
@@ -30,6 +32,7 @@ class VersionCalculator
      * @param array $yamlVersionConfig The version configuration array containing major, minor, patch, and prereleasenumber keys
      * @return array The updated version configuration array with incremented patch version and reset prerelease number
      */
+    /** @psalm-pure */
     public static function incrementPatch(array $yamlVersionConfig): array
     {
         $yamlVersionConfig['patch']++;
@@ -44,6 +47,7 @@ class VersionCalculator
      * @param array $yamlVersionConfig The version configuration array containing major, minor, patch, and prereleasenumber keys
      * @return array The updated version configuration array with incremented or initialized prerelease number
      */
+    /** @psalm-pure */
     public static function incrementPreRelease(array $yamlVersionConfig): array
     {
         if (is_null($yamlVersionConfig['prereleasenumber'])) {
@@ -61,6 +65,7 @@ class VersionCalculator
      * @param array $yamlVersionConfig The version configuration array containing major, minor, patch, and prereleasenumber keys
      * @return array The updated version configuration array with incremented major version and reset minor, patch, and prerelease numbers
      */
+    /** @psalm-pure */
     public static function incrementMajor(array $yamlVersionConfig): array
     {
         $yamlVersionConfig['major']++;
@@ -80,6 +85,7 @@ class VersionCalculator
      * @param int $patch The new patch version number to set
      * @return array The updated version configuration array with the specified version numbers and reset prerelease number
      */
+    /** @psalm-pure */
     public static function updateVersion(array $yamlVersionConfig, int $major, int $minor, int $patch): array
     {
         $yamlVersionConfig['major'] = $major;

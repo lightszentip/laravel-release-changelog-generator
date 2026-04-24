@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\File;
 use Lightszentip\LaravelReleaseChangelogGenerator\Dto\ChangelogItem;
 use Lightszentip\LaravelReleaseChangelogGenerator\Util\FileHandler;
 
+/** @psalm-api */
 class AddChangelog extends Command
 {
     /**

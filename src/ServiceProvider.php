@@ -27,6 +27,7 @@ use Lightszentip\LaravelReleaseChangelogGenerator\Util\Constants;
 
 class ServiceProvider extends IlluminateServiceProvider
 {
+    #[\Override]
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'releasechangelog');

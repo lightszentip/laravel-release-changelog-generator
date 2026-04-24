@@ -2,6 +2,7 @@
 
 namespace Lightszentip\LaravelReleaseChangelogGenerator\Dto;
 
+/** @psalm-immutable */
 class ChangelogItem
 {
     private string $issue;

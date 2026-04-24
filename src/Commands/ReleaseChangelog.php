@@ -9,6 +9,7 @@ use Lightszentip\LaravelReleaseChangelogGenerator\Util\FileHandler;
 use Lightszentip\LaravelReleaseChangelogGenerator\Util\VersionUtil;
 use Symfony\Component\Console\Command\Command as CommandAlias;
 
+/** @psalm-api */
 class ReleaseChangelog extends Command
 {
     /**

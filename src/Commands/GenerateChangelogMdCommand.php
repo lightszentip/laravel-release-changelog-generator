@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Lightszentip\LaravelReleaseChangelogGenerator\Util\FileHandler;
 
+/** @psalm-api */
 class GenerateChangelogMdCommand extends Command
 {
     protected $signature = 'changelog:generate-md';

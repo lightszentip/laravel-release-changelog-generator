@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Lightszentip\LaravelReleaseChangelogGenerator\Util\Constants;
 use Lightszentip\LaravelReleaseChangelogGenerator\Util\VersionUtil;
 
+/** @psalm-api */
 class UpdateVersion extends Command
 {
     /**

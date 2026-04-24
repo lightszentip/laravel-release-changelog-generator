@@ -29,6 +29,7 @@ class FileHandler
 
     /**
      * Get path to version file.
+     * @psalm-api
      */
     public static function pathVersion(): string
     {

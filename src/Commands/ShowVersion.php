@@ -5,6 +5,7 @@ namespace Lightszentip\LaravelReleaseChangelogGenerator\Commands;
 use Illuminate\Console\Command;
 use Lightszentip\LaravelReleaseChangelogGenerator\Util\Constants;
 
+/** @psalm-api */
 class ShowVersion extends Command
 {
     /**
