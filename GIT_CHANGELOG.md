@@ -4,6 +4,7 @@
 ### Miscellaneous Tasks
 
 - Update stefanzweifel/git-auto-commit-action action to v7 (#265)
+- Update release-drafter/release-drafter action to v7 (#269)
 
 ## [1.0.0] - 2025-09-02
 
