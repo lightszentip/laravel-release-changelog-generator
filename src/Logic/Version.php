@@ -5,6 +5,7 @@ namespace Lightszentip\LaravelReleaseChangelogGenerator\Logic;
 use Illuminate\Support\Facades\Config;
 use Lightszentip\LaravelReleaseChangelogGenerator\Util\Constants;
 
+/** @psalm-api */
 class Version
 {
 

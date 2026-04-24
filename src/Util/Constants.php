@@ -5,10 +5,8 @@ namespace Lightszentip\LaravelReleaseChangelogGenerator\Util;
 /**
  * Application Constants
  *
- * This class contains constant values used throughout the Laravel Release Changelog Generator application.
- * These constants define configuration keys, default values, and other application-wide settings.
- *
  * @since 0.0.0
+ * @psalm-immutable
  */
 class Constants
 {

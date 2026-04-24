@@ -5,6 +5,7 @@ namespace Lightszentip\LaravelReleaseChangelogGenerator\Logic;
 use Illuminate\Support\Facades\Config;
 use Symfony\Component\Yaml\Yaml;
 
+/** @psalm-api */
 class VersionHandling
 {
     /**

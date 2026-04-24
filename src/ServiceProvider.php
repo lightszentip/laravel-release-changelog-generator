@@ -17,7 +17,10 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 use Lightszentip\LaravelReleaseChangelogGenerator\Commands\AddChangelog;
 use Lightszentip\LaravelReleaseChangelogGenerator\Commands\GenerateChangelogMdCommand;
+use Lightszentip\LaravelReleaseChangelogGenerator\Commands\ListChangelog;
 use Lightszentip\LaravelReleaseChangelogGenerator\Commands\ReleaseChangelog;
+use Lightszentip\LaravelReleaseChangelogGenerator\Commands\ShowChangelog;
+use Lightszentip\LaravelReleaseChangelogGenerator\Commands\SuggestRelease;
 use Lightszentip\LaravelReleaseChangelogGenerator\Commands\SetReleaseChangelog;
 use Lightszentip\LaravelReleaseChangelogGenerator\Commands\ShowVersion;
 use Lightszentip\LaravelReleaseChangelogGenerator\Commands\UpdateVersion;
@@ -27,6 +30,7 @@ use Lightszentip\LaravelReleaseChangelogGenerator\Util\Constants;
 
 class ServiceProvider extends IlluminateServiceProvider
 {
+    #[\Override]
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'releasechangelog');
@@ -51,6 +55,9 @@ class ServiceProvider extends IlluminateServiceProvider
                 ShowVersion::class,
                 SetReleaseChangelog::class,
                 GenerateChangelogMdCommand::class,
+                ListChangelog::class,
+                ShowChangelog::class,
+                SuggestRelease::class,
             ]);
             $this->publishes([
                 __DIR__.'/../config/config.php' => config_path('releasechangelog.php'),
@@ -66,7 +73,7 @@ class ServiceProvider extends IlluminateServiceProvider
 
         Blade::directive(
             Config::get('releasechangelog.blade-directive', 'releasechangelog'),
-            static function ($format = Constants::DEFAULT_FORMAT) {
+            static function (string $format = Constants::DEFAULT_FORMAT) {
                 return "<?php echo app('releasechangelog.version')->showVersion({$format}); ?>";
             }
         );
