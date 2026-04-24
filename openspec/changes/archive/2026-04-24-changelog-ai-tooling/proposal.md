@@ -1,31 +1,31 @@
 ## Why
 
-AI developer tools (Claude Code, Cursor) und CI/CD-Pipelines können den Changelog aktuell nicht direkt nutzen – die CLI-Ausgaben sind nur für Menschen lesbar und es fehlen Lesebefehle sowie ein MCP-Interface. Da Changelogs during development auf feature branches gepflegt und in Pipelines released werden, müssen beide Workflows maschinenfreundlich sein.
+AI developer tools (Claude Code, Cursor) and CI/CD pipelines cannot currently consume the changelog directly — CLI output is human-readable only, read commands are missing, and there is no MCP interface. Since changelogs are maintained on feature branches during development and released in pipelines, both workflows need to be machine-friendly.
 
 ## What Changes
 
-- `--json` Flag für alle Artisan Commands: gibt strukturierten JSON-Output statt formatiertem Text
-- `changelog:list` Command: listet alle Releases (Version, Name, Datum, Anzahl Einträge)
-- `changelog:show` Command: zeigt Einträge einer Version (`--version=1.1.0`) oder unreleased (`--unreleased`)
-- `changelog:suggest-release` Command: leitet empfohlenen Version-Bump aus unreleased Items ab (feat→minor, fix/chore→patch, breaking→major)
-- MCP Server (`vendor/bin/changelog-mcp`): standalone PHP Script, spricht MCP JSON-RPC über stdio ohne Laravel-Bootstrap; Package liefert `.mcp.json.example` mit
+- `--json` flag for all Artisan commands: returns structured JSON output instead of formatted text
+- `changelog:list` command: lists all releases (version, name, date, entry count)
+- `changelog:show` command: shows entries for a version (`--version=1.1.0`) or unreleased (`--unreleased`)
+- `changelog:suggest-release` command: derives the recommended version bump from unreleased items (feat→minor, fix/chore→patch, breaking→major)
+- MCP Server (`vendor/bin/changelog-mcp`): standalone PHP script that speaks MCP JSON-RPC over stdio without a Laravel bootstrap; package ships with `.mcp.json.example`
 
 ## Capabilities
 
 ### New Capabilities
 
-- `json-output`: `--json` Flag auf allen Commands für maschinenlesbaren Output
-- `changelog-read`: Neue Lesebefehle `changelog:list` und `changelog:show`
-- `suggest-release`: Automatische Empfehlung des Version-Bump-Typs aus unreleased Items
-- `mcp-server`: Standalone MCP Server für native AI-Tool-Integration
+- `json-output`: `--json` flag on all commands for machine-readable output
+- `changelog-read`: new read commands `changelog:list` and `changelog:show`
+- `suggest-release`: automatic recommendation of version bump type from unreleased items
+- `mcp-server`: standalone MCP server for native AI tool integration
 
 ### Modified Capabilities
 
 ## Impact
 
-- `src/Commands/` – alle bestehenden Commands erhalten `--json` Support; drei neue Command-Klassen
-- `src/Commands/BaseCommand.php` – JSON-Output-Logik als Basis-Methode
-- `bin/changelog-mcp` – neues standalone PHP Script (kein Laravel-Dependency)
-- `.mcp.json.example` – neue Datei im Package-Root
-- `composer.json` – `bin/changelog-mcp` als composer bin eintragen
-- Keine Änderung an `changelog.json` Struktur (consumer-kompatibel)
+- `src/Commands/` — all existing commands gain `--json` support; three new command classes
+- `src/Commands/BaseCommand.php` — JSON output logic as base method
+- `bin/changelog-mcp` — new standalone PHP script (no Laravel dependency)
+- `.mcp.json.example` — new file in the package root
+- `composer.json` — register `bin/changelog-mcp` as composer bin
+- No change to `changelog.json` structure (consumer-compatible)

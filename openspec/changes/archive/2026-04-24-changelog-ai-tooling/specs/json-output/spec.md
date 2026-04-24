@@ -1,23 +1,23 @@
 ## ADDED Requirements
 
-### Requirement: Alle Commands unterstützen --json Flag
-Alle Artisan Commands des Packages (add, release, set-release, update-version, show-version, generate-md, list, show, suggest-release) SHALL einen `--json` Flag akzeptieren. Bei gesetztem Flag gibt der Command einen JSON-String auf stdout aus anstelle von formatiertem Text. Der Exit-Code bleibt unverändert.
+### Requirement: All commands support the --json flag
+All Artisan commands of the package (add, release, set-release, update-version, show-version, generate-md, list, show, suggest-release) SHALL accept a `--json` flag. When the flag is set, the command outputs a JSON string to stdout instead of formatted text. The exit code remains unchanged.
 
-#### Scenario: Erfolgreicher Command mit --json
-- **WHEN** ein Command mit `--json` ausgeführt wird und erfolgreich ist
-- **THEN** gibt der Command einen validen JSON-String aus und beendet mit Exit-Code 0
+#### Scenario: Successful command with --json
+- **WHEN** a command is executed with `--json` and succeeds
+- **THEN** the command outputs a valid JSON string and exits with code 0
 
-#### Scenario: Fehlerhafter Command mit --json
-- **WHEN** ein Command mit `--json` ausgeführt wird und fehlschlägt
-- **THEN** gibt der Command `{"error": "<message>"}` auf stdout aus und beendet mit non-zero Exit-Code
+#### Scenario: Failed command with --json
+- **WHEN** a command is executed with `--json` and fails
+- **THEN** the command outputs `{"error": "<message>"}` to stdout and exits with a non-zero exit code
 
-### Requirement: JSON-Output ist maschinenlesbar strukturiert
-Der JSON-Output eines Commands SHALL alle relevanten Ausgabedaten als Felder enthalten. Kein freier Text, keine ANSI-Farbcodes.
+### Requirement: JSON output is machine-readable and structured
+The JSON output of a command SHALL contain all relevant output data as fields. No free text, no ANSI color codes.
 
-#### Scenario: show-version mit --json
-- **WHEN** `changelog:show-version --json` ausgeführt wird
-- **THEN** gibt der Command `{"version": "<string>"}` aus
+#### Scenario: show-version with --json
+- **WHEN** `changelog:show-version --json` is executed
+- **THEN** the command outputs `{"version": "<string>"}`
 
-#### Scenario: suggest-release mit --json für Pipeline
-- **WHEN** `changelog:suggest-release --json` ausgeführt wird
-- **THEN** gibt der Command `{"type": "patch|minor|major", "reason": "<string>"}` aus
+#### Scenario: suggest-release with --json for pipelines
+- **WHEN** `changelog:suggest-release --json` is executed
+- **THEN** the command outputs `{"type": "patch|minor|major", "reason": "<string>"}`, usable with `jq -r '.type'`

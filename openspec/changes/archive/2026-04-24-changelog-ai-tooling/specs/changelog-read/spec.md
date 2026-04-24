@@ -1,35 +1,35 @@
 ## ADDED Requirements
 
-### Requirement: changelog:list zeigt alle Releases
-Der Command `changelog:list` SHALL alle veröffentlichten Versionen aus `changelog.json` aufgelistet ausgeben, sortiert absteigend nach Version. Unreleased wird nicht angezeigt. Jede Zeile enthält: Version, Release-Name, Datum, Anzahl Einträge.
+### Requirement: changelog:list shows all releases
+The command `changelog:list` SHALL output a list of all published versions from `changelog.json`, sorted descending by version. Unreleased is not shown. Each row contains: version, release name, date, entry count.
 
-#### Scenario: Releases vorhanden
-- **WHEN** `changelog:list` ausgeführt wird und Releases existieren
-- **THEN** gibt der Command eine Zeile pro Release aus, neueste zuerst
+#### Scenario: Releases present
+- **WHEN** `changelog:list` is executed and releases exist
+- **THEN** the command outputs one row per release, newest first
 
-#### Scenario: Keine Releases vorhanden
-- **WHEN** `changelog:list` ausgeführt wird und nur unreleased existiert
-- **THEN** gibt der Command eine leere Liste aus und beendet mit Exit-Code 0
+#### Scenario: No releases present
+- **WHEN** `changelog:list` is executed and only unreleased exists
+- **THEN** the command outputs an empty list and exits with code 0
 
-#### Scenario: --json Flag
-- **WHEN** `changelog:list --json` ausgeführt wird
-- **THEN** gibt der Command ein JSON-Array aus: `[{"version": "...", "name": "...", "date": "...", "count": 5}]`
+#### Scenario: --json flag
+- **WHEN** `changelog:list --json` is executed
+- **THEN** the command outputs a JSON array: `[{"version": "...", "name": "...", "date": "...", "count": 5}]`
 
-### Requirement: changelog:show zeigt Einträge einer Version
-Der Command `changelog:show` SHALL die Einträge einer spezifischen Version oder von unreleased ausgeben. Mit `--version=<x.y.z>` wird diese Version angezeigt. Mit `--unreleased` werden die aktuellen unreleased Items angezeigt. Ohne Argument SOLL `--unreleased` als Default gelten.
+### Requirement: changelog:show shows entries for a version
+The command `changelog:show` SHALL output the entries for a specific version or for unreleased. With `--version=<x.y.z>` that version is shown. With `--unreleased` the current unreleased items are shown. Without an argument `--unreleased` SHALL be the default.
 
-#### Scenario: Unreleased anzeigen
-- **WHEN** `changelog:show --unreleased` ausgeführt wird
-- **THEN** gibt der Command alle unreleased Items gruppiert nach Typ aus
+#### Scenario: Show unreleased
+- **WHEN** `changelog:show --unreleased` is executed
+- **THEN** the command outputs all unreleased items grouped by type
 
-#### Scenario: Spezifische Version anzeigen
-- **WHEN** `changelog:show --version=1.1.0` ausgeführt wird und diese Version existiert
-- **THEN** gibt der Command die Items dieser Version aus
+#### Scenario: Show a specific version
+- **WHEN** `changelog:show --version=1.1.0` is executed and that version exists
+- **THEN** the command outputs the items for that version
 
-#### Scenario: Version nicht gefunden
-- **WHEN** `changelog:show --version=9.9.9` ausgeführt wird und diese Version nicht existiert
-- **THEN** gibt der Command eine Fehlermeldung aus und beendet mit non-zero Exit-Code
+#### Scenario: Version not found
+- **WHEN** `changelog:show --version=9.9.9` is executed and that version does not exist
+- **THEN** the command outputs an error message and exits with a non-zero exit code
 
-#### Scenario: --json Flag
-- **WHEN** `changelog:show --unreleased --json` ausgeführt wird
-- **THEN** gibt der Command das unreleased-Objekt als JSON aus
+#### Scenario: --json flag
+- **WHEN** `changelog:show --unreleased --json` is executed
+- **THEN** the command outputs the unreleased object as JSON

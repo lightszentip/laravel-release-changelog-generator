@@ -5,13 +5,13 @@ This file provides guidance to AI coding agents when working with code in this r
 ## Commands
 
 ```bash
-composer test              # Pest tests ausführen
-composer test-coverage     # Tests mit Coverage-Report
-composer analyse           # PHPStan Analyse (Level 4)
-composer format            # Code-Style fixen mit Pint
+composer test              # Run Pest tests
+composer test-coverage     # Run tests with coverage report
+composer analyse           # PHPStan analysis (Level 4)
+composer format            # Fix code style with Pint
 ```
 
-Einzelnen Test ausführen:
+Run a single test:
 ```bash
 vendor/bin/pest tests/Commands/AddChangelogTest.php
 vendor/bin/pest --filter="test name"
@@ -19,40 +19,40 @@ vendor/bin/pest --filter="test name"
 
 ## Architecture
 
-This is a **Laravel Package** (nicht eine Applikation) – getestet via Orchestra Testbench.
+This is a **Laravel Package** (not an application) — tested via Orchestra Testbench.
 
 ### Core Workflow
 
-1. `changelog:add` → schreibt in `resources/.changes/changelog.json` (unreleased section)
-2. `changelog:release` → erhöht Version in `resources/.version/version.yml`, verschiebt unreleased → versioned entry in changelog.json
-3. `changelog:generate-md` → rendert `CHANGELOG.md` via Blade Template
+1. `changelog:add` → writes to `resources/.changes/changelog.json` (unreleased section)
+2. `changelog:release` → increments version in `resources/.version/version.yml`, moves unreleased → versioned entry in changelog.json
+3. `changelog:generate-md` → renders `CHANGELOG.md` via Blade template
 
 ### Key Components
 
-**`src/Logic/`** – Kernlogik:
-- `VersionHandling` – liest/schreibt `version.yml`, inkrementiert Versionen; registriert als Singleton
-- `VersionCalculator` – statische Methoden für Semver-Berechnungen (major/minor/patch/prerelease)
-- `Version` – formatiert Versionstrings anhand konfigurierbarer Templates; registriert als Singleton unter `releasechangelog.version`
+**`src/Logic/`** — Core logic:
+- `VersionHandling` — reads/writes `version.yml`, increments versions; registered as singleton
+- `VersionCalculator` — static methods for semver calculations (major/minor/patch/prerelease)
+- `Version` — formats version strings using configurable templates; registered as singleton under `releasechangelog.version`
 
-**`src/Commands/`** – Artisan Commands (alle unter `changelog:*`-Namespace)
+**`src/Commands/`** — Artisan commands (all under the `changelog:*` namespace)
 
 **`src/Util/`**:
-- `FileHandler` – zentrales Pfad-Management für alle Dateioperationen
-- `VersionUtil` – Versions-Update-Logik nach Typ (patch/minor/major/rc/timestamp)
-- `Constants` – appweite Konstanten
+- `FileHandler` — central path management for all file operations
+- `VersionUtil` — version update logic by type (patch/minor/major/rc/timestamp)
+- `Constants` — app-wide constants
 
-**`src/Data/ChangelogItem.php`** – DTO für einzelne Changelog-Einträge
+**`src/Data/ChangelogItem.php`** — DTO for individual changelog entries
 
-**`src/ServiceProvider.php`** – registriert Commands, Singletons, Blade Directive (`@releasechangelog`), publiziert Assets
+**`src/ServiceProvider.php`** — registers commands, singletons, Blade directive (`@releasechangelog`), publishes assets
 
 ### Data Files
 
-`resources/.version/version.yml` – Versionszustand:
+`resources/.version/version.yml` — version state:
 ```yaml
 major: 1 / minor: 0 / patch: 1 / prerelease: rc / prereleasenumber: 0 / buildmetadata: null
 ```
 
-`resources/.changes/changelog.json` – Changelog-Daten:
+`resources/.changes/changelog.json` — changelog data:
 ```json
 {
   "unreleased": { "name": "tbd", "release": false, "feat": [...], "modules": [...] },
@@ -60,19 +60,19 @@ major: 1 / minor: 0 / patch: 1 / prerelease: rc / prereleasenumber: 0 / buildmet
 }
 ```
 
-`resources/views/changelog-md.blade.php` – Blade Template für CHANGELOG.md Generierung
+`resources/views/changelog-md.blade.php` — Blade template for CHANGELOG.md generation
 
-### Configuration (`config/config.php`, Key: `releasechangelog`)
+### Configuration (`config/config.php`, key: `releasechangelog`)
 
-- `version_formats` – Named Templates mit Platzhaltern wie `{major}`, `{minor}`, `{patch}`, `{prerelease}`, `{timestamp}` usw.
-- `prerelease` – ob Prerelease-Komponenten aktiv sind
-- `blade-directive` – Name der Blade Directive (Default: `releasechangelog`)
-- `markdown-path` – Ausgabepfad für CHANGELOG.md
+- `version_formats` — named templates with placeholders like `{major}`, `{minor}`, `{patch}`, `{prerelease}`, `{timestamp}`, etc.
+- `prerelease` — whether prerelease components are active
+- `blade-directive` — name of the Blade directive (default: `releasechangelog`)
+- `markdown-path` — output path for CHANGELOG.md
 
 ### Module Support
 
-Changelog-Einträge können Modulen zugeordnet werden (`--module=core`). In `changelog.json` landen diese unter `modules[].{type}[]` statt direkt unter dem Release-Eintrag.
+Changelog entries can be assigned to modules (`--module=core`). In `changelog.json` these are stored under `modules[].{type}[]` instead of directly under the release entry.
 
 ### Testing
 
-Tests laufen mit Pest v4 + Orchestra Testbench. `tests/TestCase.php` kopiert `version.yml`, `changelog.json` und Views vor jedem Test in ein temporäres Verzeichnis und räumt danach auf – Tests schreiben also nie in `resources/`.
+Tests run with Pest v4 + Orchestra Testbench. `tests/TestCase.php` copies `version.yml`, `changelog.json` and views into a temporary directory before each test and cleans up afterwards — tests never write to `resources/`.

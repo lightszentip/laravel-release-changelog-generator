@@ -1,43 +1,43 @@
 ## Context
 
-Das Package hat bereits eine solide Command-Struktur mit `BaseCommand`. Alle Commands lesen/schreiben `changelog.json` (als PHP-Arrays) und `version.yml`. Der MCP-Server muss dieselben Dateien direkt manipulieren ohne Laravel-Bootstrap, da AI-Tools den Server als lightweight subprocess starten.
+The package already has a solid command structure with `BaseCommand`. All commands read/write `changelog.json` (as PHP arrays) and `version.yml`. The MCP server must manipulate the same files directly without a Laravel bootstrap, since AI tools start the server as a lightweight subprocess.
 
 ## Goals / Non-Goals
 
 **Goals:**
-- `--json` Flag als einheitliches Muster für alle Commands
-- Zwei neue Lesebefehle (`list`, `show`) die die bestehende JSON-Struktur nicht verändern
-- `suggest-release` als reine Regellogik (kein API-Key nötig)
-- MCP Server als standalone PHP Script, das direkt im Projektverzeichnis läuft
+- `--json` flag as a consistent pattern across all commands
+- Two new read commands (`list`, `show`) that do not modify the existing JSON structure
+- `suggest-release` as pure rule logic (no API key required)
+- MCP server as a standalone PHP script running directly in the project directory
 
 **Non-Goals:**
-- Keine Änderung der `changelog.json` Struktur (consumer-kompatibel)
-- Kein Laravel-Bootstrap im MCP Server
-- Kein externer AI-API-Call für `suggest-release`
-- Kein HTTP-Transport für MCP (nur stdio)
+- No change to the `changelog.json` structure (consumer-compatible)
+- No Laravel bootstrap in the MCP server
+- No external AI API call for `suggest-release`
+- No HTTP transport for MCP (stdio only)
 
 ## Decisions
 
-**`--json` in BaseCommand als Trait-Methode**
-Alle Commands erben von `BaseCommand`. Eine `outputJson(array $data): int` Methode prüft ob `--json` gesetzt ist und gibt entweder JSON aus oder delegiert an die normale Ausgabe. Alternativen: eigene `JsonCommand` Basisklasse (zu viel Overhead), je Command selbst (Duplikation).
+**`--json` in BaseCommand as a trait method**
+All commands inherit from `BaseCommand`. An `outputJson(array $data): int` method checks whether `--json` is set and either outputs JSON or delegates to normal output. Alternatives: a dedicated `JsonCommand` base class (too much overhead), per-command implementation (duplication).
 
-**`suggest-release` als reine Regellogik**
-Typen-Mapping: `breaking` → major, `feat`/`feature` → minor, alles andere → patch. Wird über unreleased Items iteriert und der höchste Typ gewinnt. Kein externes Tool, deterministisch, pipeline-sicher.
+**`suggest-release` as pure rule logic**
+Type mapping: `breaking` → major, `feat`/`feature` → minor, everything else → patch. Iterates over unreleased items and the highest type wins. No external tool, deterministic, pipeline-safe.
 
-**MCP Server als `bin/changelog-mcp` PHP Script**
-Liest `CHANGELOG_PATH` und `VERSION_PATH` aus Umgebungsvariablen (Defaults: `resources/.changes/changelog.json`, `resources/.version/version.yml`). Implementiert MCP JSON-RPC über stdin/stdout in einer einfachen Loop. Composer `bin` Eintrag macht es via `vendor/bin/changelog-mcp` aufrufbar. Alternative (Artisan Command): ~300ms Laravel-Bootstrap-Overhead pro Tool-Call, inakzeptabel für interaktive AI-Tools.
+**MCP server as `bin/changelog-mcp` PHP script**
+Reads `CHANGELOG_PATH` and `VERSION_PATH` from environment variables (defaults: `resources/.changes/changelog.json`, `resources/.version/version.yml`). Implements MCP JSON-RPC over stdin/stdout in a simple loop. Composer `bin` entry makes it callable via `vendor/bin/changelog-mcp`. Alternative (Artisan command): ~300ms Laravel bootstrap overhead per tool call, unacceptable for interactive AI tools.
 
-**`.mcp.json.example` im Package-Root**
-Wird nicht automatisch in Projekten platziert – der Entwickler kopiert es manuell als `.mcp.json`. Verhindert ungewolltes Überschreiben bestehender MCP-Konfigurationen.
+**`.mcp.json.example` in the package root**
+Not automatically placed in consumer projects — the developer copies it manually as `.mcp.json`. Prevents unintentional overwriting of existing MCP configurations.
 
 ## Risks / Trade-offs
 
-`suggest-release` kennt nur registrierte Typen → unbekannte Typen (z.B. `chore`, `docs`) fallen auf `patch` zurück, was konservativ und sicher ist.
+`suggest-release` only knows registered types → unknown types (e.g. `chore`, `docs`) fall back to `patch`, which is conservative and safe.
 
-MCP Server liest Dateipfade aus ENV → wenn Projekt-Config (`releasechangelog.path`) vom Default abweicht, muss der Entwickler ENV in `.mcp.json` setzen. Mitigation: klare Dokumentation in `.mcp.json.example`.
+MCP server reads file paths from ENV → if the project config (`releasechangelog.path`) deviates from the default, the developer must set ENV in `.mcp.json`. Mitigation: clear documentation in `.mcp.json.example`.
 
-`--json` Flag ändert Exit-Codes nicht → Fehler geben weiterhin non-zero zurück, JSON-Error-Objekt zusätzlich auf stdout.
+`--json` flag does not change exit codes → errors still return non-zero, with a JSON error object additionally on stdout.
 
 ## Open Questions
 
-- Soll `changelog:show` ohne Argument standardmäßig `--unreleased` anzeigen oder eine Fehlermeldung ausgeben?
+- Should `changelog:show` without an argument default to `--unreleased` or return an error?

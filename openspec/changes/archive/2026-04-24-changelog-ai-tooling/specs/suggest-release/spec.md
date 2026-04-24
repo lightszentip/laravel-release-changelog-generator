@@ -1,31 +1,31 @@
 ## ADDED Requirements
 
-### Requirement: changelog:suggest-release empfiehlt Version-Bump-Typ
-Der Command `changelog:suggest-release` SHALL die unreleased Items aus `changelog.json` analysieren und den empfohlenen Version-Bump-Typ ausgeben. Regellogik: enthält unreleased `breaking` → `major`; enthält `feat` oder `feature` (aber kein `breaking`) → `minor`; sonst → `patch`. Der höchste zutreffende Typ gewinnt.
+### Requirement: changelog:suggest-release recommends a version bump type
+The command `changelog:suggest-release` SHALL analyse the unreleased items from `changelog.json` and output the recommended version bump type. Rule logic: if unreleased contains `breaking` → `major`; if it contains `feat` or `feature` (but no `breaking`) → `minor`; otherwise → `patch`. The highest matching type wins.
 
-#### Scenario: Nur fixes vorhanden
-- **WHEN** `changelog:suggest-release` ausgeführt wird und unreleased nur `fix`-Einträge enthält
-- **THEN** gibt der Command `patch` als Empfehlung aus
+#### Scenario: Only fixes present
+- **WHEN** `changelog:suggest-release` is executed and unreleased contains only `fix` entries
+- **THEN** the command outputs `patch` as the recommendation
 
-#### Scenario: Features vorhanden
-- **WHEN** `changelog:suggest-release` ausgeführt wird und unreleased `feat`-Einträge enthält
-- **THEN** gibt der Command `minor` als Empfehlung aus
+#### Scenario: Features present
+- **WHEN** `changelog:suggest-release` is executed and unreleased contains `feat` entries
+- **THEN** the command outputs `minor` as the recommendation
 
-#### Scenario: Breaking changes vorhanden
-- **WHEN** `changelog:suggest-release` ausgeführt wird und unreleased `breaking`-Einträge enthält
-- **THEN** gibt der Command `major` als Empfehlung aus
+#### Scenario: Breaking changes present
+- **WHEN** `changelog:suggest-release` is executed and unreleased contains `breaking` entries
+- **THEN** the command outputs `major` as the recommendation
 
-#### Scenario: Unreleased leer
-- **WHEN** `changelog:suggest-release` ausgeführt wird und unreleased keine Items enthält
-- **THEN** gibt der Command `patch` als konservative Empfehlung aus
+#### Scenario: Unreleased empty
+- **WHEN** `changelog:suggest-release` is executed and unreleased contains no items
+- **THEN** the command outputs `patch` as a conservative recommendation
 
-#### Scenario: Pipeline-Nutzung mit --json
-- **WHEN** `changelog:suggest-release --json` ausgeführt wird
-- **THEN** gibt der Command `{"type": "patch|minor|major", "reason": "<erklaerung>"}` aus, verwendbar mit `jq -r '.type'`
+#### Scenario: Pipeline usage with --json
+- **WHEN** `changelog:suggest-release --json` is executed
+- **THEN** the command outputs `{"type": "patch|minor|major", "reason": "<explanation>"}`, usable with `jq -r '.type'`
 
-### Requirement: Unbekannte Typen fallen auf patch zurück
-Typen die nicht in der Regellogik definiert sind (z.B. `chore`, `docs`, `refactor`) SHALL als `patch`-Kandidaten behandelt werden.
+### Requirement: Unknown types fall back to patch
+Types not defined in the rule logic (e.g. `chore`, `docs`, `refactor`) SHALL be treated as `patch` candidates.
 
-#### Scenario: Nur chore-Einträge
-- **WHEN** unreleased nur `chore`-Einträge enthält
-- **THEN** empfiehlt der Command `patch`
+#### Scenario: Only chore entries
+- **WHEN** unreleased contains only `chore` entries
+- **THEN** the command recommends `patch`
