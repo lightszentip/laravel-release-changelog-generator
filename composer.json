@@ -21,7 +21,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^v3.86.0",
-        "orchestra/testbench": "^v10.6.0",
+        "orchestra/testbench": "^v11.0.0",
         "pestphp/pest": "^v4.0.4",
         "pestphp/pest-plugin-laravel": "^v4.0.0",
         "pestphp/pest-plugin-type-coverage": "^4.0",
@@ -29,7 +29,7 @@
         "phpstan/extension-installer": "^1.4.3",
         "phpstan/phpstan-deprecation-rules": "^2.0.3",
         "phpstan/phpstan-phpunit": "^2.0.7",
-        "psalm/plugin-laravel": "^v3.0.4",
+        "psalm/plugin-laravel": "^v4.0.0",
         "psalm/plugin-phpunit": "^0.19.5",
         "roave/security-advisories": "dev-latest",
         "vimeo/psalm": "^6.13.1"
