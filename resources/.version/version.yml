@@ -1,10 +1,10 @@
 label: v
 major: 1
-minor: 0
+minor: 1
 patch: 0
 prerelease: rc
 prereleasenumber: 0
-buildmetadata:
+buildmetadata: null
 timestamp:
-  date:
-  timestamp:
+    date: null
+    timestamp: null

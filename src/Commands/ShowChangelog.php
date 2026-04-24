@@ -12,7 +12,7 @@ class ShowChangelog extends BaseCommand
 
     protected $description = 'Show changelog entries for a version or unreleased';
 
-    private const META_KEYS = ['name', 'date', 'release', 'modules'];
+    private const array META_KEYS = ['name', 'date', 'release', 'modules'];
 
     public function handle(): int
     {

@@ -12,11 +12,11 @@ class SuggestRelease extends BaseCommand
 
     protected $description = 'Suggest a version bump type based on unreleased changelog entries';
 
-    private const META_KEYS = ['name', 'date', 'release', 'modules'];
+    private const array META_KEYS = ['name', 'date', 'release', 'modules'];
 
-    private const MAJOR_TYPES = ['breaking'];
+    private const array MAJOR_TYPES = ['breaking'];
 
-    private const MINOR_TYPES = ['feat', 'feature'];
+    private const array MINOR_TYPES = ['feat', 'feature'];
 
     public function handle(): int
     {

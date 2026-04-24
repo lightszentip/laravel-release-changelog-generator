@@ -12,7 +12,7 @@ class ListChangelog extends BaseCommand
 
     protected $description = 'List all released versions';
 
-    private const META_KEYS = ['name', 'date', 'release', 'modules'];
+    private const array META_KEYS = ['name', 'date', 'release', 'modules'];
 
     public function handle(): int
     {
@@ -48,7 +48,7 @@ class ListChangelog extends BaseCommand
      */
     private function buildReleaseList(array $changelog): array
     {
-        $releases = array_filter($changelog, static fn ($key) => $key !== 'unreleased', ARRAY_FILTER_USE_KEY);
+        $releases = array_filter($changelog, static fn (string $key) => $key !== 'unreleased', ARRAY_FILTER_USE_KEY);
 
         uksort($releases, 'version_compare');
         $releases = array_reverse($releases, true);
