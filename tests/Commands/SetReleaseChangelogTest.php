@@ -73,4 +73,13 @@ timestamp:
   timestamp:
 ', file_get_contents(FileHandler::pathVersion()));
     }
+
+    public function test_handle_command_with_json_flag()
+    {
+        $this->withoutMockingConsoleOutput()
+            ->artisan('changelog:set-release', ['--releasename' => 'FooBar JSON', '--versionnumber' => '2.1.0', '--json' => true]);
+        $output = json_decode(trim(Artisan::output()), true);
+        $this->assertTrue($output['success']);
+        $this->assertArrayHasKey('version', $output);
+    }
 }

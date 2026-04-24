@@ -106,4 +106,21 @@ timestamp:
   timestamp:
 ', file_get_contents(FileHandler::pathVersion()));
     }
+
+    public function test_handle_command_with_json_flag()
+    {
+        $this->withoutMockingConsoleOutput()
+            ->artisan('changelog:release', ['--releasename' => 'FooBar JSON', '--type' => 'patch', '--json' => true]);
+        $output = json_decode(trim(Artisan::output()), true);
+        $this->assertTrue($output['success']);
+        $this->assertArrayHasKey('version', $output);
+    }
+
+    public function test_handle_command_invalid_type_with_json_flag()
+    {
+        $this->withoutMockingConsoleOutput()
+            ->artisan('changelog:release', ['--releasename' => 'FooBar JSON', '--type' => 'invalid', '--json' => true]);
+        $output = json_decode(trim(Artisan::output()), true);
+        $this->assertArrayHasKey('error', $output);
+    }
 }

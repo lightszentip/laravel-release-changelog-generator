@@ -32,15 +32,15 @@ class AddChangelog extends BaseCommand
 
             File::put(FileHandler::pathChangelog(), json_encode($decoded_json));
 
+            if ($this->isJson()) {
+                return $this->outputJson(['success' => true, 'type' => $type, 'message' => $message]);
+            }
+
             return self::SUCCESS;
         } catch (\InvalidArgumentException $e) {
-            $this->error('Error: '.$e->getMessage());
-
-            return self::FAILURE;
+            return $this->isJson() ? $this->errorJson($e->getMessage()) : $this->failure('Error: '.$e->getMessage());
         } catch (\Exception $e) {
-            $this->error('Error: '.$e->getMessage());
-
-            return self::INVALID;
+            return $this->isJson() ? $this->errorJson($e->getMessage()) : $this->failure('Error: '.$e->getMessage());
         }
     }
 

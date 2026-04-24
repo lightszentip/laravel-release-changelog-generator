@@ -53,4 +53,21 @@ class ShowVersionTest extends TestCase
             ->assertOk();
     }
 
+    public function test_handle_command_with_json_flag()
+    {
+        $this->withoutMockingConsoleOutput()
+            ->artisan('changelog:show-version', ['--json' => true]);
+        $output = json_decode(trim(Artisan::output()), true);
+        $this->assertArrayHasKey('version', $output);
+        $this->assertNotEmpty($output['version']);
+    }
+
+    public function test_handle_command_with_format_and_json_flag()
+    {
+        $this->withoutMockingConsoleOutput()
+            ->artisan('changelog:show-version', ['--format' => 'version', '--json' => true]);
+        $output = json_decode(trim(Artisan::output()), true);
+        $this->assertEquals('1.0.0', $output['version']);
+    }
+
 }

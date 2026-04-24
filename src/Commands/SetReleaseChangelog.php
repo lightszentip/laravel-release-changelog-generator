@@ -35,24 +35,26 @@ class SetReleaseChangelog extends BaseCommand
 
             $decoded_json = json_decode(file_get_contents(FileHandler::pathChangelog(true)), true);
             if (!is_array($decoded_json) || !array_key_exists('unreleased', $decoded_json)) {
-                $this->error('No release changelog exists to update');
+                $msg = 'No release changelog exists to update';
 
-                return self::FAILURE;
+                return $this->isJson() ? $this->errorJson($msg) : $this->failure($msg);
             }
 
             app(Constants::APP_VERSION_HANDLING)->updateVersion($major, $minor, $patch);
             $decoded_json = VersionUtil::generateChangelogWithNewVersion($decoded_json, $name);
             file_put_contents(FileHandler::pathChangelog(), json_encode($decoded_json));
 
+            if ($this->isJson()) {
+                $version = app('releasechangelog.version')->showVersion(Constants::DEFAULT_FORMAT);
+
+                return $this->outputJson(['success' => true, 'version' => $version]);
+            }
+
             return self::SUCCESS;
         } catch (\InvalidArgumentException $e) {
-            $this->error('Error: '.$e->getMessage());
-
-            return self::FAILURE;
+            return $this->isJson() ? $this->errorJson($e->getMessage()) : $this->failure('Error: '.$e->getMessage());
         } catch (\Exception $e) {
-            $this->error('Error: '.$e->getMessage());
-
-            return self::INVALID;
+            return $this->isJson() ? $this->errorJson($e->getMessage()) : $this->failure('Error: '.$e->getMessage());
         }
     }
 }

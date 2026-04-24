@@ -38,6 +38,14 @@ class GenerateChangelogMdCommandTest extends TestCase
         $this->artisan('changelog:generate-md')->assertOk();
     }
 
+    public function test_handle_command_with_json_flag()
+    {
+        $this->withoutMockingConsoleOutput()
+            ->artisan('changelog:generate-md', ['--json' => true]);
+        $output = json_decode(trim(Artisan::output()), true);
+        $this->assertTrue($output['success']);
+    }
+
     public function test_handle_command_with_custom_path()
     {
         $old_path = Config::get('releasechangelog.markdown-path');

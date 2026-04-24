@@ -106,4 +106,16 @@ class AddChangelogTest extends TestCase
             $expected
         );
     }
+
+    #[Test]
+    public function test_handle_command_with_json_flag()
+    {
+        $this->withoutMockingConsoleOutput()
+            ->artisan('changelog:add', ['--type' => 'feat', '--message' => 'json test', '--json' => true]);
+        $output = json_decode(trim(Artisan::output()), true);
+        $this->assertTrue($output['success']);
+        $this->assertEquals('feat', $output['type']);
+        $this->assertEquals('json test', $output['message']);
+    }
+
 }

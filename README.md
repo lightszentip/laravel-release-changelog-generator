@@ -144,6 +144,72 @@ timestamp:
 "1.0.1.rc0":{"name":"My First Release","date":"2022-12-22 23:56:34","release":true,"feat":[{"message":"My first feature"},{"message":"Implement the whole function for magic"}]}}
 ```
 
+## AI & Pipeline Integration
+
+### JSON Output Flag
+
+Every Artisan command supports `--json` for machine-readable output:
+
+```shell
+php artisan changelog:show-version --json
+# {"version":"1.0.0"}
+
+php artisan changelog:suggest-release --json
+# {"type":"minor","reason":"Feature type 'feat' found in unreleased entries"}
+
+TYPE=$(php artisan changelog:suggest-release --json | jq -r '.type')
+php artisan changelog:release --releasename="My Release" --type="$TYPE"
+```
+
+### Read Commands
+
+```shell
+# List all released versions
+php artisan changelog:list
+php artisan changelog:list --json
+
+# Show unreleased entries (default) or a specific version
+php artisan changelog:show
+php artisan changelog:show --unreleased --json
+php artisan changelog:show --ver=1.0.0 --json
+```
+
+### MCP Server (Claude Code / AI Tools)
+
+The package ships a standalone MCP server that AI tools (Claude, Cursor, etc.) can use to read and write the changelog without a full Laravel bootstrap.
+
+**Setup:**
+
+1. Copy the example config to your project root:
+   ```shell
+   cp vendor/lightszentip/laravel-release-changelog-generator/.mcp.json.example .mcp.json
+   ```
+
+2. Adjust paths in `.mcp.json` if your project uses non-default locations:
+   ```json
+   {
+     "mcpServers": {
+       "changelog": {
+         "command": "vendor/bin/changelog-mcp",
+         "env": {
+           "CHANGELOG_PATH": "resources/.changes/changelog.json",
+           "VERSION_PATH":   "resources/.version/version.yml"
+         }
+       }
+     }
+   }
+   ```
+
+**Available MCP Tools:**
+
+| Tool | Description |
+|------|-------------|
+| `add_entry` | Add a changelog entry to unreleased (`type`, `message`, optional `module`/`issue`) |
+| `get_unreleased` | Return the current unreleased section |
+| `get_version` | Return the current version (optional `format` parameter) |
+| `list_releases` | List all released versions |
+| `create_release` | Bump version and create a new release (`name`, `type`: patch/minor/major/rc) |
+
 ## Testing
 
 ```bash

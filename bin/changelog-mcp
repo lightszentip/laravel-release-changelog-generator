@@ -1,0 +1,404 @@
+#!/usr/bin/env php
+<?php
+
+// Autoloader: works both as vendor/bin symlink and directly from package root
+$autoloadCandidates = [
+    __DIR__ . '/../../../autoload.php',  // installed via composer (vendor/bin symlink)
+    __DIR__ . '/../vendor/autoload.php', // running from package root
+];
+foreach ($autoloadCandidates as $candidate) {
+    if (file_exists($candidate)) {
+        require_once $candidate;
+        break;
+    }
+}
+
+use Symfony\Component\Yaml\Yaml;
+
+// ─── Configuration ────────────────────────────────────────────────────────────
+
+$changelogPath = getenv('CHANGELOG_PATH') ?: 'resources' . DIRECTORY_SEPARATOR . '.changes' . DIRECTORY_SEPARATOR . 'changelog.json';
+$versionPath   = getenv('VERSION_PATH')   ?: 'resources' . DIRECTORY_SEPARATOR . '.version'  . DIRECTORY_SEPARATOR . 'version.yml';
+
+const MCP_PROTOCOL_VERSION = '2024-11-05';
+const META_KEYS = ['name', 'date', 'release', 'modules'];
+
+// ─── Tool Definitions ─────────────────────────────────────────────────────────
+
+function toolDefinitions(): array
+{
+    return [
+        [
+            'name'        => 'add_entry',
+            'description' => 'Add a new entry to the unreleased section of changelog.json',
+            'inputSchema' => [
+                'type'       => 'object',
+                'properties' => [
+                    'type'    => ['type' => 'string', 'description' => 'Change type (feat, fix, chore, breaking, …)'],
+                    'message' => ['type' => 'string', 'description' => 'Changelog entry message'],
+                    'module'  => ['type' => 'string', 'description' => 'Optional module name'],
+                    'issue'   => ['type' => 'string', 'description' => 'Optional issue number or reference'],
+                ],
+                'required' => ['type', 'message'],
+            ],
+        ],
+        [
+            'name'        => 'get_unreleased',
+            'description' => 'Return the unreleased section of changelog.json',
+            'inputSchema' => ['type' => 'object', 'properties' => []],
+        ],
+        [
+            'name'        => 'get_version',
+            'description' => 'Return the current version from version.yml',
+            'inputSchema' => [
+                'type'       => 'object',
+                'properties' => [
+                    'format' => [
+                        'type'        => 'string',
+                        'description' => 'Version format: "version" (major.minor.patch), "min" (with prerelease), "changelogversion", or a template like "{major}.{minor}.{patch}"',
+                        'default'     => 'version',
+                    ],
+                ],
+            ],
+        ],
+        [
+            'name'        => 'list_releases',
+            'description' => 'List all released versions from changelog.json, sorted descending',
+            'inputSchema' => ['type' => 'object', 'properties' => []],
+        ],
+        [
+            'name'        => 'create_release',
+            'description' => 'Bump version and move unreleased entries to a new release in changelog.json',
+            'inputSchema' => [
+                'type'       => 'object',
+                'properties' => [
+                    'name' => ['type' => 'string', 'description' => 'Release name'],
+                    'type' => [
+                        'type'        => 'string',
+                        'description' => 'Version bump type: patch, minor, major, or rc',
+                        'enum'        => ['patch', 'minor', 'major', 'rc'],
+                    ],
+                ],
+                'required' => ['name', 'type'],
+            ],
+        ],
+    ];
+}
+
+// ─── Version Helpers ──────────────────────────────────────────────────────────
+
+function readVersion(string $path): array
+{
+    if (!file_exists($path)) {
+        throw new RuntimeException("version.yml not found at: {$path}");
+    }
+    return Yaml::parseFile($path);
+}
+
+function writeVersion(string $path, array $data): void
+{
+    file_put_contents($path, Yaml::dump($data, 4));
+}
+
+function formatVersion(array $v, string $format = 'version'): string
+{
+    $prereleasePart = ($v['prereleasenumber'] ?? 0) > 0
+        ? '.' . ($v['prerelease'] ?? '') . ($v['prereleasenumber'] ?? '')
+        : '';
+
+    switch ($format) {
+        case 'version':
+            return "{$v['major']}.{$v['minor']}.{$v['patch']}";
+        case 'min':
+            $pre = ($v['prereleasenumber'] ?? 0) > 0
+                ? '[' . ($v['prerelease'] ?? '') . ($v['prereleasenumber'] ?? '') . ']'
+                : '';
+            return "{$v['major']}.{$v['minor']}.{$v['patch']}{$pre}";
+        case 'changelogversion':
+            return "{$v['major']}.{$v['minor']}.{$v['patch']}{$prereleasePart}";
+        default:
+            // Template string: replace {major}, {minor}, {patch}, etc.
+            $result = $format;
+            $result = str_replace('{major}',            (string) $v['major'],                        $result);
+            $result = str_replace('{minor}',            (string) $v['minor'],                        $result);
+            $result = str_replace('{patch}',            (string) $v['patch'],                        $result);
+            $result = str_replace('{prerelease}',       (string) ($v['prerelease'] ?? ''),            $result);
+            $result = str_replace('{prereleasenumber}', (string) ($v['prereleasenumber'] ?? ''),      $result);
+            $result = str_replace('{buildmetadata}',    (string) ($v['buildmetadata'] ?? ''),         $result);
+            return $result;
+    }
+}
+
+function bumpVersion(array $v, string $type): array
+{
+    switch ($type) {
+        case 'patch':
+            $v['patch']++;
+            $v['prereleasenumber'] = 0;
+            break;
+        case 'minor':
+            $v['minor']++;
+            $v['patch'] = 0;
+            $v['prereleasenumber'] = 0;
+            break;
+        case 'major':
+            $v['major']++;
+            $v['minor'] = 0;
+            $v['patch'] = 0;
+            $v['prereleasenumber'] = 0;
+            break;
+        case 'rc':
+            $v['prereleasenumber'] = is_null($v['prereleasenumber'] ?? null)
+                ? 1
+                : (int) $v['prereleasenumber'] + 1;
+            break;
+    }
+    return $v;
+}
+
+// ─── Changelog Helpers ────────────────────────────────────────────────────────
+
+function readChangelog(string $path): array
+{
+    if (!file_exists($path)) {
+        return [];
+    }
+    $data = json_decode(file_get_contents($path), true);
+    return is_array($data) ? $data : [];
+}
+
+function writeChangelog(string $path, array $data): void
+{
+    file_put_contents($path, json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+}
+
+function countEntries(array $data): int
+{
+    $count = 0;
+    foreach ($data as $key => $value) {
+        if (!in_array($key, META_KEYS, true) && is_array($value)) {
+            $count += count($value);
+        }
+    }
+    return $count;
+}
+
+// ─── Tool Implementations ─────────────────────────────────────────────────────
+
+function toolAddEntry(array $args, string $changelogPath): array
+{
+    $type    = $args['type']    ?? '';
+    $message = $args['message'] ?? '';
+    $module  = $args['module']  ?? '';
+    $issue   = $args['issue']   ?? '';
+
+    if (!$type || !$message) {
+        throw new InvalidArgumentException('type and message are required');
+    }
+
+    $changelog = readChangelog($changelogPath);
+
+    if (!array_key_exists('unreleased', $changelog)) {
+        $changelog['unreleased'] = ['name' => 'tbd', 'date' => '', 'release' => false];
+    }
+
+    $entry = ['message' => $message];
+    if ($issue) {
+        $entry['issue'] = $issue;
+    }
+
+    if ($module) {
+        if (!isset($changelog['unreleased']['modules'])) {
+            $changelog['unreleased']['modules'] = [];
+        }
+        $found = false;
+        foreach ($changelog['unreleased']['modules'] as &$mod) {
+            if (($mod['name'] ?? '') === $module) {
+                if (!isset($mod[$type]) || !is_array($mod[$type])) {
+                    $mod[$type] = [];
+                }
+                $mod[$type][] = $entry;
+                $found = true;
+                break;
+            }
+        }
+        unset($mod);
+        if (!$found) {
+            $changelog['unreleased']['modules'][] = ['name' => $module, $type => [$entry]];
+        }
+    } else {
+        if (!isset($changelog['unreleased'][$type]) || !is_array($changelog['unreleased'][$type])) {
+            $changelog['unreleased'][$type] = [];
+        }
+        $changelog['unreleased'][$type][] = $entry;
+    }
+
+    writeChangelog($changelogPath, $changelog);
+    return ['success' => true];
+}
+
+function toolGetUnreleased(string $changelogPath): array
+{
+    $changelog = readChangelog($changelogPath);
+    return $changelog['unreleased'] ?? [];
+}
+
+function toolGetVersion(array $args, string $versionPath): array
+{
+    $format = $args['format'] ?? 'version';
+    $v = readVersion($versionPath);
+    return ['version' => formatVersion($v, $format)];
+}
+
+function toolListReleases(string $changelogPath): array
+{
+    $changelog = readChangelog($changelogPath);
+    $releases  = array_filter($changelog, static fn ($k) => $k !== 'unreleased', ARRAY_FILTER_USE_KEY);
+    uksort($releases, 'version_compare');
+    $releases = array_reverse($releases, true);
+
+    $result = [];
+    foreach ($releases as $version => $data) {
+        if (!is_array($data)) {
+            continue;
+        }
+        $result[] = [
+            'version' => (string) $version,
+            'name'    => (string) ($data['name'] ?? ''),
+            'date'    => (string) ($data['date'] ?? ''),
+            'count'   => countEntries($data),
+        ];
+    }
+    return $result;
+}
+
+function toolCreateRelease(array $args, string $changelogPath, string $versionPath): array
+{
+    $name = $args['name'] ?? '';
+    $type = $args['type'] ?? '';
+
+    if (!$name || !$type) {
+        throw new InvalidArgumentException('name and type are required');
+    }
+
+    if (!in_array($type, ['patch', 'minor', 'major', 'rc'], true)) {
+        throw new InvalidArgumentException('type must be one of: patch, minor, major, rc');
+    }
+
+    $changelog = readChangelog($changelogPath);
+    if (!array_key_exists('unreleased', $changelog)) {
+        throw new RuntimeException('No unreleased section found in changelog');
+    }
+
+    $v = readVersion($versionPath);
+    $v = bumpVersion($v, $type);
+    writeVersion($versionPath, $v);
+
+    $newVersionKey = formatVersion($v, 'changelogversion');
+
+    $changelog[$newVersionKey] = $changelog['unreleased'];
+    $changelog[$newVersionKey]['name']    = $name;
+    $changelog[$newVersionKey]['release'] = true;
+    $changelog[$newVersionKey]['date']    = (new DateTimeImmutable())->format('Y-m-d H:i:s');
+    $changelog['unreleased'] = ['name' => 'tbd', 'date' => '', 'release' => false];
+
+    writeChangelog($changelogPath, $changelog);
+
+    return ['success' => true, 'version' => $newVersionKey];
+}
+
+// ─── MCP Protocol ─────────────────────────────────────────────────────────────
+
+function mcpResponse(mixed $id, mixed $result): array
+{
+    return ['jsonrpc' => '2.0', 'id' => $id, 'result' => $result];
+}
+
+function mcpError(mixed $id, int $code, string $message): array
+{
+    return ['jsonrpc' => '2.0', 'id' => $id, 'error' => ['code' => $code, 'message' => $message]];
+}
+
+function mcpTextContent(mixed $data): array
+{
+    return [
+        'content' => [
+            ['type' => 'text', 'text' => json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)],
+        ],
+    ];
+}
+
+function handleRequest(array $request, string $changelogPath, string $versionPath): ?array
+{
+    $id     = $request['id'] ?? null;
+    $method = $request['method'] ?? '';
+    $params = $request['params'] ?? [];
+
+    // Notifications have no id and need no response
+    if ($id === null && str_starts_with($method, 'notifications/')) {
+        return null;
+    }
+
+    try {
+        switch ($method) {
+            case 'initialize':
+                return mcpResponse($id, [
+                    'protocolVersion' => MCP_PROTOCOL_VERSION,
+                    'capabilities'    => ['tools' => []],
+                    'serverInfo'      => ['name' => 'changelog-mcp', 'version' => '1.0.0'],
+                ]);
+
+            case 'tools/list':
+                return mcpResponse($id, ['tools' => toolDefinitions()]);
+
+            case 'tools/call':
+                $toolName = $params['name'] ?? '';
+                $toolArgs = $params['arguments'] ?? [];
+
+                $toolResult = match ($toolName) {
+                    'add_entry'      => toolAddEntry($toolArgs, $changelogPath),
+                    'get_unreleased' => toolGetUnreleased($changelogPath),
+                    'get_version'    => toolGetVersion($toolArgs, $versionPath),
+                    'list_releases'  => toolListReleases($changelogPath),
+                    'create_release' => toolCreateRelease($toolArgs, $changelogPath, $versionPath),
+                    default          => throw new InvalidArgumentException("Unknown tool: {$toolName}"),
+                };
+
+                return mcpResponse($id, mcpTextContent($toolResult));
+
+            default:
+                if ($id !== null) {
+                    return mcpError($id, -32601, "Method not found: {$method}");
+                }
+                return null;
+        }
+    } catch (Throwable $e) {
+        if ($id !== null) {
+            return mcpError($id, -32000, $e->getMessage());
+        }
+        return null;
+    }
+}
+
+// ─── Main Loop ────────────────────────────────────────────────────────────────
+
+while (($line = fgets(STDIN)) !== false) {
+    $line = trim($line);
+    if ($line === '') {
+        continue;
+    }
+
+    $request = json_decode($line, true);
+    if (!is_array($request)) {
+        $response = mcpError(null, -32700, 'Parse error: invalid JSON');
+        echo json_encode($response) . "\n";
+        flush();
+        continue;
+    }
+
+    $response = handleRequest($request, $changelogPath, $versionPath);
+    if ($response !== null) {
+        echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n";
+        flush();
+    }
+}

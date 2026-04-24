@@ -24,13 +24,16 @@ class ShowVersion extends BaseCommand
                 $format = Constants::DEFAULT_FORMAT;
             }
             $result = app('releasechangelog.version')->showVersion($format);
+
+            if ($this->isJson()) {
+                return $this->outputJson(['version' => $result]);
+            }
+
             $this->info($result);
 
             return self::SUCCESS;
         } catch (\Exception $e) {
-            $this->error('Error: '.$e->getMessage());
-
-            return self::INVALID;
+            return $this->isJson() ? $this->errorJson($e->getMessage()) : $this->failure('Error: '.$e->getMessage());
         }
     }
 }

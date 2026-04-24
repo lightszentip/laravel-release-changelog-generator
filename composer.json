@@ -15,6 +15,9 @@
             "role": "Developer"
         }
     ],
+    "bin": [
+        "bin/changelog-mcp"
+    ],
     "require": {
         "php": ">=8.4",
         "symfony/yaml": "^7.2|^8.0"

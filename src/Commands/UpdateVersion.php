@@ -26,17 +26,19 @@ class UpdateVersion extends BaseCommand
 
             VersionUtil::updateVersionByType($type);
 
-            $this->info('Current Version: '.app('releasechangelog.version')->showVersion(Constants::DEFAULT_FORMAT));
+            $version = app('releasechangelog.version')->showVersion(Constants::DEFAULT_FORMAT);
+
+            if ($this->isJson()) {
+                return $this->outputJson(['version' => $version]);
+            }
+
+            $this->info('Current Version: '.$version);
 
             return self::SUCCESS;
         } catch (\InvalidArgumentException $e) {
-            $this->error('Error: '.$e->getMessage());
-
-            return self::FAILURE;
+            return $this->isJson() ? $this->errorJson($e->getMessage()) : $this->failure('Error: '.$e->getMessage());
         } catch (\Exception $e) {
-            $this->error('Error: '.$e->getMessage());
-
-            return self::INVALID;
+            return $this->isJson() ? $this->errorJson($e->getMessage()) : $this->failure('Error: '.$e->getMessage());
         }
     }
 }

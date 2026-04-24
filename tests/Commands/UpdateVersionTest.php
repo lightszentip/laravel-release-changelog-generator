@@ -50,5 +50,15 @@ class UpdateVersionTest extends TestCase
         $this->assertEquals(trim($expected), trim($actual));
     }
 
+    /** @test */
+    public function test_handle_command_with_json_flag()
+    {
+        $this->withoutMockingConsoleOutput()
+            ->artisan('changelog:update-version', ['--type' => 'patch', '--json' => true]);
+        $output = json_decode(trim(Artisan::output()), true);
+        $this->assertArrayHasKey('version', $output);
+        $this->assertNotEmpty($output['version']);
+    }
+
 
 }

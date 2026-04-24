@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "changelog": {
+      "command": "vendor/bin/changelog-mcp",
+      "env": {
+        "CHANGELOG_PATH": "resources/.changes/changelog.json",
+        "VERSION_PATH": "resources/.version/version.yml"
+      }
+    }
+  }
+}
