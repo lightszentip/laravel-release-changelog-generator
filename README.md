@@ -1,9 +1,9 @@
 # Package to create releases and changelogs in Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/lightszentip/laravel-release-changelog-generator.svg?style=flat-square)](https://packagist.org/packages/lightszentip/laravel-release-changelog-generator)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/lightszentip/laravel-release-changelog-generator/run-tests?label=tests)](https://github.com/lightszentip/laravel-release-changelog-generator/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/lightszentip/laravel-release-changelog-generator/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/lightszentip/laravel-release-changelog-generator/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/lightszentip/laravel-release-changelog-generator.svg?style=flat-square)](https://packagist.org/packages/lightszentip/laravel-release-changelog-generator) [![PHP-CS-Fixer](https://github.com/lightszentip/laravel-release-changelog-generator/actions/workflows/quality-check.yml/badge.svg?branch=main)](https://github.com/lightszentip/laravel-release-changelog-generator/actions/workflows/quality-check.yml) [![Update Changelog GIT](https://github.com/lightszentip/laravel-release-changelog-generator/actions/workflows/update-changelog-main.yml/badge.svg)](https://github.com/lightszentip/laravel-release-changelog-generator/actions/workflows/update-changelog-main.yml)
+[![Total Downloads](https://img.shields.io/packagist/dt/lightszentip/laravel-release-changelog-generator.svg?style=flat-square)](https://packagist.org/packages/lightszentip/laravel-release-changelog-generator)
+[![PHP-CS-Fixer](https://github.com/lightszentip/laravel-release-changelog-generator/actions/workflows/quality-check.yml/badge.svg?branch=main)](https://github.com/lightszentip/laravel-release-changelog-generator/actions/workflows/quality-check.yml)
+[![Update Changelog GIT](https://github.com/lightszentip/laravel-release-changelog-generator/actions/workflows/update-changelog-main.yml/badge.svg)](https://github.com/lightszentip/laravel-release-changelog-generator/actions/workflows/update-changelog-main.yml)
 
 This package adds changelog management over the command line and version release management. You can add new changelog items, and if you release, the changelog is updated with the new version and the version file. Thus, it is easy to manage a customer changelog.
 
@@ -46,7 +46,11 @@ If the command is used without arguments, the command line creates an ask for al
 
 ```shell
 php artisan changelog:add --type="feat" --message="Implement the whole function for magic"
+php artisan changelog:add --type="fix" --message="Fix the magic" --issue="42"
+php artisan changelog:add --type="feat" --message="Module feature" --module="core"
 ```
+
+Options: `--type`, `--message`, `--issue` (optional issue reference), `--module` (optional module name).
 
 You can find the result in resources/.changes/changelog.json
 
@@ -58,6 +62,27 @@ php artisan changelog:release --releasename="My First Release" --type=patch
 
 This updates the version.yml to the next patch version and add in the changelog.json a new release with all current
 changelog items.
+
+### Set a specific release version:
+
+```shell
+php artisan changelog:set-release --releasename="My Release" --versionnumber="2.1.0"
+```
+
+### Update the version without creating a release:
+
+```shell
+php artisan changelog:update-version --type=patch
+```
+
+Types: `patch`, `minor`, `major`, `rc`, `timestamp`
+
+### Show the current version:
+
+```shell
+php artisan changelog:show-version
+php artisan changelog:show-version --format=full
+```
 
 ### Update CHANGELOG.md file:
 
