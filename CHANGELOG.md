@@ -2,19 +2,6 @@
 
 All notable changes to `laravel-release-changelog-generator` will be documented in this file
 
-## 1.1.0 AI and Pipeline Integration - 2026-04-24
-
-### What's Changed
-
-- feat: Add `--json` flag to all Artisan commands for machine-readable pipeline output
-- feat: Add `changelog:list` command — list all releases with version, name, date, entry count
-- feat: Add `changelog:show` command — show unreleased or specific version entries (`--ver=x.y.z` / `--unreleased`)
-- feat: Add `changelog:suggest-release` command — auto-detect bump type from unreleased entries (breaking→major, feat→minor, rest→patch)
-- feat: Add standalone MCP server (`bin/changelog-mcp`) for AI tools like Claude Code — tools: `add_entry`, `get_unreleased`, `get_version`, `list_releases`, `create_release`
-- feat: Add `.mcp.json.example` template for MCP server configuration
-
-**Full Changelog**: https://github.com/lightszentip/laravel-release-changelog-generator/compare/1.0.0...1.1.0
-
 ## 1.0.0 Monacobreen - 2025-09-02
 
 <!-- Release notes generated using configuration in .github/release.yml at main -->
