@@ -67,7 +67,7 @@ class ServiceProvider extends IlluminateServiceProvider
 
         Blade::directive(
             Config::get('releasechangelog.blade-directive', 'releasechangelog'),
-            static function ($format = Constants::DEFAULT_FORMAT) {
+            static function (string $format = Constants::DEFAULT_FORMAT) {
                 return "<?php echo app('releasechangelog.version')->showVersion({$format}); ?>";
             }
         );
