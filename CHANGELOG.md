@@ -2,6 +2,56 @@
 
 All notable changes to `laravel-release-changelog-generator` will be documented in this file
 
+## 1.1.0 Svartisen - 2026-04-24
+
+🏔️  1.1.0 Svartisen
+
+
+---
+
+🤖 AI & Pipeline Integration
+
+This release makes the changelog fully machine-readable — designed for AI developer tools, CI/CD pipelines,
+and MCP-compatible editors.
+
+
+---
+
+✨ What's New
+
+🔧 --json flag for all Artisan commands
+Every command now supports --json for structured, parseable output — no ANSI codes, no free text.
+php artisan changelog:show-version --json
+
+### {"version": "1.1.0"}
+
+📋 changelog:list — List all releases
+Lists all published versions with name, date, and entry count. Newest first.
+php artisan changelog:list --json
+
+### [{"version":"1.1.0","name":"Svartisen","date":"...","count":6}]
+
+🔍 changelog:show — Show release entries
+Show unreleased items or a specific version.
+php artisan changelog:show --unreleased --json
+php artisan changelog:show --ver=1.0.0
+
+🧠 changelog:suggest-release — Auto-detect bump type
+Analyses unreleased entries and recommends patch, minor, or major. Pipeline-ready:
+TYPE=$(php artisan changelog:suggest-release --json | jq -r '.type')
+Rule: breaking → major · feat/feature → minor · everything else → patch
+
+⚡ MCP Server (vendor/bin/changelog-mcp)
+Standalone PHP script — no Laravel bootstrap, runs as a subprocess for AI tools like Claude Code or Cursor.
+Tools: add_entry · get_unreleased · get_version · list_releases · create_release
+
+Copy .mcp.json.example to .mcp.json in your project to get started.
+
+
+---
+
+Full Changelog: https://github.com/lightszentip/laravel-release-changelog-generator/compare/1.0.0...1.1.0
+
 ## 1.0.0 Monacobreen - 2025-09-02
 
 <!-- Release notes generated using configuration in .github/release.yml at main -->
