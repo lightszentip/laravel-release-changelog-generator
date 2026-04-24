@@ -33,7 +33,7 @@
         "phpstan/phpstan-deprecation-rules": "^2.0.3",
         "phpstan/phpstan-phpunit": "^2.0.7",
         "psalm/plugin-laravel": "^v4.0.0",
-        "psalm/plugin-phpunit": "^0.19.5",
+        "psalm/plugin-phpunit": "^0.20.0",
         "roave/security-advisories": "dev-latest",
         "vimeo/psalm": "^7.0.0"
     },
