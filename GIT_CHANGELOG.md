@@ -1,5 +1,5 @@
 # Changelog
-## [unreleased]
+## [1.1.0] - 2026-04-24
 
 ### Miscellaneous Tasks
 
@@ -314,6 +314,7 @@
 
 ### Features
 
+- Show version in command line
 - Version update for artisan and update timestamp always
 - Set Release by version from input
 
@@ -331,10 +332,6 @@
 ### Bug Fixes
 
 - Change the constant for default format to 'full'
-
-### Features
-
-- Show version in command line
 
 ### Ignore
 
