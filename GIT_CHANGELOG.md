@@ -1,6 +1,10 @@
 # Changelog
 ## [unreleased]
 
+### Bug Fixes
+
+- Stop vimeo/psalm dev-master from crashing on PHP 8.4
+
 ### Miscellaneous Tasks
 
 - Update dev dependencies (psalm/plugin-phpunit, pest v5)
