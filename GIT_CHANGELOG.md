@@ -4,6 +4,7 @@
 ### Bug Fixes
 
 - Stop vimeo/psalm dev-master from crashing on PHP 8.4
+- Suppress false-positive UnusedParam/PurityAnnotation findings
 
 ### Miscellaneous Tasks
 
