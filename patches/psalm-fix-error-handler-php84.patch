@@ -1,0 +1,25 @@
+--- a/src/Psalm/Internal/ErrorHandler.php	2026-09-08 12:22:05.165479390 +0200
++++ b/src/Psalm/Internal/ErrorHandler.php	2026-09-08 12:22:05.167165160 +0200
+@@ -16,6 +16,8 @@
+ use function set_exception_handler;
+ 
+ use const E_ALL;
++use const E_DEPRECATED;
++use const E_WARNING;
+ use const STDERR;
+ 
+ /**
+@@ -75,7 +77,12 @@
+             string $error_filename = 'unknown',
+             int $error_line = -1,
+         ): bool {
+-            if (ErrorHandler::$exceptions_enabled && ($error_code & error_reporting())) {
++            if (
++                ErrorHandler::$exceptions_enabled
++                && $error_code !== E_DEPRECATED
++                && $error_code !== E_WARNING
++                && ($error_code & error_reporting())
++            ) {
+                 throw new RuntimeException(
+                     'PHP Error: ' . $error_message
+                     . ' in ' . $error_filename . ':' . $error_line

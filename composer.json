@@ -50,6 +50,8 @@
     },
     "scripts": {
         "post-autoload-dump-test": "@php ./vendor/bin/testbench package:discover --ansi",
+        "post-install-cmd": "bash patches/apply.sh",
+        "post-update-cmd": "bash patches/apply.sh",
         "analyse": "vendor/bin/phpstan analyse",
         "test": "vendor/bin/pest",
         "test-coverage": "vendor/bin/pest --coverage",
