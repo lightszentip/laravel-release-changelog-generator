@@ -1,4 +1,10 @@
 # Changelog
+## [unreleased]
+
+### Miscellaneous Tasks
+
+- Update dev dependencies (psalm/plugin-phpunit, pest v5)
+
 ## [1.1.0] - 2026-04-24
 
 ### Miscellaneous Tasks
